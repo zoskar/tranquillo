@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "116702106976",
+    "project_id": "pcyb-9a039",
+    "storage_bucket": "pcyb-9a039.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116702106976:android:d11ded041489d5207f7a05",
+        "android_client_info": {
+          "package_name": "com.example.cues"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116702106976-5f9nj84ss9mutc32t1k3pp43f030dmfp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBezfOYRQRApm8OmhL0opKzjdgT8mAwMog"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "116702106976-5f9nj84ss9mutc32t1k3pp43f030dmfp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "116702106976-et09cnnctshjprou0a04ra5ql4qk2r83.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cues"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
