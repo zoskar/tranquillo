@@ -36,6 +36,7 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     FormBuilderTextField(
+                      obscureText: true,
                       name: 'passPicker',
                       maxLength: 20,
                       decoration: const InputDecoration(
