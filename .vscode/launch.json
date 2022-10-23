@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "cues (dev)",
+      "name": "pcyb (dev)",
       "request": "launch",
       "type": "dart",
       "program": "lib/main_dev.dart",

@@ -1,4 +1,4 @@
-package com.example.cues
+package com.example.pcyb
 
 import io.flutter.embedding.android.FlutterActivity
 

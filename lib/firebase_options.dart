@@ -63,7 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '116702106976',
     projectId: 'pcyb-9a039',
     storageBucket: 'pcyb-9a039.appspot.com',
-    iosClientId: '116702106976-et09cnnctshjprou0a04ra5ql4qk2r83.apps.googleusercontent.com',
-    iosBundleId: 'com.example.cues',
+    iosClientId:
+        '116702106976-et09cnnctshjprou0a04ra5ql4qk2r83.apps.googleusercontent.com',
   );
 }

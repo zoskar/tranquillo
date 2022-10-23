@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:116702106976:android:d11ded041489d5207f7a05",
         "android_client_info": {
-          "package_name": "com.example.cues"
+          "package_name": "com.example.pcyb"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "116702106976-et09cnnctshjprou0a04ra5ql4qk2r83.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.cues"
+                "bundle_id": "com.example.pcyb"
               }
             }
           ]

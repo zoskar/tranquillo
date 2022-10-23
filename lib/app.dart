@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pcyb/login_page.dart';
+import 'package:pcyb/user_status_cubit.dart';
 
 class App extends StatelessWidget {
-  FirebaseAuth auth = FirebaseAuth.instance;
+  const App({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    auth.signInWithEmailAndPassword(
-        email: 'zoskar12@gmail.com', password: 'zoskar12@gmail.com');
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-      }
-    });
-    return Center(
-      child: Text('OK'),
-    );
-  }
+  Widget build(BuildContext context) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => UserCubit(),
+          ),
+        ],
+        child: MaterialApp(
+          home: LoginPage(),
+        ),
+      );
 }
