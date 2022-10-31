@@ -1,40 +1,76 @@
 {
   "project_info": {
-    "project_number": "116702106976",
-    "project_id": "pcyb-9a039",
-    "storage_bucket": "pcyb-9a039.appspot.com"
+    "project_number": "1013999627334",
+    "project_id": "dictando-78c79",
+    "storage_bucket": "dictando-78c79.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:116702106976:android:d11ded041489d5207f7a05",
+        "mobilesdk_app_id": "1:1013999627334:android:b0613466f81f3791ca6e47",
         "android_client_info": {
-          "package_name": "com.example.pcyb"
+          "package_name": "com.example.dict"
         }
       },
       "oauth_client": [
         {
-          "client_id": "116702106976-5f9nj84ss9mutc32t1k3pp43f030dmfp.apps.googleusercontent.com",
+          "client_id": "1013999627334-lgcfs844lr3rp5m43vqiug72m4abmp2s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBezfOYRQRApm8OmhL0opKzjdgT8mAwMog"
+          "current_key": "AIzaSyBxnb8DOg94_tknGof-lQ83Rap3VZQjans"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "116702106976-5f9nj84ss9mutc32t1k3pp43f030dmfp.apps.googleusercontent.com",
+              "client_id": "1013999627334-lgcfs844lr3rp5m43vqiug72m4abmp2s.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "116702106976-et09cnnctshjprou0a04ra5ql4qk2r83.apps.googleusercontent.com",
+              "client_id": "1013999627334-7buuncli4ctdo5dugm01lgng9piiosfn.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.pcyb"
+                "bundle_id": "com.example.dict"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013999627334:android:2fd07fe71ee48384ca6e47",
+        "android_client_info": {
+          "package_name": "com.example.dict"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013999627334-lgcfs844lr3rp5m43vqiug72m4abmp2s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxnb8DOg94_tknGof-lQ83Rap3VZQjans"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013999627334-lgcfs844lr3rp5m43vqiug72m4abmp2s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1013999627334-7buuncli4ctdo5dugm01lgng9piiosfn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dict"
               }
             }
           ]

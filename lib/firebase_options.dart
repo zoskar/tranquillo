@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBezfOYRQRApm8OmhL0opKzjdgT8mAwMog',
-    appId: '1:116702106976:android:d11ded041489d5207f7a05',
-    messagingSenderId: '116702106976',
-    projectId: 'pcyb-9a039',
-    storageBucket: 'pcyb-9a039.appspot.com',
+    apiKey: 'AIzaSyBxnb8DOg94_tknGof-lQ83Rap3VZQjans',
+    appId: '1:1013999627334:android:b0613466f81f3791ca6e47',
+    messagingSenderId: '1013999627334',
+    projectId: 'dictando-78c79',
+    storageBucket: 'dictando-78c79.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDU9EbOhsj5wXY6vRyQhcMfNFlDZyXMSjw',
-    appId: '1:116702106976:ios:977415a9967ff3277f7a05',
-    messagingSenderId: '116702106976',
-    projectId: 'pcyb-9a039',
-    storageBucket: 'pcyb-9a039.appspot.com',
-    iosClientId:
-        '116702106976-et09cnnctshjprou0a04ra5ql4qk2r83.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAp6q4GdakXH8PXCDkfFca0qJJollb2Bk4',
+    appId: '1:1013999627334:ios:1ec52131fbcb04f3ca6e47',
+    messagingSenderId: '1013999627334',
+    projectId: 'dictando-78c79',
+    storageBucket: 'dictando-78c79.appspot.com',
+    iosClientId: '1013999627334-drnt781ko337h42rvv7h9hd0vuuev512.apps.googleusercontent.com',
+    iosBundleId: 'com.example.dict',
   );
 }
