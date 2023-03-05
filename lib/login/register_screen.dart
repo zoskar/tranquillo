@@ -7,12 +7,13 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      body: const Center(child: Text('Register Screen')),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => {
-          context.read<AuthCubit>().logOut,
-          Navigator.pop(context),
-        },
-        child: const Icon(Icons.arrow_back),
-      ));
+        body: const Center(child: Text('Register Screen')),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => {
+            context.read<AuthCubit>().logOut,
+            Navigator.pop(context),
+          },
+          child: const Icon(Icons.arrow_back),
+        ),
+      );
 }

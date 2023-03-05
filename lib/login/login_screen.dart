@@ -104,7 +104,8 @@ class LoginScreen extends HookWidget {
                                         : Colors.black,
                                   ),
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
+                                    Radius.circular(10),
+                                  ),
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -113,7 +114,8 @@ class LoginScreen extends HookWidget {
                                         : Colors.black,
                                   ),
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
+                                    Radius.circular(10),
+                                  ),
                                 ),
                                 label: const Text('email'),
                               ),
@@ -134,7 +136,8 @@ class LoginScreen extends HookWidget {
                                         : Colors.black,
                                   ),
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
+                                    Radius.circular(10),
+                                  ),
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -143,7 +146,8 @@ class LoginScreen extends HookWidget {
                                         : Colors.black,
                                   ),
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
+                                    Radius.circular(10),
+                                  ),
                                 ),
                                 label: const Text('password'),
                               ),

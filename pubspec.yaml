@@ -13,8 +13,8 @@ dependencies:
   dio: ^4.0.4
   equatable: ^2.0.3
   firebase_auth: ^3.11.2
-  firebase_core_platform_interface:
   firebase_core: ^1.17.0
+  firebase_core_platform_interface:
   firebase_database: ^9.0.14
   fl_chart: ^0.55.2
   flutter:
@@ -53,12 +53,15 @@ flutter:
       fonts:
         - asset: assets/fonts/Montserrat-Regular.ttf
         - asset: assets/fonts/Montserrat-SemiBold.ttf
+    - family:  Notes
+      fonts:
+        - asset: assets/fonts/Notes.ttf
 
 flutter_intl:
   enabled: true
 
 dependency_overrides:
-  intl: 0.17.0
+  intl: 0.18.0
 
 flutter_gen:
   integrations:

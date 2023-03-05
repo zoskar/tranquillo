@@ -10,7 +10,6 @@ linter:
     always_use_package_imports: true
     annotate_overrides: true
     avoid_annotating_with_dynamic: true
-    avoid_as: true
     avoid_bool_literals_in_conditional_expressions: true
     avoid_dynamic_calls: true
     avoid_empty_else: true
@@ -54,7 +53,6 @@ linter:
     sort_constructors_first: true
     sort_pub_dependencies: true
     sort_unnamed_constructors_first: true
-    super_goes_last: true
     unawaited_futures: true
     unnecessary_await_in_return: true
     unnecessary_brace_in_string_interps: true

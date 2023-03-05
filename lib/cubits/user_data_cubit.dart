@@ -2,37 +2,37 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BalanceCubit extends Cubit<BalanceState> {
-  BalanceCubit() : super(NoBalance());
+class UserDataCubit extends Cubit<UserDataState> {
+  UserDataCubit() : super(NoData());
 
   FirebaseAuth auth = FirebaseAuth.instance;
   final DatabaseReference _dataRef = FirebaseDatabase.instance.ref();
 
-  removeBalance() {
-    emit(NoBalance());
+  removeData() {
+    emit(NoData());
   }
 
-  getBalance() async {
+  getData() async {
     emit(FetchingInProgress());
 
     try {
       DataSnapshot response = await _dataRef.child('someData').get();
       final data = response.value as dynamic;
-      emit(FetchedBalance(data: data));
+      emit(FetchedData(data: data));
     } catch (err, st) {
       print('Error: $err, $st');
     }
   }
 }
 
-abstract class BalanceState {}
+abstract class UserDataState {}
 
-class FetchedBalance extends BalanceState {
-  FetchedBalance({required this.data});
+class FetchedData extends UserDataState {
+  FetchedData({required this.data});
 
   final String data;
 }
 
-class FetchingInProgress extends BalanceState {}
+class FetchingInProgress extends UserDataState {}
 
-class NoBalance extends BalanceState {}
+class NoData extends UserDataState {}
