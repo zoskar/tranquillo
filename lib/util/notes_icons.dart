@@ -15,8 +15,8 @@
 ///
 import 'package:flutter/widgets.dart';
 
-class Notes {
-  Notes._();
+class NotesIcons {
+  NotesIcons._();
 
   static const _kFontFam = 'Notes';
 

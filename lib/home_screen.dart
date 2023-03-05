@@ -36,27 +36,42 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Staff(distance: distance),
                       BlocBuilder<BeatCubit, BeatState>(
-                        builder: (context, state) => Column(
+                        builder: (context, state) => Row(
                           children: [
-                            BlocBuilder<BeatCubit, BeatState>(
-                              builder: (context, state) => SizedBox(
-                                height: distance *
-                                    step *
-                                    context
-                                        .read<BeatCubit>()
-                                        .beat
-                                        .notes
-                                        .last
-                                        .pitch,
+                            for (var note
+                                in context.read<BeatCubit>().beat.notes)
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    height: distance * step * note.pitch,
+                                  ),
+                                  Transform.rotate(
+                                    angle: note.getAngle(),
+                                    child: const Icon(
+                                      NotesIcons.eight,
+                                      size: 88,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Transform.rotate(
-                              angle: context.read<BeatCubit>().getAngle(),
-                              child: const Icon(
-                                Notes.quarter,
-                                size: 88,
-                              ),
-                            ),
+                            // SizedBox(
+                            //   height: distance *
+                            //       step *
+                            //       context
+                            //           .read<BeatCubit>()
+                            //           .beat
+                            //           .notes
+                            //           .last
+                            //           .pitch,
+                            // ),
+                            // Transform.rotate(
+                            //   angle: context.read<BeatCubit>().getAngle(),
+                            //   child: const Icon(
+                            //     Notes.eight,
+                            //     size: 88,
+                            //   ),
+                            // ),
+                            // ],
                           ],
                         ),
                       )
@@ -78,13 +93,19 @@ class HomeScreen extends StatelessWidget {
                       },
                       icon: const Icon(Icons.arrow_circle_down),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.arrow_circle_left),
+                    const IconButton(
+                      onPressed: null,
+                      icon: Icon(Icons.arrow_circle_left),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<BeatCubit>().right();
+                      },
                       icon: const Icon(Icons.arrow_circle_right),
+                    ),
+                    const IconButton(
+                      onPressed: null,
+                      icon: Icon(Icons.delete_rounded),
                     )
                   ],
                 )
