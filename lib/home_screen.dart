@@ -54,24 +54,6 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                            // SizedBox(
-                            //   height: distance *
-                            //       step *
-                            //       context
-                            //           .read<BeatCubit>()
-                            //           .beat
-                            //           .notes
-                            //           .last
-                            //           .pitch,
-                            // ),
-                            // Transform.rotate(
-                            //   angle: context.read<BeatCubit>().getAngle(),
-                            //   child: const Icon(
-                            //     Notes.eight,
-                            //     size: 88,
-                            //   ),
-                            // ),
-                            // ],
                           ],
                         ),
                       )
@@ -93,9 +75,11 @@ class HomeScreen extends StatelessWidget {
                       },
                       icon: const Icon(Icons.arrow_circle_down),
                     ),
-                    const IconButton(
-                      onPressed: null,
-                      icon: Icon(Icons.arrow_circle_left),
+                    IconButton(
+                      onPressed: () {
+                        context.read<BeatCubit>().left();
+                      },
+                      icon: const Icon(Icons.arrow_circle_left),
                     ),
                     IconButton(
                       onPressed: () {
@@ -103,9 +87,11 @@ class HomeScreen extends StatelessWidget {
                       },
                       icon: const Icon(Icons.arrow_circle_right),
                     ),
-                    const IconButton(
-                      onPressed: null,
-                      icon: Icon(Icons.delete_rounded),
+                    IconButton(
+                      onPressed: () {
+                        context.read<BeatCubit>().delete();
+                      },
+                      icon: const Icon(Icons.delete_rounded),
                     )
                   ],
                 )

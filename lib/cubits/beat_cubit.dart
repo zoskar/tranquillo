@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dict/classes.dart';
 
@@ -14,14 +12,6 @@ class BeatCubit extends Cubit<BeatState> {
     index = 0;
     emit(BeatSetState());
   }
-
-  // double getAngle() {
-  //   if (beat.notes[index].pitch <= 12) {
-  //     return pi;
-  //   } else {
-  //     return pi / 180;
-  //   }
-  // }
 
   down() {
     if (beat.notes[index].pitch < 24) {
@@ -40,9 +30,30 @@ class BeatCubit extends Cubit<BeatState> {
   }
 
   right() {
-    if (index < 2) {
-      beat.notes.add(Note(duration: 1, pitch: 12));
+    if (index < 3) {
+      if (index == beat.notes.length - 1) {
+        beat.notes.add(Note(duration: 1, pitch: 12));
+      }
       index += 1;
+    }
+
+    emit(BeatSetState());
+  }
+
+  left() {
+    if (index > 0) {
+      index -= 1;
+    }
+
+    emit(BeatSetState());
+  }
+
+  delete() {
+    if (beat.notes.length > 1) {
+      beat.notes.removeAt(index);
+      if (index > 0) {
+        index -= 1;
+      }
     }
 
     emit(BeatSetState());
