@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dict/classes.dart';
+import 'package:dict/data/classes.dart';
 
 class BeatCubit extends Cubit<BeatState> {
   BeatCubit() : super(InitState());

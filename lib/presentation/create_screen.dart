@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dict/cubits/auth_cubit.dart';
 import 'package:dict/cubits/user_data_cubit.dart';
+import 'package:dict/presentation/hamburger_menu.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class CreateScreen extends StatelessWidget {
+  const CreateScreen({Key? key}) : super(key: key);
 
   final double distance = 8;
   final double step = 1.5;
@@ -27,6 +28,7 @@ class HomeScreen extends StatelessWidget {
             child: CircularProgressIndicator(),
           ),
         Scaffold(
+          drawer: const HamburgerMenu(),
           appBar: AppBar(
             flexibleSpace: Container(
               decoration: const BoxDecoration(
@@ -44,34 +46,8 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Staff(distance: distance),
                       BlocBuilder<BeatCubit, BeatState>(
-                        builder: (context, state) => Row(
-                          children: [
-                            // TODO replace with foreach indexed
-                            for (var i = 0;
-                                i < context.read<BeatCubit>().beat.notes.length;
-                                i++)
-                              Column(
-                                children: [
-                                  SizedBox(
-                                    height: distance *
-                                        step *
-                                        context
-                                            .read<BeatCubit>()
-                                            .beat
-                                            .notes[i]
-                                            .pitch,
-                                  ),
-                                  Icon(
-                                    NotesIcons.eight,
-                                    color: i == context.read<BeatCubit>().index
-                                        ? AppColors.a
-                                        : Colors.black,
-                                    size: 88,
-                                  ),
-                                ],
-                              ),
-                          ],
-                        ),
+                        builder: (context, state) =>
+                            BeatWidget(distance: distance, step: step),
                       )
                     ],
                   ),
@@ -126,6 +102,41 @@ class HomeScreen extends StatelessWidget {
       ],
     );
   }
+}
+
+class BeatWidget extends StatelessWidget {
+  const BeatWidget({
+    required this.distance,
+    required this.step,
+    Key? key,
+  }) : super(key: key);
+
+  final double distance;
+  final double step;
+
+  @override
+  Widget build(BuildContext context) => Row(
+        children: [
+          // TODO(zoskar): replace with foreach indexed
+          for (var i = 0; i < context.read<BeatCubit>().beat.notes.length; i++)
+            Column(
+              children: [
+                SizedBox(
+                  height: distance *
+                      step *
+                      context.read<BeatCubit>().beat.notes[i].pitch,
+                ),
+                Icon(
+                  NotesIcons.eight,
+                  color: i == context.read<BeatCubit>().index
+                      ? AppColors.a
+                      : Colors.black,
+                  size: 88,
+                ),
+              ],
+            ),
+        ],
+      );
 }
 
 class Staff extends StatelessWidget {

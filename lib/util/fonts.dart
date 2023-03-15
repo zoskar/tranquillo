@@ -19,4 +19,10 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
     fontSize: 20,
   );
+
+  static const black24 = TextStyle(
+    fontFamily: 'Montserrat',
+    color: Colors.black,
+    fontSize: 24,
+  );
 }

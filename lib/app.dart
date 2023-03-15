@@ -1,12 +1,9 @@
+import 'package:dict/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dict/cubits/user_data_cubit.dart';
-import 'package:dict/home_screen.dart';
-import 'package:dict/login/login_screen.dart';
 import 'package:dict/cubits/auth_cubit.dart';
 import 'package:dict/cubits/beat_cubit.dart';
-
-// TODO consider "Tranquillo" app name
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -27,15 +24,8 @@ class App extends StatelessWidget {
           fontFamily: 'Montserrat',
           scaffoldBackgroundColor: const Color(0xFFEBEBEB),
         ),
-        home: BlocBuilder<AuthCubit, AuthState>(
-          builder: (context, state) {
-            if (state is Unauthenticated) {
-              return const LoginScreen();
-            } else {
-              return const HomeScreen();
-            }
-          },
-        ),
+        onGenerateRoute: AppRouter.onGenerateRoute,
+        initialRoute: AppRoutes.homepage.route,
       ),
     );
   }
