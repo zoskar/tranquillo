@@ -2,8 +2,6 @@ import 'package:dict/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dict/cubits/user_data_cubit.dart';
-import 'package:dict/presentation/create_screen.dart';
-import 'package:dict/presentation/login/login_screen.dart';
 import 'package:dict/cubits/auth_cubit.dart';
 import 'package:dict/cubits/beat_cubit.dart';
 
@@ -28,15 +26,6 @@ class App extends StatelessWidget {
         ),
         onGenerateRoute: AppRouter.onGenerateRoute,
         initialRoute: AppRoutes.homepage.route,
-        home: BlocBuilder<AuthCubit, AuthState>(
-          builder: (context, state) {
-            if (state is Unauthenticated) {
-              return const LoginScreen();
-            } else {
-              return const CreateScreen();
-            }
-          },
-        ),
       ),
     );
   }

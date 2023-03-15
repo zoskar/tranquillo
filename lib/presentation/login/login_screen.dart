@@ -158,13 +158,19 @@ class LoginScreen extends HookWidget {
                                 shape: const StadiumBorder(),
                               ),
                               child: const Text('Login'),
-                              onPressed: () => onPressedLogin(
-                                context,
-                                formKey,
-                                onError: () {
-                                  isError.value = true;
-                                },
-                              ),
+                              onPressed: () {
+                                onPressedLogin(
+                                  context,
+                                  formKey,
+                                  onError: () {
+                                    isError.value = true;
+                                  },
+                                );
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  '/create',
+                                );
+                              },
                             ),
                           ],
                         ),
