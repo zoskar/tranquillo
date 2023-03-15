@@ -1,4 +1,4 @@
-import 'package:dict/login/register_screen.dart';
+import 'package:dict/presentation/login/register_screen.dart';
 import 'package:dict/util/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
