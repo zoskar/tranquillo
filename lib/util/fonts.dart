@@ -16,7 +16,7 @@ class AppTextStyles {
   static const black20b = TextStyle(
     fontFamily: 'Montserrat',
     color: Colors.black,
-   	fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.bold,
     fontSize: 20,
   );
 }

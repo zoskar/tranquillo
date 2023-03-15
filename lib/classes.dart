@@ -1,5 +1,3 @@
-import 'dart:math';
-
 class Note {
   Note({
     // 1 - 1/32
@@ -11,14 +9,6 @@ class Note {
 
   int duration;
   int pitch;
-
-  double getAngle() {
-    if (pitch <= 12) {
-      return pi;
-    } else {
-      return pi / 180;
-    }
-  }
 }
 
 class Beat {

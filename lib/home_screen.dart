@@ -1,4 +1,5 @@
 import 'package:dict/cubits/beat_cubit.dart';
+import 'package:dict/util/app_colors.dart';
 import 'package:dict/util/notes_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,7 @@ class HomeScreen extends StatelessWidget {
     if (context.read<BeatCubit>().state is InitState) {
       context.read<BeatCubit>().init();
     }
+
     return Stack(
       children: [
         if (context.watch<AuthCubit>().state is AuthenticationInProgress)
@@ -25,7 +27,13 @@ class HomeScreen extends StatelessWidget {
             child: CircularProgressIndicator(),
           ),
         Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                gradient: AppColors.myNewGradient,
+              ),
+            ),
+          ),
           body: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -38,19 +46,27 @@ class HomeScreen extends StatelessWidget {
                       BlocBuilder<BeatCubit, BeatState>(
                         builder: (context, state) => Row(
                           children: [
-                            for (var note
-                                in context.read<BeatCubit>().beat.notes)
+                            // TODO replace with foreach indexed
+                            for (var i = 0;
+                                i < context.read<BeatCubit>().beat.notes.length;
+                                i++)
                               Column(
                                 children: [
                                   SizedBox(
-                                    height: distance * step * note.pitch,
+                                    height: distance *
+                                        step *
+                                        context
+                                            .read<BeatCubit>()
+                                            .beat
+                                            .notes[i]
+                                            .pitch,
                                   ),
-                                  Transform.rotate(
-                                    angle: note.getAngle(),
-                                    child: const Icon(
-                                      NotesIcons.eight,
-                                      size: 88,
-                                    ),
+                                  Icon(
+                                    NotesIcons.eight,
+                                    color: i == context.read<BeatCubit>().index
+                                        ? AppColors.a
+                                        : Colors.black,
+                                    size: 88,
                                   ),
                                 ],
                               ),
@@ -99,6 +115,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           floatingActionButton: FloatingActionButton(
+            backgroundColor: AppColors.b,
             onPressed: () {
               context.read<UserDataCubit>().removeData();
               context.read<AuthCubit>().logOut();

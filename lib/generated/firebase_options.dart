@@ -54,7 +54,8 @@ class DefaultFirebaseOptions {
     appId: '1:1013999627334:android:b0613466f81f3791ca6e47',
     messagingSenderId: '1013999627334',
     projectId: 'dictando-78c79',
-    databaseURL: 'https://dictando-78c79-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://dictando-78c79-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'dictando-78c79.appspot.com',
   );
 
@@ -63,9 +64,11 @@ class DefaultFirebaseOptions {
     appId: '1:1013999627334:ios:1ec52131fbcb04f3ca6e47',
     messagingSenderId: '1013999627334',
     projectId: 'dictando-78c79',
-    databaseURL: 'https://dictando-78c79-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://dictando-78c79-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'dictando-78c79.appspot.com',
-    iosClientId: '1013999627334-drnt781ko337h42rvv7h9hd0vuuev512.apps.googleusercontent.com',
+    iosClientId:
+        '1013999627334-drnt781ko337h42rvv7h9hd0vuuev512.apps.googleusercontent.com',
     iosBundleId: 'com.example.dict',
   );
 }
