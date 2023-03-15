@@ -24,7 +24,6 @@ class App extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData(
-          primarySwatch: Colors.orange,
           fontFamily: 'Montserrat',
           scaffoldBackgroundColor: const Color(0xFFEBEBEB),
         ),
