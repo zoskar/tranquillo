@@ -25,14 +25,12 @@ class UserDataCubit extends Cubit<UserDataState> {
     }
   }
 
-  addNote() async {
-    DatabaseReference dbRef = FirebaseDatabase.instance.ref('');
+  saveDictando(Dictando dictando) async {
+    DatabaseReference dbRef =
+        FirebaseDatabase.instance.ref('dictandos/${auth.currentUser!.uid}');
+    DatabaseReference newPostRef = dbRef.push();
 
-    await dbRef.set(
-      Dictando([
-        Beat([Note(duration: 2, pitch: 3)])
-      ]).toJson(),
-    );
+    await newPostRef.set(dictando.toJson());
   }
 }
 

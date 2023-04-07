@@ -1,4 +1,4 @@
-import 'package:dict/cubits/beat_cubit.dart';
+import 'package:dict/cubits/dictando_cubit.dart';
 import 'package:dict/util/app_colors.dart';
 import 'package:dict/util/notes_icons.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +17,8 @@ class CreateScreen extends StatelessWidget {
     if (context.read<UserDataCubit>().state is NoData) {
       context.read<UserDataCubit>().getData();
     }
-    if (context.read<BeatCubit>().state is InitState) {
-      context.read<BeatCubit>().init();
+    if (context.read<DictandoCubit>().state is InitState) {
+      context.read<DictandoCubit>().init();
     }
 
     return Stack(
@@ -46,7 +46,7 @@ class CreateScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       Staff(distance: distance),
-                      BlocBuilder<BeatCubit, BeatState>(
+                      BlocBuilder<DictandoCubit, DictandoState>(
                         builder: (context, state) =>
                             BeatWidget(distance: distance, step: step),
                       )
@@ -58,31 +58,31 @@ class CreateScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        context.read<BeatCubit>().up();
+                        context.read<DictandoCubit>().noteUp();
                       },
                       icon: const Icon(Icons.arrow_circle_up),
                     ),
                     IconButton(
                       onPressed: () {
-                        context.read<BeatCubit>().down();
+                        context.read<DictandoCubit>().noteDown();
                       },
                       icon: const Icon(Icons.arrow_circle_down),
                     ),
                     IconButton(
                       onPressed: () {
-                        context.read<BeatCubit>().left();
+                        context.read<DictandoCubit>().noteLeft();
                       },
                       icon: const Icon(Icons.arrow_circle_left),
                     ),
                     IconButton(
                       onPressed: () {
-                        context.read<BeatCubit>().right();
+                        context.read<DictandoCubit>().noteRight();
                       },
                       icon: const Icon(Icons.arrow_circle_right),
                     ),
                     IconButton(
                       onPressed: () {
-                        context.read<BeatCubit>().delete();
+                        context.read<DictandoCubit>().deleteNote();
                       },
                       icon: const Icon(Icons.delete_rounded),
                     )
@@ -94,12 +94,12 @@ class CreateScreen extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             backgroundColor: AppColors.b,
             onPressed: () {
-              context.read<UserDataCubit>().addNote();
-
-              // context.read<UserDataCubit>().removeData();
-              // context.read<AuthCubit>().logOut();
+              context.read<DictandoCubit>().addBeat();
+              context
+                  .read<UserDataCubit>()
+                  .saveDictando(context.read<DictandoCubit>().dictando);
             },
-            child: const Icon(Icons.logout),
+            child: const Icon(Icons.save_outlined),
           ),
         ),
       ],
@@ -121,17 +121,19 @@ class BeatWidget extends StatelessWidget {
   Widget build(BuildContext context) => Row(
         children: [
           // TODO(zoskar): replace with foreach indexed
-          for (var i = 0; i < context.read<BeatCubit>().beat.notes.length; i++)
+          for (var i = 0;
+              i < context.read<DictandoCubit>().beat.notes.length;
+              i++)
             Column(
               children: [
                 SizedBox(
                   height: distance *
                       step *
-                      context.read<BeatCubit>().beat.notes[i].pitch,
+                      context.read<DictandoCubit>().beat.notes[i].pitch,
                 ),
                 Icon(
                   NotesIcons.eight,
-                  color: i == context.read<BeatCubit>().index
+                  color: i == context.read<DictandoCubit>().noteIndex
                       ? AppColors.a
                       : Colors.black,
                   size: 88,

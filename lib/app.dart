@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dict/cubits/user_data_cubit.dart';
 import 'package:dict/cubits/auth_cubit.dart';
-import 'package:dict/cubits/beat_cubit.dart';
+import 'package:dict/cubits/dictando_cubit.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -12,12 +12,12 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final authCubit = AuthCubit()..init();
     final userDataCubit = UserDataCubit();
-    final beatCubit = BeatCubit();
+    final beatCubit = DictandoCubit();
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthCubit>.value(value: authCubit),
         BlocProvider<UserDataCubit>.value(value: userDataCubit),
-        BlocProvider<BeatCubit>.value(value: beatCubit),
+        BlocProvider<DictandoCubit>.value(value: beatCubit),
       ],
       child: MaterialApp(
         theme: ThemeData(
