@@ -28,6 +28,7 @@ class CreateScreen extends StatelessWidget {
             child: CircularProgressIndicator(),
           ),
         Scaffold(
+          resizeToAvoidBottomInset: false,
           drawer: const HamburgerMenu(),
           appBar: AppBar(
             flexibleSpace: Container(
@@ -93,8 +94,10 @@ class CreateScreen extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             backgroundColor: AppColors.b,
             onPressed: () {
-              context.read<UserDataCubit>().removeData();
-              context.read<AuthCubit>().logOut();
+              context.read<UserDataCubit>().addNote();
+
+              // context.read<UserDataCubit>().removeData();
+              // context.read<AuthCubit>().logOut();
             },
             child: const Icon(Icons.logout),
           ),
