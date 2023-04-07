@@ -85,21 +85,20 @@ class CreateScreen extends StatelessWidget {
                         context.read<DictandoCubit>().deleteNote();
                       },
                       icon: const Icon(Icons.delete_rounded),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        context.read<DictandoCubit>().addBeat();
+                        context.read<UserDataCubit>().saveDictando(
+                              context.read<DictandoCubit>().dictando,
+                            );
+                      },
+                      icon: const Icon(Icons.save),
                     )
                   ],
                 )
               ],
             ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: AppColors.b,
-            onPressed: () {
-              context.read<DictandoCubit>().addBeat();
-              context
-                  .read<UserDataCubit>()
-                  .saveDictando(context.read<DictandoCubit>().dictando);
-            },
-            child: const Icon(Icons.save_outlined),
           ),
         ),
       ],

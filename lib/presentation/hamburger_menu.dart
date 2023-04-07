@@ -1,3 +1,4 @@
+import 'package:dict/cubits/dictando_cubit.dart';
 import 'package:dict/util/app_colors.dart';
 import 'package:dict/util/fonts.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,7 @@ class HamburgerMenu extends StatelessWidget {
                 ),
                 onTap: () {
                   context.read<UserDataCubit>().removeData();
+                  context.read<DictandoCubit>().init();
                   context.read<AuthCubit>().logOut();
                   Navigator.pushReplacementNamed(context, '/');
                 },
