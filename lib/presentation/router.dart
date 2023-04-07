@@ -15,12 +15,9 @@ class AppRouter {
 
     return PageRouteBuilder<void>(
       settings: routeSettings,
-      pageBuilder: (context, animation, secondaryAnimation) => Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: appRoute.build(
-          context,
-          routeSettings.arguments,
-        ),
+      pageBuilder: (context, animation, secondaryAnimation) => appRoute.build(
+        context,
+        routeSettings.arguments,
       ),
       transitionsBuilder: (context, animation, secondaryAnimation, child) =>
           FadeTransition(
@@ -43,7 +40,7 @@ class AppRoute {
 
 class AppRoutes {
   static final homepage = AppRoute(
-    build: (_, __) => const LoginScreen(),
+    build: (_, __) => LoginScreen(),
     route: '/',
   );
   static final create = AppRoute(
