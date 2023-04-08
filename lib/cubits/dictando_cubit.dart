@@ -11,9 +11,14 @@ class DictandoCubit extends Cubit<DictandoState> {
 
   init() {
     dictando = Dictando([]);
-    beat = Beat([Note(duration: 1, pitch: 14)]);
+    beat = Beat([Note(duration: 1, pitch: 12)]);
     noteIndex = 0;
     beatIndex = 0;
+    emit(DictandoSetState());
+  }
+
+  setPitch(int pitch) {
+    beat.notes[noteIndex].pitch = pitch;
     emit(DictandoSetState());
   }
 

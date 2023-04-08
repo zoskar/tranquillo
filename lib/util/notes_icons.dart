@@ -11,12 +11,12 @@
 ///      fonts:
 ///       - asset: fonts/Notes.ttf
 ///
-///
+/// 
 ///
 import 'package:flutter/widgets.dart';
 
-class NotesIcons {
-  NotesIcons._();
+class Notes {
+  Notes._();
 
   static const _kFontFam = 'Notes';
 
