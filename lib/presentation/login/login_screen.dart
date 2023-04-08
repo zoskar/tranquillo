@@ -92,6 +92,7 @@ class LoginScreen extends HookWidget {
                                     ],
                                   ),
                                   FormBuilderTextField(
+                                    initialValue: 'abc@wp.pl',
                                     name: 'email',
                                     maxLength: 20,
                                     autocorrect: false,
@@ -123,6 +124,7 @@ class LoginScreen extends HookWidget {
                                     ),
                                   ),
                                   FormBuilderTextField(
+                                    initialValue: 'abc@wp.pl',
                                     obscureText: true,
                                     name: 'password',
                                     maxLength: 20,
