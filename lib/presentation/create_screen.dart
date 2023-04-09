@@ -11,8 +11,8 @@ import 'package:dict/presentation/hamburger_menu.dart';
 class CreateScreen extends StatelessWidget {
   const CreateScreen({Key? key}) : super(key: key);
 
-  final double distance = 3;
-  final double step = 2.5;
+  final double step = 10;
+  final double topMargin = 39;
   @override
   Widget build(BuildContext context) {
     if (context.read<UserDataCubit>().state is NoData) {
@@ -38,14 +38,16 @@ class CreateScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 316,
+                    height: 328,
                     child: Stack(
                       children: [
-                        Staff(distance: distance),
+                        Staff(topMargin: topMargin, distance: 10),
                         BlocBuilder<DictandoCubit, DictandoState>(
-                          builder: (context, state) =>
-                              BeatWidget(distance: distance, step: step),
-                        )
+                          builder: (context, state) => BeatWidget(
+                            step: step,
+                            topMargin: topMargin,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -101,13 +103,13 @@ class CreateScreen extends StatelessWidget {
 
 class BeatWidget extends StatelessWidget {
   const BeatWidget({
-    required this.distance,
     required this.step,
+    required this.topMargin,
     Key? key,
   }) : super(key: key);
 
-  final double distance;
   final double step;
+  final double topMargin;
 
   @override
   Widget build(BuildContext context) => Row(
@@ -120,7 +122,7 @@ class BeatWidget extends StatelessWidget {
               children: [
                 SizedBox(
                   height:
-                      9.5 * context.read<DictandoCubit>().beat.notes[i].pitch,
+                      context.read<DictandoCubit>().beat.notes[i].pitch * 10,
                 ),
                 Icon(
                   Notes.eight,
@@ -134,4 +136,3 @@ class BeatWidget extends StatelessWidget {
         ],
       );
 }
-
