@@ -13,17 +13,17 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(NoData());
   }
 
-  getData() async {
-    emit(FetchingInProgress());
+  // getData() async {
+  //   emit(FetchingInProgress());
 
-    try {
-      DataSnapshot response = await _dataRef.child('someData').get();
-      final data = response.value as dynamic;
-      emit(FetchedData(data: data));
-    } catch (err, st) {
-      print('Error: $err, $st');
-    }
-  }
+  //   try {
+  //     DataSnapshot response = await _dataRef.child('someData').get();
+  //     final data = response.value as dynamic;
+  //     emit(FetchedData(data: data));
+  //   } catch (err, st) {
+  //     print('Error: $err, $st');
+  //   }
+  // }
 
   saveDictando(Dictando dictando) async {
     DatabaseReference dbRef =

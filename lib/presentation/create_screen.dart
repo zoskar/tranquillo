@@ -12,11 +12,12 @@ class CreateScreen extends StatelessWidget {
   const CreateScreen({Key? key}) : super(key: key);
 
   final double mainScale = 10;
+
   @override
   Widget build(BuildContext context) {
-    if (context.read<UserDataCubit>().state is NoData) {
-      context.read<UserDataCubit>().getData();
-    }
+    // if (context.read<UserDataCubit>().state is NoData) {
+    //   context.read<UserDataCubit>().getData();
+    // }
     if (context.read<DictandoCubit>().state is InitState) {
       context.read<DictandoCubit>().init();
     }
