@@ -158,7 +158,7 @@ class BeatWidget extends StatelessWidget {
                       context.read<DictandoCubit>().beat.notes[i].pitch * 10,
                 ),
                 SizedBox(
-                  width: 50,
+                  width: 52,
                   child: Icon(
                     context.read<DictandoCubit>().noteAt(i),
                     color: i == context.read<DictandoCubit>().noteIndex
