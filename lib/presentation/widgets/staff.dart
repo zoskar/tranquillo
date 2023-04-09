@@ -5,17 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class Staff extends StatelessWidget {
   const Staff({
     required this.distance,
-    required this.topMargin,
     Key? key,
   }) : super(key: key);
   final double distance;
-  final double topMargin;
 
   @override
   Widget build(BuildContext context) => Column(
         children: [
           SizedBox(
-            height: topMargin,
+            height: 4 * distance,
           ),
           ...List.generate(
             25,

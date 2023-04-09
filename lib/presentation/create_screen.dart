@@ -11,8 +11,7 @@ import 'package:dict/presentation/hamburger_menu.dart';
 class CreateScreen extends StatelessWidget {
   const CreateScreen({Key? key}) : super(key: key);
 
-  final double step = 10;
-  final double topMargin = 39;
+  final double mainScale = 10;
   @override
   Widget build(BuildContext context) {
     if (context.read<UserDataCubit>().state is NoData) {
@@ -41,11 +40,10 @@ class CreateScreen extends StatelessWidget {
                     height: 328,
                     child: Stack(
                       children: [
-                        Staff(topMargin: topMargin, distance: 10),
+                        Staff(distance: mainScale),
                         BlocBuilder<DictandoCubit, DictandoState>(
                           builder: (context, state) => BeatWidget(
-                            step: step,
-                            topMargin: topMargin,
+                            step: mainScale,
                           ),
                         ),
                       ],
@@ -138,12 +136,10 @@ class CreateScreen extends StatelessWidget {
 class BeatWidget extends StatelessWidget {
   const BeatWidget({
     required this.step,
-    required this.topMargin,
     Key? key,
   }) : super(key: key);
 
   final double step;
-  final double topMargin;
 
   @override
   Widget build(BuildContext context) => Row(
@@ -155,7 +151,7 @@ class BeatWidget extends StatelessWidget {
               children: [
                 SizedBox(
                   height:
-                      context.read<DictandoCubit>().beat.notes[i].pitch * 10,
+                      context.read<DictandoCubit>().beat.notes[i].pitch * step,
                 ),
                 SizedBox(
                   width: 52,

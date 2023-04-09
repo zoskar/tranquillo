@@ -9,7 +9,7 @@ class Note {
     // 1 - 32
     required this.duration,
 
-    // 0-24
+    // 0 - 24
     required this.pitch,
   });
 
