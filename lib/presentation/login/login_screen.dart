@@ -29,10 +29,8 @@ class LoginScreen extends HookWidget {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     final isError = useState(false);
 
     double height = MediaQuery.of(context).size.height;

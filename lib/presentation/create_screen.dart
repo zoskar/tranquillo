@@ -93,6 +93,40 @@ class CreateScreen extends StatelessWidget {
                         icon: const Icon(Icons.save),
                       )
                     ],
+                  ),
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(16);
+                        },
+                        icon: const Icon(Notes.sixteen),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(8);
+                        },
+                        icon: const Icon(Notes.eight),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(4);
+                        },
+                        icon: const Icon(Notes.quarter),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(2);
+                        },
+                        icon: const Icon(Notes.half),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(1);
+                        },
+                        icon: const Icon(Notes.whole),
+                      ),
+                    ],
                   )
                 ],
               ),
@@ -114,7 +148,6 @@ class BeatWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
         children: [
-          // TODO(zoskar): replace with foreach indexed
           for (var i = 0;
               i < context.read<DictandoCubit>().beat.notes.length;
               i++)
@@ -124,12 +157,15 @@ class BeatWidget extends StatelessWidget {
                   height:
                       context.read<DictandoCubit>().beat.notes[i].pitch * 10,
                 ),
-                Icon(
-                  Notes.eight,
-                  color: i == context.read<DictandoCubit>().noteIndex
-                      ? AppColors.a
-                      : Colors.black,
-                  size: 88,
+                SizedBox(
+                  width: 50,
+                  child: Icon(
+                    context.read<DictandoCubit>().noteAt(i),
+                    color: i == context.read<DictandoCubit>().noteIndex
+                        ? AppColors.a
+                        : Colors.black,
+                    size: 88,
+                  ),
                 ),
               ],
             ),

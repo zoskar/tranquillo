@@ -1,3 +1,5 @@
+import 'package:dict/util/notes_icons.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dict/data/classes.dart';
 
@@ -11,7 +13,7 @@ class DictandoCubit extends Cubit<DictandoState> {
 
   init() {
     dictando = Dictando([]);
-    beat = Beat([Note(duration: 1, pitch: 12)]);
+    beat = Beat([Note(duration: 8, pitch: 12)]);
     noteIndex = 0;
     beatIndex = 0;
     emit(DictandoSetState());
@@ -22,11 +24,32 @@ class DictandoCubit extends Cubit<DictandoState> {
     emit(DictandoSetState());
   }
 
+  setDuration(int duration) {
+    beat.notes[noteIndex].duration = duration;
+    emit(DictandoSetState());
+  }
+
+  IconData noteAt(int i) {
+    switch (beat.notes[i].duration) {
+      case 1:
+        return Notes.whole;
+      case 2:
+        return Notes.half;
+      case 4:
+        return Notes.quarter;
+      case 8:
+        return Notes.eight;
+      case 16:
+        return Notes.sixteen;
+      default:
+        return Notes.eight;
+    }
+  }
+
   noteDown() {
     if (beat.notes[noteIndex].pitch < 24) {
       beat.notes[noteIndex].pitch += 1;
     }
-
     emit(DictandoSetState());
   }
 
@@ -34,18 +57,16 @@ class DictandoCubit extends Cubit<DictandoState> {
     if (beat.notes[noteIndex].pitch > 0) {
       beat.notes[noteIndex].pitch -= 1;
     }
-
     emit(DictandoSetState());
   }
 
   noteRight() {
-    if (noteIndex < 3) {
+    if (noteIndex < 6) {
       if (noteIndex == beat.notes.length - 1) {
-        beat.notes.add(Note(duration: 1, pitch: 12));
+        beat.notes.add(Note(duration: 8, pitch: 12));
       }
       noteIndex += 1;
     }
-
     emit(DictandoSetState());
   }
 
@@ -53,7 +74,6 @@ class DictandoCubit extends Cubit<DictandoState> {
     if (noteIndex > 0) {
       noteIndex -= 1;
     }
-
     emit(DictandoSetState());
   }
 
@@ -64,7 +84,6 @@ class DictandoCubit extends Cubit<DictandoState> {
         noteIndex -= 1;
       }
     }
-
     emit(DictandoSetState());
   }
 

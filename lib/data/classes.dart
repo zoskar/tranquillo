@@ -6,7 +6,7 @@ part 'classes.g.dart';
 @JsonSerializable()
 class Note {
   Note({
-    // 1 - 1/32
+    // 1 - 32
     required this.duration,
 
     // 0-24
