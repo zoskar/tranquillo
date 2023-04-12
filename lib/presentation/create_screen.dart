@@ -15,8 +15,9 @@ class CreateScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // double height = MediaQuery.of(context).size.height;
     // if (context.read<UserDataCubit>().state is NoData) {
-    //   context.read<UserDataCubit>().getData();
+    //   context.read<UserDataCubit>().getUserDictandos();
     // }
     if (context.read<DictandoCubit>().state is InitState) {
       context.read<DictandoCubit>().init();
@@ -34,11 +35,12 @@ class CreateScreen extends StatelessWidget {
               ),
             ),
             body: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(4.0),
               child: Column(
                 children: [
                   SizedBox(
-                    height: 328,
+                    // 24: lines and spaces + 9: noteScale
+                    height: mainScale * 24 + 9 * mainScale,
                     child: Stack(
                       children: [
                         Staff(distance: mainScale),
@@ -156,12 +158,14 @@ class BeatWidget extends StatelessWidget {
                 ),
                 SizedBox(
                   width: 52,
+                  // TODO(zoskar): remove workaround
+                  height: 0,
                   child: Icon(
                     context.read<DictandoCubit>().noteAt(i),
                     color: i == context.read<DictandoCubit>().noteIndex
                         ? AppColors.a
                         : Colors.black,
-                    size: 88,
+                    size: 9 * step,
                   ),
                 ),
               ],
