@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dict/data/classes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -19,13 +21,13 @@ class UserDataCubit extends Cubit<UserDataState> {
     // try {
     DataSnapshot response =
         await _dataRef.child('dictandos/${auth.currentUser?.uid}').get();
-    final data = response.value as dynamic;
     // emit(FetchedData(data: data));
-    print(data.values);
-    var d = data.values.elementAt(0);
-    var e = d['beats'][0]['notes'][0];
-    Note n = Note(duration: e['duration'], pitch: e['pitch']);
-    print(n);
+    final data =
+        Map<String, dynamic>.from(response.value! as Map<Object?, Object?>);
+
+    for (final element in data.values) {
+      var a = Dictando.parseDictando(element);
+    }
 
     // } catch (err, st) {
     //   print('Error: $err, $st');

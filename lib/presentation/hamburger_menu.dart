@@ -22,16 +22,16 @@ class HamburgerMenu extends StatelessWidget {
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Text(''),
               ),
-              // ListTile(
-              //   leading: const Icon(Icons.arrow_forward_ios_rounded),
-              //   title: const Text(
-              //     'Przeglądaj dyktanda',
-              //     style: AppTextStyles.black24,
-              //   ),
-              //   onTap: () {
-              //     Navigator.pushReplacementNamed(context, '/browse');
-              //   },
-              // ),
+              ListTile(
+                leading: const Icon(Icons.arrow_forward_ios_rounded),
+                title: const Text(
+                  'Przeglądaj dyktanda',
+                  style: AppTextStyles.black24,
+                ),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, '/browse');
+                },
+              ),
               ListTile(
                 leading: const Icon(Icons.arrow_forward_ios_rounded),
                 title: const Text(

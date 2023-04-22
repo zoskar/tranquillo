@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 part 'classes.g.dart';
 
@@ -34,6 +36,21 @@ class Beat {
 @JsonSerializable(explicitToJson: true)
 class Dictando {
   Dictando(this.beats);
+
+  factory Dictando.parseDictando(Map<Object?, Object?> jsonMap) {
+    List<dynamic> beatsJson = jsonMap['beats'] as List<dynamic>;
+    List<Beat> beats = beatsJson.map((beatJson) {
+      List<dynamic> notesJson = beatJson['notes'] as List<dynamic>;
+      List<Note> notes = notesJson
+          .map((noteJson) => Note(
+                duration: noteJson['duration'] as int,
+                pitch: noteJson['pitch'] as int,
+              ))
+          .toList();
+      return Beat(notes);
+    }).toList();
+    return Dictando(beats);
+  }
 
   factory Dictando.fromJson(Map<String, dynamic> json) =>
       _$DictandoFromJson(json);
