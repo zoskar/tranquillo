@@ -103,6 +103,10 @@ class DictandoCubit extends Cubit<DictandoState> {
     dictando.beats.add(beat);
     emit(DictandoSetState());
   }
+
+  clearDictando() {
+    dictando = Dictando([]);
+  }
 }
 
 abstract class DictandoState {}

@@ -1,4 +1,5 @@
 import 'package:dict/cubits/dictando_cubit.dart';
+import 'package:dict/data/classes.dart';
 import 'package:dict/presentation/widgets/staff.dart';
 import 'package:dict/util/app_colors.dart';
 import 'package:dict/util/notes_icons.dart';
@@ -17,7 +18,7 @@ class CreateScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // double height = MediaQuery.of(context).size.height;
     // if (context.read<UserDataCubit>().state is NoData) {
-    //   context.read<UserDataCubit>().getUserDictandos();
+    context.read<UserDataCubit>().getUserDictandos();
     // }
     if (context.read<DictandoCubit>().state is InitState) {
       context.read<DictandoCubit>().init();
@@ -90,6 +91,7 @@ class CreateScreen extends StatelessWidget {
                           context.read<UserDataCubit>().saveDictando(
                                 context.read<DictandoCubit>().dictando,
                               );
+                          context.read<DictandoCubit>().clearDictando();
                         },
                         icon: const Icon(Icons.save),
                       )

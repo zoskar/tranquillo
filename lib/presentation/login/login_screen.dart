@@ -98,7 +98,8 @@ class LoginScreen extends HookWidget {
                                       decoration: InputDecoration(
                                         counterText: '',
                                         labelStyle: const TextStyle(
-                                            color: Colors.black),
+                                          color: Colors.black,
+                                        ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: isError.value
