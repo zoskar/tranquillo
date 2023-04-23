@@ -13,7 +13,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(NoData());
   }
 
-  getUserDictandos() async {
+  Future<void> getUserDictandos() async {
     List<Dictando> userDictandos = [];
     emit(FetchingInProgress());
 

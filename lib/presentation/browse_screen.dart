@@ -27,13 +27,16 @@ class MyWidget extends StatelessWidget {
         builder: (context, state) {
           if (state is FetchedData &&
               context.watch<AuthCubit>().state is Authenticated) {
-            return ListView.builder(
-              itemCount: state.userDictandos.length,
-              itemBuilder: (context, index) => ListTile(
-                title: Text(state.userDictandos[index].name),
-                onTap: () {
-                  // Do something when tile is tapped
-                },
+            return RefreshIndicator(
+              onRefresh: context.read<UserDataCubit>().getUserDictandos,
+              child: ListView.builder(
+                itemCount: state.userDictandos.length,
+                itemBuilder: (context, index) => ListTile(
+                  title: Text(state.userDictandos[index].name),
+                  onTap: () {
+                    // Do something when tile is tapped
+                  },
+                ),
               ),
             );
           } else {
