@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dict/data/classes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -16,22 +14,26 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   getUserDictandos() async {
-    // emit(FetchingInProgress());
+    List<Dictando> userDictandos = [];
+    emit(FetchingInProgress());
 
-    // try {
-    DataSnapshot response =
-        await _dataRef.child('dictandos/${auth.currentUser?.uid}').get();
-    // emit(FetchedData(data: data));
-    final data =
-        Map<String, dynamic>.from(response.value! as Map<Object?, Object?>);
+    try {
+      DataSnapshot response =
+          await _dataRef.child('dictandos/${auth.currentUser?.uid}').get();
+      // emit(FetchedData(data: data));
+      if (response.value != null) {
+        final data =
+            Map<String, dynamic>.from(response.value! as Map<Object?, Object?>);
 
-    for (final element in data.values) {
-      var a = Dictando.parseDictando(element);
+        for (final element in data.values) {
+          userDictandos.add(Dictando.parseDictando(element));
+        }
+        emit(FetchedData(userDictandos: userDictandos));
+      }
+    } catch (err, st) {
+      print('Error: $err, $st');
+      emit(NoData());
     }
-
-    // } catch (err, st) {
-    //   print('Error: $err, $st');
-    // }
   }
 
   saveDictando(Dictando dictando) async {
@@ -46,9 +48,9 @@ class UserDataCubit extends Cubit<UserDataState> {
 abstract class UserDataState {}
 
 class FetchedData extends UserDataState {
-  FetchedData({required this.data});
+  FetchedData({required this.userDictandos});
 
-  final String data;
+  final List<Dictando> userDictandos;
 }
 
 class FetchingInProgress extends UserDataState {}

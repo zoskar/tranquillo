@@ -12,7 +12,7 @@ class DictandoCubit extends Cubit<DictandoState> {
   late int noteIndex;
 
   init() {
-    dictando = Dictando([]);
+    dictando = Dictando(beats: [], name: 'Placeholder name');
     beat = Beat([Note(duration: 8, pitch: 12)]);
     noteIndex = 0;
     beatIndex = 0;
@@ -105,7 +105,7 @@ class DictandoCubit extends Cubit<DictandoState> {
   }
 
   clearDictando() {
-    dictando = Dictando([]);
+    dictando = Dictando(beats: [], name: 'Placeholder name');
   }
 }
 

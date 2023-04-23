@@ -132,7 +132,8 @@ class LoginScreen extends HookWidget {
                                       decoration: InputDecoration(
                                         counterText: '',
                                         labelStyle: const TextStyle(
-                                            color: Colors.black),
+                                          color: Colors.black,
+                                        ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: isError.value
@@ -173,7 +174,7 @@ class LoginScreen extends HookWidget {
                                         if (state is Authenticated) {
                                           Navigator.pushReplacementNamed(
                                             context,
-                                            '/create',
+                                            '/browse',
                                           );
                                         }
                                       },
@@ -217,10 +218,10 @@ class LoginScreen extends HookWidget {
               ),
             ),
           ),
-          if (context.watch<AuthCubit>().state is AuthenticationInProgress)
-            const Center(
-              child: CircularProgressIndicator(),
-            ),
+          // if (context.watch<AuthCubit>().state is AuthenticationInProgress)
+          //   const Center(
+          //     child: CircularProgressIndicator(),
+          //   ),
         ],
       ),
     );
