@@ -12,31 +12,34 @@ class BeatWidget extends StatelessWidget {
   final double step;
 
   @override
-  Widget build(BuildContext context) => Row(
-        children: [
-          for (var i = 0;
-              i < context.read<DictandoCubit>().beat.notes.length;
-              i++)
-            Column(
-              children: [
-                SizedBox(
-                  height:
-                      context.read<DictandoCubit>().beat.notes[i].pitch * step,
-                ),
-                SizedBox(
-                  width: 52,
-                  // TODO(zoskar): remove workaround
-                  height: 0,
-                  child: Icon(
-                    context.read<DictandoCubit>().noteAt(i),
-                    color: i == context.read<DictandoCubit>().noteIndex
-                        ? AppColors.a
-                        : Colors.black,
-                    size: 9 * step,
+  Widget build(BuildContext context) =>
+      BlocBuilder<DictandoCubit, DictandoState>(
+        builder: (context, state) => Row(
+          children: [
+            for (var i = 0;
+                i < context.read<DictandoCubit>().beat.notes.length;
+                i++)
+              Column(
+                children: [
+                  SizedBox(
+                    height: context.read<DictandoCubit>().beat.notes[i].pitch *
+                        step,
                   ),
-                ),
-              ],
-            ),
-        ],
+                  SizedBox(
+                    width: 52,
+                    // TODO(zoskar): remove workaround
+                    height: 0,
+                    child: Icon(
+                      context.read<DictandoCubit>().noteAt(i),
+                      color: i == context.read<DictandoCubit>().noteIndex
+                          ? AppColors.a
+                          : Colors.black,
+                      size: 9 * step,
+                    ),
+                  ),
+                ],
+              ),
+          ],
+        ),
       );
 }

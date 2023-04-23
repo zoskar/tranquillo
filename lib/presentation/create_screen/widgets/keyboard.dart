@@ -27,14 +27,28 @@ class Keyboard extends StatelessWidget {
                 icon: const Icon(Icons.arrow_circle_down),
               ),
               IconButton(
-                onPressed: () {
-                  context.read<DictandoCubit>().noteLeft();
-                },
+                // TODO(zoskar): 
+                onPressed: () {},
                 icon: const Icon(Icons.arrow_circle_left),
               ),
               IconButton(
                 onPressed: () {
+                  context.read<DictandoCubit>().noteLeft();
+                },
+                icon: const Icon(Icons.arrow_left),
+              ),
+              IconButton(
+                onPressed: () {
                   context.read<DictandoCubit>().noteRight();
+                },
+                icon: const Icon(Icons.arrow_right),
+              ),
+              IconButton(
+                onPressed: () {
+                  if (context.read<DictandoCubit>().beatIndex ==
+                      context.read<DictandoCubit>().dictando.beats.length) {
+                    context.read<DictandoCubit>().addBeat();
+                  }
                 },
                 icon: const Icon(Icons.arrow_circle_right),
               ),

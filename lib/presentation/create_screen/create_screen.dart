@@ -1,7 +1,9 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dict/cubits/dictando_cubit.dart';
 import 'package:dict/presentation/create_screen/widgets/beat_widget.dart';
 import 'package:dict/presentation/create_screen/widgets/keyboard.dart';
 import 'package:dict/presentation/create_screen/staff.dart';
+import 'package:dict/presentation/create_screen/widgets/stateic_beat_widget.dart';
 import 'package:dict/util/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +18,7 @@ class CreateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
     if (context.read<DictandoCubit>().state is InitState) {
       context.read<DictandoCubit>().init();
@@ -39,16 +42,42 @@ class CreateScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
+                    height: mainScale / 4 * 24 + 9 * mainScale / 4,
+                    child: BlocBuilder<DictandoCubit, DictandoState>(
+                      builder: (context, state) => CarouselSlider(
+                        options: CarouselOptions(
+                          viewportFraction: 1,
+                          enableInfiniteScroll: false,
+                          aspectRatio: width / mainScale / 10,
+                        ),
+                        items: context
+                            .read<DictandoCubit>()
+                            .dictando
+                            .beats
+                            .map(
+                              (i) => Builder(
+                                builder: (BuildContext context) => Stack(
+                                  children: [
+                                    Staff(distance: mainScale / 4),
+                                    StaticBeatWidget(
+                                      step: mainScale / 4,
+                                      beat: i,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
                     // 24: lines and spaces + 9: noteScale
                     height: mainScale * 24 + 9 * mainScale,
                     child: Stack(
                       children: [
                         Staff(distance: mainScale),
-                        BlocBuilder<DictandoCubit, DictandoState>(
-                          builder: (context, state) => BeatWidget(
-                            step: mainScale,
-                          ),
-                        ),
+                        BeatWidget(step: mainScale),
                       ],
                     ),
                   ),

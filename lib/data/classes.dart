@@ -1,3 +1,5 @@
+import 'package:dict/util/notes_icons.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'classes.g.dart';
 
@@ -19,6 +21,23 @@ class Note {
   int pitch;
 
   Map<String, dynamic> toJson() => _$NoteToJson(this);
+
+  IconData noteAt(int i) {
+    switch (i) {
+      case 1:
+        return Notes.whole;
+      case 2:
+        return Notes.half;
+      case 4:
+        return Notes.quarter;
+      case 8:
+        return Notes.eight;
+      case 16:
+        return Notes.sixteen;
+      default:
+        return Notes.eight;
+    }
+  }
 }
 
 @JsonSerializable(explicitToJson: true)
