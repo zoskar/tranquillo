@@ -1,4 +1,5 @@
 import 'package:dict/cubits/dictando_cubit.dart';
+import 'package:dict/presentation/widgets/staff.dart';
 import 'package:dict/util/app_colors.dart';
 import 'package:dict/util/notes_icons.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +11,13 @@ import 'package:dict/presentation/hamburger_menu.dart';
 class CreateScreen extends StatelessWidget {
   const CreateScreen({Key? key}) : super(key: key);
 
-  final double distance = 3;
-  final double step = 2.5;
+  final double mainScale = 10;
+
   @override
   Widget build(BuildContext context) {
+    // double height = MediaQuery.of(context).size.height;
     if (context.read<UserDataCubit>().state is NoData) {
-      context.read<UserDataCubit>().getData();
+    context.read<UserDataCubit>().getUserDictandos();
     }
     if (context.read<DictandoCubit>().state is InitState) {
       context.read<DictandoCubit>().init();
@@ -33,18 +35,20 @@ class CreateScreen extends StatelessWidget {
               ),
             ),
             body: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(4.0),
               child: Column(
                 children: [
                   SizedBox(
-                    height: 376,
+                    // 24: lines and spaces + 9: noteScale
+                    height: mainScale * 24 + 9 * mainScale,
                     child: Stack(
                       children: [
-                        Staff(distance: distance),
+                        Staff(distance: mainScale),
                         BlocBuilder<DictandoCubit, DictandoState>(
-                          builder: (context, state) =>
-                              BeatWidget(distance: distance, step: step),
-                        )
+                          builder: (context, state) => BeatWidget(
+                            step: mainScale,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -86,9 +90,44 @@ class CreateScreen extends StatelessWidget {
                           context.read<UserDataCubit>().saveDictando(
                                 context.read<DictandoCubit>().dictando,
                               );
+                          context.read<DictandoCubit>().clearDictando();
                         },
                         icon: const Icon(Icons.save),
                       )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(16);
+                        },
+                        icon: const Icon(Notes.sixteen),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(8);
+                        },
+                        icon: const Icon(Notes.eight),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(4);
+                        },
+                        icon: const Icon(Notes.quarter),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(2);
+                        },
+                        icon: const Icon(Notes.half),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(1);
+                        },
+                        icon: const Icon(Notes.whole),
+                      ),
                     ],
                   )
                 ],
@@ -100,18 +139,15 @@ class CreateScreen extends StatelessWidget {
 
 class BeatWidget extends StatelessWidget {
   const BeatWidget({
-    required this.distance,
     required this.step,
     Key? key,
   }) : super(key: key);
 
-  final double distance;
   final double step;
 
   @override
   Widget build(BuildContext context) => Row(
         children: [
-          // TODO(zoskar): replace with foreach indexed
           for (var i = 0;
               i < context.read<DictandoCubit>().beat.notes.length;
               i++)
@@ -119,209 +155,22 @@ class BeatWidget extends StatelessWidget {
               children: [
                 SizedBox(
                   height:
-                      9.5 * context.read<DictandoCubit>().beat.notes[i].pitch,
+                      context.read<DictandoCubit>().beat.notes[i].pitch * step,
                 ),
-                Icon(
-                  Notes.eight,
-                  color: i == context.read<DictandoCubit>().noteIndex
-                      ? AppColors.a
-                      : Colors.black,
-                  size: 88,
+                SizedBox(
+                  width: 52,
+                  // TODO(zoskar): remove workaround
+                  height: 0,
+                  child: Icon(
+                    context.read<DictandoCubit>().noteAt(i),
+                    color: i == context.read<DictandoCubit>().noteIndex
+                        ? AppColors.a
+                        : Colors.black,
+                    size: 9 * step,
+                  ),
                 ),
               ],
             ),
-        ],
-      );
-}
-
-// TODO(zoskar): refactor
-class Staff extends StatelessWidget {
-  const Staff({required this.distance, Key? key}) : super(key: key);
-  final double distance;
-
-  @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          const SizedBox(
-            height: 39,
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(0);
-            },
-            child: const Divider(color: Colors.grey, height: 10),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(1);
-            },
-            child: SizedBox(height: distance * 3, width: double.infinity),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(2);
-            },
-            child: const Divider(color: Colors.grey, height: 10),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(3);
-            },
-            child: SizedBox(height: distance * 3, width: double.infinity),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(4);
-            },
-            child: const Divider(color: Colors.grey, height: 10),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(5);
-            },
-            child: SizedBox(height: distance * 3, width: double.infinity),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(6);
-            },
-            child: const Divider(color: Colors.grey, height: 10),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(7);
-            },
-            child: SizedBox(height: distance * 3, width: double.infinity),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(8);
-            },
-            child: const Divider(color: Colors.black, height: 10),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(9);
-            },
-            child: SizedBox(height: distance * 3, width: double.infinity),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(10);
-            },
-            child: const Divider(color: Colors.black, height: 10),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(11);
-            },
-            child: SizedBox(height: distance * 3, width: double.infinity),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(12);
-            },
-            child: const Divider(color: Colors.black, height: 10),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(13);
-            },
-            child: SizedBox(height: distance * 3, width: double.infinity),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(14);
-            },
-            child: const Divider(color: Colors.black, height: 10),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(15);
-            },
-            child: SizedBox(height: distance * 3, width: double.infinity),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(16);
-            },
-            child: const Divider(color: Colors.black, height: 10),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(17);
-            },
-            child: SizedBox(height: distance * 3, width: double.infinity),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(18);
-            },
-            child: const Divider(color: Colors.grey, height: 10),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(19);
-            },
-            child: SizedBox(height: distance * 3, width: double.infinity),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(20);
-            },
-            child: const Divider(color: Colors.grey, height: 10),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(21);
-            },
-            child: SizedBox(height: distance * 3, width: double.infinity),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              print('aaa');
-              context.read<DictandoCubit>().setPitch(22);
-            },
-            child: const Divider(color: Colors.grey, height: 10),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              context.read<DictandoCubit>().setPitch(23);
-            },
-            child: SizedBox(height: distance * 3, width: double.infinity),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              print('aaa');
-              context.read<DictandoCubit>().setPitch(24);
-            },
-            child: const Divider(color: Colors.grey, height: 10),
-          ),
         ],
       );
 }

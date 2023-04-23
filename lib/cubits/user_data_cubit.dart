@@ -13,15 +13,26 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(NoData());
   }
 
-  getData() async {
+  getUserDictandos() async {
+    List<Dictando> userDictandos = [];
     emit(FetchingInProgress());
 
     try {
-      DataSnapshot response = await _dataRef.child('someData').get();
-      final data = response.value as dynamic;
-      emit(FetchedData(data: data));
+      DataSnapshot response =
+          await _dataRef.child('dictandos/${auth.currentUser?.uid}').get();
+      // emit(FetchedData(data: data));
+      if (response.value != null) {
+        final data =
+            Map<String, dynamic>.from(response.value! as Map<Object?, Object?>);
+
+        for (final element in data.values) {
+          userDictandos.add(Dictando.parseDictando(element));
+        }
+        emit(FetchedData(userDictandos: userDictandos));
+      }
     } catch (err, st) {
       print('Error: $err, $st');
+      emit(NoData());
     }
   }
 
@@ -37,9 +48,9 @@ class UserDataCubit extends Cubit<UserDataState> {
 abstract class UserDataState {}
 
 class FetchedData extends UserDataState {
-  FetchedData({required this.data});
+  FetchedData({required this.userDictandos});
 
-  final String data;
+  final List<Dictando> userDictandos;
 }
 
 class FetchingInProgress extends UserDataState {}

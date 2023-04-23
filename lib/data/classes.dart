@@ -6,10 +6,10 @@ part 'classes.g.dart';
 @JsonSerializable()
 class Note {
   Note({
-    // 1 - 1/32
+    // 1 - 32
     required this.duration,
 
-    // 0-24
+    // 0 - 24
     required this.pitch,
   });
 
@@ -33,11 +33,36 @@ class Beat {
 
 @JsonSerializable(explicitToJson: true)
 class Dictando {
-  Dictando(this.beats);
+  Dictando({
+    required this.beats,
+    required this.name,
+    this.isPrivate = true,
+  });
+
+  factory Dictando.parseDictando(Map<Object?, Object?> jsonMap) {
+    String name = jsonMap['name'] as String;
+    bool isPrivate = jsonMap['isPrivate'] as bool;
+    List<dynamic> beatsJson = jsonMap['beats'] as List<dynamic>;
+    List<Beat> beats = beatsJson.map((beatJson) {
+      List<dynamic> notesJson = beatJson['notes'] as List<dynamic>;
+      List<Note> notes = notesJson
+          .map(
+            (noteJson) => Note(
+              duration: noteJson['duration'] as int,
+              pitch: noteJson['pitch'] as int,
+            ),
+          )
+          .toList();
+      return Beat(notes);
+    }).toList();
+    return Dictando(beats: beats, name: name, isPrivate: isPrivate);
+  }
 
   factory Dictando.fromJson(Map<String, dynamic> json) =>
       _$DictandoFromJson(json);
   Map<String, dynamic> toJson() => _$DictandoToJson(this);
 
   List<Beat> beats;
+  String name;
+  bool isPrivate;
 }

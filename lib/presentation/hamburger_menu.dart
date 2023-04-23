@@ -1,4 +1,3 @@
-import 'package:dict/cubits/dictando_cubit.dart';
 import 'package:dict/util/app_colors.dart';
 import 'package:dict/util/fonts.dart';
 import 'package:flutter/material.dart';
@@ -22,16 +21,16 @@ class HamburgerMenu extends StatelessWidget {
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Text(''),
               ),
-              // ListTile(
-              //   leading: const Icon(Icons.arrow_forward_ios_rounded),
-              //   title: const Text(
-              //     'Przeglądaj dyktanda',
-              //     style: AppTextStyles.black24,
-              //   ),
-              //   onTap: () {
-              //     Navigator.pushReplacementNamed(context, '/browse');
-              //   },
-              // ),
+              ListTile(
+                leading: const Icon(Icons.arrow_forward_ios_rounded),
+                title: const Text(
+                  'Przeglądaj dyktanda',
+                  style: AppTextStyles.black24,
+                ),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, '/browse');
+                },
+              ),
               ListTile(
                 leading: const Icon(Icons.arrow_forward_ios_rounded),
                 title: const Text(
@@ -50,7 +49,7 @@ class HamburgerMenu extends StatelessWidget {
                 ),
                 onTap: () {
                   context.read<UserDataCubit>().removeData();
-                  context.read<DictandoCubit>().init();
+                  // context.read<DictandoCubit>().init();
                   context.read<AuthCubit>().logOut();
                   Navigator.pushReplacementNamed(context, '/');
                 },

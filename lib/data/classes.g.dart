@@ -27,11 +27,15 @@ Map<String, dynamic> _$BeatToJson(Beat instance) => <String, dynamic>{
     };
 
 Dictando _$DictandoFromJson(Map<String, dynamic> json) => Dictando(
-      (json['beats'] as List<dynamic>)
+      beats: (json['beats'] as List<dynamic>)
           .map((e) => Beat.fromJson(e as Map<String, dynamic>))
           .toList(),
+      name: json['name'] as String,
+      isPrivate: json['isPrivate'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$DictandoToJson(Dictando instance) => <String, dynamic>{
       'beats': instance.beats.map((e) => e.toJson()).toList(),
+      'name': instance.name,
+      'isPrivate': instance.isPrivate,
     };

@@ -1,3 +1,4 @@
+import 'package:dict/presentation/browse_screen.dart';
 import 'package:dict/presentation/login/login_screen.dart';
 import 'package:dict/presentation/create_screen.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ class AppRouter {
   static final allRoutes = [
     AppRoutes.homepage,
     AppRoutes.create,
+    AppRoutes.browse,
   ];
 
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
@@ -46,5 +48,9 @@ class AppRoutes {
   static final create = AppRoute(
     build: (_, __) => const CreateScreen(),
     route: '/create',
+  );
+  static final browse = AppRoute(
+    build: (_, __) => const MyWidget(),
+    route: '/browse',
   );
 }
