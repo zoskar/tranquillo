@@ -70,9 +70,27 @@ class DictandoCubit extends Cubit<DictandoState> {
     emit(DictandoSetState());
   }
 
+  beatRight() {
+    if (beatIndex == dictando.beats.length) {
+      addBeat();
+    } else {
+      beatIndex += 1;
+      beat = dictando.beats[beatIndex];
+    }
+    emit(DictandoSetState());
+  }
+
   noteLeft() {
     if (noteIndex > 0) {
       noteIndex -= 1;
+    }
+    emit(DictandoSetState());
+  }
+
+  beatLeft() {
+    if (beatIndex > 0) {
+      beatIndex -= 1;
+      beat = dictando.beats[beatIndex];
     }
     emit(DictandoSetState());
   }

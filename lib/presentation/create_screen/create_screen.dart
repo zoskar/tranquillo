@@ -48,7 +48,7 @@ class CreateScreen extends StatelessWidget {
                         options: CarouselOptions(
                           viewportFraction: 1,
                           enableInfiniteScroll: false,
-                          aspectRatio: width / mainScale / 10,
+                          aspectRatio: width / mainScale / 9,
                         ),
                         items: context
                             .read<DictandoCubit>()

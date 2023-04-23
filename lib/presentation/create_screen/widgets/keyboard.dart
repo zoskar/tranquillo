@@ -27,8 +27,9 @@ class Keyboard extends StatelessWidget {
                 icon: const Icon(Icons.arrow_circle_down),
               ),
               IconButton(
-                // TODO(zoskar): 
-                onPressed: () {},
+                onPressed: () {
+                  context.read<DictandoCubit>().beatLeft();
+                },
                 icon: const Icon(Icons.arrow_circle_left),
               ),
               IconButton(
@@ -45,10 +46,7 @@ class Keyboard extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  if (context.read<DictandoCubit>().beatIndex ==
-                      context.read<DictandoCubit>().dictando.beats.length) {
-                    context.read<DictandoCubit>().addBeat();
-                  }
+                  context.read<DictandoCubit>().beatRight();
                 },
                 icon: const Icon(Icons.arrow_circle_right),
               ),
