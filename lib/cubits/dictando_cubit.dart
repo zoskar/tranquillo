@@ -77,16 +77,6 @@ class DictandoCubit extends Cubit<DictandoState> {
     emit(DictandoSetState());
   }
 
-  // deleteNote() {
-  //   if (beat.notes.length > 1) {
-  //     beat.notes.removeAt(noteIndex);
-  //     if (noteIndex > 0) {
-  //       noteIndex -= 1;
-  //     }
-  //   }
-  //   emit(DictandoSetState());
-  // }
-
   deleteNote() {
     if (beat.notes.length > 1) {
       if (noteIndex == beat.notes.length - 1) {
