@@ -3,7 +3,7 @@ import 'package:dict/cubits/dictando_cubit.dart';
 import 'package:dict/presentation/create_screen/widgets/beat_widget.dart';
 import 'package:dict/presentation/create_screen/widgets/keyboard.dart';
 import 'package:dict/presentation/create_screen/staff.dart';
-import 'package:dict/presentation/create_screen/widgets/stateic_beat_widget.dart';
+import 'package:dict/presentation/create_screen/widgets/static_beat_widget.dart';
 import 'package:dict/util/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +23,7 @@ class CreateScreen extends StatelessWidget {
     if (context.read<DictandoCubit>().state is InitState) {
       context.read<DictandoCubit>().init();
     }
+
     return context.watch<AuthCubit>().state is AuthenticationInProgress
         ? const Scaffold(
             body: Center(child: Center(child: CircularProgressIndicator())),
@@ -46,6 +47,7 @@ class CreateScreen extends StatelessWidget {
                     child: BlocBuilder<DictandoCubit, DictandoState>(
                       builder: (context, state) => CarouselSlider(
                         options: CarouselOptions(
+                          initialPage: context.read<DictandoCubit>().beatIndex,
                           viewportFraction: 1,
                           enableInfiniteScroll: false,
                           aspectRatio: width / mainScale / 9,
