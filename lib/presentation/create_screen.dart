@@ -16,14 +16,14 @@ class CreateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // double height = MediaQuery.of(context).size.height;
-    if (context.read<UserDataCubit>().state is NoData) {
-    context.read<UserDataCubit>().getUserDictandos();
-    }
+
     if (context.read<DictandoCubit>().state is InitState) {
       context.read<DictandoCubit>().init();
     }
     return context.watch<AuthCubit>().state is AuthenticationInProgress
-        ? const Scaffold(body: Center(child: CircularProgressIndicator()))
+        ? const Scaffold(
+            body: Center(child: Center(child: CircularProgressIndicator())),
+          )
         : Scaffold(
             resizeToAvoidBottomInset: false,
             drawer: const HamburgerMenu(),

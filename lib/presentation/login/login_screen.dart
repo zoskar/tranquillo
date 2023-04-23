@@ -37,192 +37,184 @@ class LoginScreen extends HookWidget {
     double width = MediaQuery.of(context).size.width;
 
     return BlocBuilder<AuthCubit, AuthState>(
-      builder: (context, state) => Stack(
-        children: [
-          Scaffold(
-            resizeToAvoidBottomInset: true,
-            body: Center(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      height: height / 2.5,
+      builder: (context, state) => Scaffold(
+        resizeToAvoidBottomInset: true,
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: height / 2.5,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.music_note,
+                        size: 100,
+                      ),
+                      Text('Dictando')
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: width / 1.1,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    color: Colors.white,
+                    child: FormBuilder(
+                      key: formKey,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            Icons.music_note,
-                            size: 100,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(24.0),
+                            child: Wrap(
+                              alignment: WrapAlignment.center,
+                              spacing: 20,
+                              runSpacing: 20,
+                              children: [
+                                Column(
+                                  children: const [
+                                    Text(
+                                      'Hello',
+                                      style: AppTextStyles.black20b,
+                                    ),
+                                    Text(
+                                      'Sign in into your account',
+                                      style: AppTextStyles.black12,
+                                    ),
+                                  ],
+                                ),
+                                FormBuilderTextField(
+                                  initialValue: 'zoskar12@gmail.com',
+                                  name: 'email',
+                                  maxLength: 20,
+                                  autocorrect: false,
+                                  decoration: InputDecoration(
+                                    counterText: '',
+                                    labelStyle: const TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: isError.value
+                                            ? Colors.redAccent
+                                            : Colors.black,
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: isError.value
+                                            ? Colors.redAccent
+                                            : Colors.black,
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                    ),
+                                    label: const Text('email'),
+                                  ),
+                                ),
+                                FormBuilderTextField(
+                                  initialValue: 'zoskar12@gmail.com',
+                                  obscureText: true,
+                                  name: 'password',
+                                  maxLength: 20,
+                                  autocorrect: false,
+                                  decoration: InputDecoration(
+                                    counterText: '',
+                                    labelStyle: const TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: isError.value
+                                            ? Colors.redAccent
+                                            : Colors.black,
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: isError.value
+                                            ? Colors.redAccent
+                                            : Colors.black,
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                    ),
+                                    label: const Text('password'),
+                                  ),
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    minimumSize: const Size.fromHeight(40),
+                                    shape: const StadiumBorder(),
+                                  ),
+                                  child: const Text('Login'),
+                                  onPressed: () {
+                                    onPressedLogin(
+                                      context,
+                                      formKey,
+                                      onError: () {
+                                        isError.value = true;
+                                      },
+                                    );
+                                    if (state is Authenticated) {
+                                      Navigator.pushReplacementNamed(
+                                        context,
+                                        '/browse',
+                                      );
+                                    }
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
-                          Text('Dictando')
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text('Don\'t have an account?'),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const RegisterScreen(),
+                                      ),
+                                    );
+                                  },
+                                  child: const Text(
+                                    'Register here',
+                                    style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: width / 1.1,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        color: Colors.white,
-                        child: FormBuilder(
-                          key: formKey,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(24.0),
-                                child: Wrap(
-                                  alignment: WrapAlignment.center,
-                                  spacing: 20,
-                                  runSpacing: 20,
-                                  children: [
-                                    Column(
-                                      children: const [
-                                        Text(
-                                          'Hello',
-                                          style: AppTextStyles.black20b,
-                                        ),
-                                        Text(
-                                          'Sign in into your account',
-                                          style: AppTextStyles.black12,
-                                        ),
-                                      ],
-                                    ),
-                                    FormBuilderTextField(
-                                      initialValue: 'abc@wp.pl',
-                                      name: 'email',
-                                      maxLength: 20,
-                                      autocorrect: false,
-                                      decoration: InputDecoration(
-                                        counterText: '',
-                                        labelStyle: const TextStyle(
-                                          color: Colors.black,
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: isError.value
-                                                ? Colors.redAccent
-                                                : Colors.black,
-                                          ),
-                                          borderRadius: const BorderRadius.all(
-                                            Radius.circular(10),
-                                          ),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: isError.value
-                                                ? Colors.redAccent
-                                                : Colors.black,
-                                          ),
-                                          borderRadius: const BorderRadius.all(
-                                            Radius.circular(10),
-                                          ),
-                                        ),
-                                        label: const Text('email'),
-                                      ),
-                                    ),
-                                    FormBuilderTextField(
-                                      initialValue: 'abc@wp.pl',
-                                      obscureText: true,
-                                      name: 'password',
-                                      maxLength: 20,
-                                      autocorrect: false,
-                                      decoration: InputDecoration(
-                                        counterText: '',
-                                        labelStyle: const TextStyle(
-                                          color: Colors.black,
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: isError.value
-                                                ? Colors.redAccent
-                                                : Colors.black,
-                                          ),
-                                          borderRadius: const BorderRadius.all(
-                                            Radius.circular(10),
-                                          ),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: isError.value
-                                                ? Colors.redAccent
-                                                : Colors.black,
-                                          ),
-                                          borderRadius: const BorderRadius.all(
-                                            Radius.circular(10),
-                                          ),
-                                        ),
-                                        label: const Text('password'),
-                                      ),
-                                    ),
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        minimumSize: const Size.fromHeight(40),
-                                        shape: const StadiumBorder(),
-                                      ),
-                                      child: const Text('Login'),
-                                      onPressed: () {
-                                        onPressedLogin(
-                                          context,
-                                          formKey,
-                                          onError: () {
-                                            isError.value = true;
-                                          },
-                                        );
-                                        if (state is Authenticated) {
-                                          Navigator.pushReplacementNamed(
-                                            context,
-                                            '/browse',
-                                          );
-                                        }
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Text('Don\'t have an account?'),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const RegisterScreen(),
-                                          ),
-                                        );
-                                      },
-                                      child: const Text(
-                                        'Register here',
-                                        style: TextStyle(
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
-          // if (context.watch<AuthCubit>().state is AuthenticationInProgress)
-          //   const Center(
-          //     child: CircularProgressIndicator(),
-          //   ),
-        ],
+        ),
       ),
     );
   }
