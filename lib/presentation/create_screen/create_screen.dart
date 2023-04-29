@@ -60,7 +60,10 @@ class CreateScreen extends StatelessWidget {
                               (i) => Builder(
                                 builder: (BuildContext context) => Stack(
                                   children: [
-                                    Staff(distance: mainScale / 4),
+                                    Staff(
+                                      distance: mainScale / 4,
+                                      isTappable: false,
+                                    ),
                                     StaticBeatWidget(
                                       step: mainScale / 4,
                                       beat: i,
