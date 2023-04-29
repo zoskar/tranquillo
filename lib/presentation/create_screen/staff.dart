@@ -12,39 +12,36 @@ class Staff extends StatelessWidget {
   final bool isTappable;
 
   @override
-  Widget build(BuildContext context) {
-    print(isTappable);
-    return Column(
-      children: [
-        SizedBox(
-          height: 4 * distance,
-        ),
-        ...List.generate(
-          25,
-          (i) => i.isEven
-              ? GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: isTappable
-                      ? () {
-                          context.read<DictandoCubit>().setPitch(i);
-                        }
-                      : null,
-                  child: Divider(
-                    color: i > 7 && i < 17 ? Colors.black : Colors.grey,
-                    height: distance,
+  Widget build(BuildContext context) => Column(
+        children: [
+          SizedBox(
+            height: 4 * distance,
+          ),
+          ...List.generate(
+            25,
+            (i) => i.isEven
+                ? GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: isTappable
+                        ? () {
+                            context.read<DictandoCubit>().setPitch(i);
+                          }
+                        : null,
+                    child: Divider(
+                      color: i > 7 && i < 17 ? Colors.black : Colors.grey,
+                      height: distance,
+                    ),
+                  )
+                : GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: isTappable
+                        ? () {
+                            context.read<DictandoCubit>().setPitch(i);
+                          }
+                        : null,
+                    child: SizedBox(height: distance, width: double.infinity),
                   ),
-                )
-              : GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: isTappable
-                      ? () {
-                          context.read<DictandoCubit>().setPitch(i);
-                        }
-                      : null,
-                  child: SizedBox(height: distance, width: double.infinity),
-                ),
-        ),
-      ],
-    );
-  }
+          ),
+        ],
+      );
 }
