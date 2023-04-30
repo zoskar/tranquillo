@@ -58,17 +58,30 @@ class CreateScreen extends StatelessWidget {
                             .beats
                             .map(
                               (i) => Builder(
-                                builder: (BuildContext context) => Stack(
-                                  children: [
-                                    Staff(
-                                      distance: mainScale / 4,
-                                      isTappable: false,
-                                    ),
-                                    StaticBeatWidget(
-                                      step: mainScale / 4,
-                                      beat: i,
-                                    ),
-                                  ],
+                                builder: (BuildContext context) =>
+                                    GestureDetector(
+                                  behavior: HitTestBehavior.translucent,
+                                  onTap: () {
+                                    context.read<DictandoCubit>().changeBeat(
+                                          context
+                                              .read<DictandoCubit>()
+                                              .dictando
+                                              .beats
+                                              .indexOf(i),
+                                        );
+                                  },
+                                  child: Stack(
+                                    children: [
+                                      Staff(
+                                        distance: mainScale / 4,
+                                        isTappable: false,
+                                      ),
+                                      StaticBeatWidget(
+                                        step: mainScale / 4,
+                                        beat: i,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             )

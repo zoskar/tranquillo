@@ -88,10 +88,15 @@ class DictandoCubit extends Cubit<DictandoState> {
   }
 
   beatLeft() {
+    if (beatIndex == dictando.beats.length) {
+      addBeat();
+      beatIndex -= 1;
+    }
     if (beatIndex > 0) {
       beatIndex -= 1;
       beat = dictando.beats[beatIndex];
     }
+
     emit(DictandoSetState());
   }
 
@@ -112,6 +117,16 @@ class DictandoCubit extends Cubit<DictandoState> {
     beat = Beat([Note(duration: 8, pitch: 12)]);
     beatIndex += 1;
     noteIndex = 0;
+    emit(DictandoSetState());
+  }
+
+  changeBeat(int index) {
+    if (beatIndex == dictando.beats.length) {
+      addBeat();
+      beatIndex -= 1;
+    }
+    beatIndex = index;
+    beat = dictando.beats[beatIndex];
     emit(DictandoSetState());
   }
 
