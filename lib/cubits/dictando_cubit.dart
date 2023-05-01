@@ -89,8 +89,10 @@ class DictandoCubit extends Cubit<DictandoState> {
   }
 
   beatLeft() {
-    beatIndex -= 1;
-    emit(DictandoSetState());
+    if (beatIndex > 0) {
+      beatIndex -= 1;
+      emit(DictandoSetState());
+    }
   }
 
   deleteNote() {
