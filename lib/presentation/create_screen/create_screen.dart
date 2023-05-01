@@ -79,11 +79,12 @@ class CarouselWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CarouselSlider(
+        carouselController: context.read<DictandoCubit>().carouselController,
         options: CarouselOptions(
           initialPage: context.read<DictandoCubit>().beatIndex,
-          viewportFraction: 1,
           enableInfiniteScroll: false,
           aspectRatio: width / mainScale / 9,
+          enlargeCenterPage: true,
         ),
         items: context
             .read<DictandoCubit>()

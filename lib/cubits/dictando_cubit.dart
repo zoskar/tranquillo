@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:dict/util/notes_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ class DictandoCubit extends Cubit<DictandoState> {
   late Dictando dictando;
   late int beatIndex;
   late int noteIndex;
+  final CarouselController carouselController = CarouselController();
 
   init() {
     dictando = Dictando(
@@ -78,6 +80,7 @@ class DictandoCubit extends Cubit<DictandoState> {
       dictando.beats.add(Beat([Note(duration: 8, pitch: 12)]));
     }
     beatIndex += 1;
+    carouselController.animateToPage(beatIndex - 1);
     emit(DictandoSetState());
   }
 
@@ -91,6 +94,7 @@ class DictandoCubit extends Cubit<DictandoState> {
   beatLeft() {
     if (beatIndex > 0) {
       beatIndex -= 1;
+      carouselController.animateToPage(beatIndex - 1);
       emit(DictandoSetState());
     }
   }
