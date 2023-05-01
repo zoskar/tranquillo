@@ -45,48 +45,8 @@ class CreateScreen extends StatelessWidget {
                   SizedBox(
                     height: mainScale / 4 * 24 + 9 * mainScale / 4,
                     child: BlocBuilder<DictandoCubit, DictandoState>(
-                      builder: (context, state) => CarouselSlider(
-                        options: CarouselOptions(
-                          initialPage: context.read<DictandoCubit>().beatIndex,
-                          viewportFraction: 1,
-                          enableInfiniteScroll: false,
-                          aspectRatio: width / mainScale / 9,
-                        ),
-                        items: context
-                            .read<DictandoCubit>()
-                            .dictando
-                            .beats
-                            .map(
-                              (i) => Builder(
-                                builder: (BuildContext context) =>
-                                    GestureDetector(
-                                  behavior: HitTestBehavior.translucent,
-                                  onTap: () {
-                                    context.read<DictandoCubit>().changeBeat(
-                                          context
-                                              .read<DictandoCubit>()
-                                              .dictando
-                                              .beats
-                                              .indexOf(i),
-                                        );
-                                  },
-                                  child: Stack(
-                                    children: [
-                                      Staff(
-                                        distance: mainScale / 4,
-                                        isTappable: false,
-                                      ),
-                                      StaticBeatWidget(
-                                        step: mainScale / 4,
-                                        beat: i,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            )
-                            .toList(),
-                      ),
+                      builder: (context, state) =>
+                          CarouselWidget(width: width, mainScale: mainScale),
                     ),
                   ),
                   SizedBox(
@@ -105,4 +65,58 @@ class CreateScreen extends StatelessWidget {
             ),
           );
   }
+}
+
+class CarouselWidget extends StatelessWidget {
+  const CarouselWidget({
+    required this.width,
+    required this.mainScale,
+    Key? key,
+  }) : super(key: key);
+
+  final double width;
+  final double mainScale;
+
+  @override
+  Widget build(BuildContext context) => CarouselSlider(
+        options: CarouselOptions(
+          initialPage: context.read<DictandoCubit>().beatIndex,
+          viewportFraction: 1,
+          enableInfiniteScroll: false,
+          aspectRatio: width / mainScale / 9,
+        ),
+        items: context
+            .read<DictandoCubit>()
+            .dictando
+            .beats
+            .map(
+              (i) => Builder(
+                builder: (BuildContext context) => GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    context.read<DictandoCubit>().changeBeat(
+                          context
+                              .read<DictandoCubit>()
+                              .dictando
+                              .beats
+                              .indexOf(i),
+                        );
+                  },
+                  child: Stack(
+                    children: [
+                      Staff(
+                        distance: mainScale / 4,
+                        isTappable: false,
+                      ),
+                      StaticBeatWidget(
+                        step: mainScale / 4,
+                        beat: i,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
+            .toList(),
+      );
 }
