@@ -54,8 +54,9 @@ class CreateScreen extends StatelessWidget {
                     height: mainScale * 24 + 9 * mainScale,
                     child: Stack(
                       children: [
-                        Staff(distance: mainScale),
+                        // TODO(zoskar): change order
                         BeatWidget(step: mainScale),
+                        Staff(distance: mainScale),
                       ],
                     ),
                   ),
