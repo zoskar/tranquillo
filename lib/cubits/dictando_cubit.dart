@@ -7,30 +7,33 @@ class DictandoCubit extends Cubit<DictandoState> {
   DictandoCubit() : super(InitState());
 
   late Dictando dictando;
-  late Beat beat;
   late int beatIndex;
   late int noteIndex;
 
   init() {
-    dictando = Dictando(beats: [], name: 'Placeholder name');
-    beat = Beat([Note(duration: 8, pitch: 12)]);
+    dictando = Dictando(
+      beats: [
+        Beat([Note(duration: 8, pitch: 12)])
+      ],
+      name: 'Placeholder name',
+    );
     noteIndex = 0;
     beatIndex = 0;
     emit(DictandoSetState());
   }
 
   setPitch(int pitch) {
-    beat.notes[noteIndex].pitch = pitch;
+    dictando.beats[beatIndex].notes[noteIndex].pitch = pitch;
     emit(DictandoSetState());
   }
 
   setDuration(int duration) {
-    beat.notes[noteIndex].duration = duration;
+    dictando.beats[beatIndex].notes[noteIndex].duration = duration;
     emit(DictandoSetState());
   }
 
   IconData noteAt(int i) {
-    switch (beat.notes[i].duration) {
+    switch (dictando.beats[beatIndex].notes[i].duration) {
       case 1:
         return Notes.whole;
       case 2:
@@ -47,26 +50,34 @@ class DictandoCubit extends Cubit<DictandoState> {
   }
 
   noteDown() {
-    if (beat.notes[noteIndex].pitch < 24) {
-      beat.notes[noteIndex].pitch += 1;
+    if (dictando.beats[beatIndex].notes[noteIndex].pitch < 24) {
+      dictando.beats[beatIndex].notes[noteIndex].pitch += 1;
     }
     emit(DictandoSetState());
   }
 
   noteUp() {
-    if (beat.notes[noteIndex].pitch > 0) {
-      beat.notes[noteIndex].pitch -= 1;
+    if (dictando.beats[beatIndex].notes[noteIndex].pitch > 0) {
+      dictando.beats[beatIndex].notes[noteIndex].pitch -= 1;
     }
     emit(DictandoSetState());
   }
 
   noteRight() {
     if (noteIndex < 6) {
-      if (noteIndex == beat.notes.length - 1) {
-        beat.notes.add(Note(duration: 8, pitch: 12));
+      if (noteIndex == dictando.beats[beatIndex].notes.length - 1) {
+        dictando.beats[beatIndex].notes.add(Note(duration: 8, pitch: 12));
       }
       noteIndex += 1;
     }
+    emit(DictandoSetState());
+  }
+
+  beatRight() {
+    if (beatIndex == dictando.beats.length - 1) {
+      dictando.beats.add(Beat([Note(duration: 8, pitch: 12)]));
+    }
+    beatIndex += 1;
     emit(DictandoSetState());
   }
 
@@ -77,30 +88,25 @@ class DictandoCubit extends Cubit<DictandoState> {
     emit(DictandoSetState());
   }
 
-  // deleteNote() {
-  //   if (beat.notes.length > 1) {
-  //     beat.notes.removeAt(noteIndex);
-  //     if (noteIndex > 0) {
-  //       noteIndex -= 1;
-  //     }
-  //   }
-  //   emit(DictandoSetState());
-  // }
+  beatLeft() {
+    beatIndex -= 1;
+    emit(DictandoSetState());
+  }
 
   deleteNote() {
-    if (beat.notes.length > 1) {
-      if (noteIndex == beat.notes.length - 1) {
+    if (dictando.beats[beatIndex].notes.length > 1) {
+      if (noteIndex == dictando.beats[beatIndex].notes.length - 1) {
         noteIndex -= 1;
-        beat.notes.removeAt(noteIndex + 1);
+        dictando.beats[beatIndex].notes.removeAt(noteIndex + 1);
       } else {
-        beat.notes.removeAt(noteIndex);
+        dictando.beats[beatIndex].notes.removeAt(noteIndex);
       }
     }
     emit(DictandoSetState());
   }
 
-  addBeat() {
-    dictando.beats.add(beat);
+  changeBeat(int index) {
+    beatIndex = index;
     emit(DictandoSetState());
   }
 

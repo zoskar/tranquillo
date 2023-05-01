@@ -1,6 +1,6 @@
 import 'package:dict/presentation/browse_screen.dart';
 import 'package:dict/presentation/login/login_screen.dart';
-import 'package:dict/presentation/create_screen.dart';
+import 'package:dict/presentation/create_screen/create_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {

@@ -13,9 +13,7 @@ class MyWidget extends StatelessWidget {
     if (context.read<UserDataCubit>().state is NoData) {
       context.read<UserDataCubit>().getUserDictandos();
     }
-    if (context.watch<AuthCubit>().state is AuthenticationInProgress) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
-    }
+
     return Scaffold(
       drawer: const HamburgerMenu(),
       appBar: AppBar(
@@ -25,22 +23,27 @@ class MyWidget extends StatelessWidget {
           ),
         ),
       ),
-      body:
-          BlocBuilder<UserDataCubit, UserDataState>(builder: (context, state) {
-        if (state is FetchedData) {
-          return ListView.builder(
-            itemCount: state.userDictandos.length,
-            itemBuilder: (context, index) => ListTile(
-              title: Text(state.userDictandos[index].name),
-              onTap: () {
-                // Do something when tile is tapped
-              },
-            ),
-          );
-        } else {
-          return const CircularProgressIndicator();
-        }
-      }),
+      body: BlocBuilder<UserDataCubit, UserDataState>(
+        builder: (context, state) {
+          if (state is FetchedData &&
+              context.watch<AuthCubit>().state is Authenticated) {
+            return RefreshIndicator(
+              onRefresh: context.read<UserDataCubit>().getUserDictandos,
+              child: ListView.builder(
+                itemCount: state.userDictandos.length,
+                itemBuilder: (context, index) => ListTile(
+                  title: Text(state.userDictandos[index].name),
+                  onTap: () {
+                    // Do something when tile is tapped
+                  },
+                ),
+              ),
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
     );
   }
 }

@@ -5,9 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class Staff extends StatelessWidget {
   const Staff({
     required this.distance,
+    this.isTappable = true,
     Key? key,
   }) : super(key: key);
   final double distance;
+  final bool isTappable;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -20,9 +22,11 @@ class Staff extends StatelessWidget {
             (i) => i.isEven
                 ? GestureDetector(
                     behavior: HitTestBehavior.translucent,
-                    onTap: () {
-                      context.read<DictandoCubit>().setPitch(i);
-                    },
+                    onTap: isTappable
+                        ? () {
+                            context.read<DictandoCubit>().setPitch(i);
+                          }
+                        : null,
                     child: Divider(
                       color: i > 7 && i < 17 ? Colors.black : Colors.grey,
                       height: distance,
@@ -30,9 +34,11 @@ class Staff extends StatelessWidget {
                   )
                 : GestureDetector(
                     behavior: HitTestBehavior.translucent,
-                    onTap: () {
-                      context.read<DictandoCubit>().setPitch(i);
-                    },
+                    onTap: isTappable
+                        ? () {
+                            context.read<DictandoCubit>().setPitch(i);
+                          }
+                        : null,
                     child: SizedBox(height: distance, width: double.infinity),
                   ),
           ),

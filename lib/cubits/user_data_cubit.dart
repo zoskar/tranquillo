@@ -13,14 +13,13 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(NoData());
   }
 
-  getUserDictandos() async {
+  Future<void> getUserDictandos() async {
     List<Dictando> userDictandos = [];
     emit(FetchingInProgress());
 
     try {
       DataSnapshot response =
           await _dataRef.child('dictandos/${auth.currentUser?.uid}').get();
-      // emit(FetchedData(data: data));
       if (response.value != null) {
         final data =
             Map<String, dynamic>.from(response.value! as Map<Object?, Object?>);
@@ -28,12 +27,13 @@ class UserDataCubit extends Cubit<UserDataState> {
         for (final element in data.values) {
           userDictandos.add(Dictando.parseDictando(element));
         }
-        emit(FetchedData(userDictandos: userDictandos));
       }
     } catch (err, st) {
       print('Error: $err, $st');
       emit(NoData());
+      return;
     }
+    emit(FetchedData(userDictandos: userDictandos));
   }
 
   saveDictando(Dictando dictando) async {
@@ -56,3 +56,6 @@ class FetchedData extends UserDataState {
 class FetchingInProgress extends UserDataState {}
 
 class NoData extends UserDataState {}
+
+// TODO(zoskar): implement error
+class UserDataError extends UserDataState {}
