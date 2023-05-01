@@ -17,12 +17,23 @@ class BeatWidget extends StatelessWidget {
         builder: (context, state) => Row(
           children: [
             for (var i = 0;
-                i < context.read<DictandoCubit>().beat.notes.length;
+                i <
+                    context
+                        .read<DictandoCubit>()
+                        .dictando
+                        .beats[context.read<DictandoCubit>().beatIndex]
+                        .notes
+                        .length;
                 i++)
               Column(
                 children: [
                   SizedBox(
-                    height: context.read<DictandoCubit>().beat.notes[i].pitch *
+                    height: context
+                            .read<DictandoCubit>()
+                            .dictando
+                            .beats[context.read<DictandoCubit>().beatIndex]
+                            .notes[i]
+                            .pitch *
                         step,
                   ),
                   SizedBox(

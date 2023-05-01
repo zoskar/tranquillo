@@ -58,7 +58,6 @@ class Keyboard extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  context.read<DictandoCubit>().addBeat();
                   context.read<UserDataCubit>().saveDictando(
                         context.read<DictandoCubit>().dictando,
                       );
