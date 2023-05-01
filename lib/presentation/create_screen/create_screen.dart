@@ -54,8 +54,9 @@ class CreateScreen extends StatelessWidget {
                     height: mainScale * 24 + 9 * mainScale,
                     child: Stack(
                       children: [
-                        Staff(distance: mainScale),
+                        // TODO(zoskar): change order
                         BeatWidget(step: mainScale),
+                        Staff(distance: mainScale),
                       ],
                     ),
                   ),
@@ -79,11 +80,12 @@ class CarouselWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CarouselSlider(
+        carouselController: context.read<DictandoCubit>().carouselController,
         options: CarouselOptions(
           initialPage: context.read<DictandoCubit>().beatIndex,
-          viewportFraction: 1,
           enableInfiniteScroll: false,
           aspectRatio: width / mainScale / 9,
+          enlargeCenterPage: true,
         ),
         items: context
             .read<DictandoCubit>()
