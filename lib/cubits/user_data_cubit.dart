@@ -10,10 +10,12 @@ class UserDataCubit extends Cubit<UserDataState> {
   FirebaseAuth auth = FirebaseAuth.instance;
   final DatabaseReference _dataRef = FirebaseDatabase.instance.ref();
 
-  removeData() {
+  /// Removes all data from the cubit
+  void removeData() {
     emit(NoData());
   }
 
+  /// Fetches all user dictandos from the database
   Future<void> getUserDictandos() async {
     List<DictandoFromDatabase> userDictandos = [];
     emit(FetchingInProgress());
@@ -42,7 +44,8 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(FetchedData(userDictandos: userDictandos));
   }
 
-  saveDictando(Dictando dictando, String id) async {
+  /// Saves a dictando to the database
+  Future<void> saveDictando(Dictando dictando, String id) async {
     DatabaseReference dbRef =
         FirebaseDatabase.instance.ref('dictandos/${auth.currentUser!.uid}');
     DatabaseReference newPostRef = dbRef.push();
@@ -52,13 +55,12 @@ class UserDataCubit extends Cubit<UserDataState> {
     await newPostRef.set(dictando.toJson());
   }
 
-  void deleteDictando(String id) {
-    _dataRef
-        .child('dictandos/${auth.currentUser?.uid}/$id')
-        .remove()
-        .then((_) => print('Deleted'))
-        .catchError((error) => print('Delete failed: $error'));
-  }
+  /// Deletes a dictando from the database
+  Future<void> deleteDictando(String id) async => _dataRef
+      .child('dictandos/${auth.currentUser?.uid}/$id')
+      .remove()
+      .then((_) => print('Deleted'))
+      .catchError((error) => print('Delete failed: $error'));
 }
 
 abstract class UserDataState {}
