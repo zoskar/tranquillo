@@ -21,8 +21,14 @@ class Notes {
   static const _kFontFam = 'Notes';
 
   static const IconData whole = IconData(0xe800, fontFamily: _kFontFam);
-  static const IconData quarter = IconData(0xe801, fontFamily: _kFontFam);
-  static const IconData eight = IconData(0xe802, fontFamily: _kFontFam);
-  static const IconData half = IconData(0xe803, fontFamily: _kFontFam);
-  static const IconData sixteen = IconData(0xe804, fontFamily: _kFontFam);
+  static const IconData quarterReversed =
+      IconData(0xe801, fontFamily: _kFontFam);
+  static const IconData quarter = IconData(0xe802, fontFamily: _kFontFam);
+  static const IconData eight = IconData(0xe803, fontFamily: _kFontFam);
+  static const IconData eightReversed = IconData(0xe804, fontFamily: _kFontFam);
+  static const IconData halfReversed = IconData(0xe805, fontFamily: _kFontFam);
+  static const IconData half = IconData(0xe806, fontFamily: _kFontFam);
+  static const IconData sixteen = IconData(0xe807, fontFamily: _kFontFam);
+  static const IconData sixteenReversed =
+      IconData(0xe808, fontFamily: _kFontFam);
 }
