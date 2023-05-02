@@ -21,10 +21,12 @@ class StaticBeatWidget extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: beat.notes[i].pitch * step),
-                  Icon(
-                    beat.notes[i].getNoteIcon(),
-                    color: Colors.black,
-                    size: 9 * step,
+                  Flexible(
+                    child: Icon(
+                      beat.notes[i].getNoteIcon(),
+                      color: Colors.black,
+                      size: 9 * step,
+                    ),
                   ),
                 ],
               ),

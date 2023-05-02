@@ -32,7 +32,10 @@ class MyWidget extends StatelessWidget {
               child: ListView.builder(
                 itemCount: state.userDictandos.length,
                 itemBuilder: (context, index) => ListTile(
-                  title: Text(state.userDictandos[index].name),
+                  title: Text(
+                    state.userDictandos[index].name,
+                    style: const TextStyle(fontSize: 16),
+                  ),
                   onTap: () {
                     // Do something when tile is tapped
                   },

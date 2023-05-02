@@ -38,31 +38,29 @@ class CreateScreen extends StatelessWidget {
                 ),
               ),
             ),
-            body: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: mainScale / 4 * 24 + 9 * mainScale / 4,
-                    child: BlocBuilder<DictandoCubit, DictandoState>(
-                      builder: (context, state) =>
-                          CarouselWidget(width: width, mainScale: mainScale),
-                    ),
+            body: Column(
+              children: [
+                SizedBox(
+                  // 24: lines and spaces + 9: noteScale
+                  height: mainScale / 4 * 24 + 9 * mainScale / 4,
+                  child: BlocBuilder<DictandoCubit, DictandoState>(
+                    builder: (context, state) =>
+                        CarouselWidget(width: width, mainScale: mainScale),
                   ),
-                  SizedBox(
-                    // 24: lines and spaces + 9: noteScale
-                    height: mainScale * 24 + 9 * mainScale,
-                    child: Stack(
-                      children: [
-                        // TODO(zoskar): change order
-                        BeatWidget(step: mainScale),
-                        Staff(distance: mainScale),
-                      ],
-                    ),
+                ),
+                SizedBox(
+                  // 24: lines and spaces + 9: noteScale
+                  height: mainScale * 24 + 9 * mainScale,
+                  child: Stack(
+                    children: [
+                      // TODO(zoskar): change order
+                      BeatWidget(step: mainScale),
+                      Staff(distance: mainScale),
+                    ],
                   ),
-                  const Keyboard(),
-                ],
-              ),
+                ),
+                const Keyboard(),
+              ],
             ),
           );
   }

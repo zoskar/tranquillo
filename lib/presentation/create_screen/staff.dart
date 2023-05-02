@@ -28,7 +28,8 @@ class Staff extends StatelessWidget {
                           }
                         : null,
                     child: Divider(
-                      color: i > 7 && i < 17 ? Colors.black : Colors.grey,
+                      thickness: 0.6,
+                      color: i > 7 && i < 17 ? Colors.black : Colors.black12,
                       height: distance,
                     ),
                   )
