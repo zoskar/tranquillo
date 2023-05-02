@@ -15,7 +15,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   Future<void> getUserDictandos() async {
-    List<Dictando> userDictandos = [];
+    List<DictandoFromDatabase> userDictandos = [];
     emit(FetchingInProgress());
 
     try {
@@ -25,9 +25,14 @@ class UserDataCubit extends Cubit<UserDataState> {
         final data =
             Map<String, dynamic>.from(response.value! as Map<Object?, Object?>);
 
-        for (final element in data.values) {
-          userDictandos.add(Dictando.parseDictando(element));
-        }
+        data.forEach((k, v) {
+          userDictandos.add(
+            DictandoFromDatabase(
+              dictando: Dictando.parseDictando(v),
+              id: k,
+            ),
+          );
+        });
       }
     } catch (err, st) {
       print('Error: $err, $st');
@@ -44,6 +49,14 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     await newPostRef.set(dictando.toJson());
   }
+
+  void deleteDictando(String id) {
+    _dataRef
+        .child('dictandos/${auth.currentUser?.uid}/$id')
+        .remove()
+        .then((_) => print('Deleted'))
+        .catchError((error) => print('Delete failed: $error'));
+  }
 }
 
 abstract class UserDataState {}
@@ -51,7 +64,7 @@ abstract class UserDataState {}
 class FetchedData extends UserDataState {
   FetchedData({required this.userDictandos});
 
-  final List<Dictando> userDictandos;
+  final List<DictandoFromDatabase> userDictandos;
 }
 
 class FetchingInProgress extends UserDataState {}

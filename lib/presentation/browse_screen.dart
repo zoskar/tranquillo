@@ -32,8 +32,16 @@ class MyWidget extends StatelessWidget {
               child: ListView.builder(
                 itemCount: state.userDictandos.length,
                 itemBuilder: (context, index) => ListTile(
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () {
+                      context
+                          .read<UserDataCubit>()
+                          .deleteDictando(state.userDictandos[index].id);
+                    },
+                  ),
                   title: Text(
-                    state.userDictandos[index].name,
+                    state.userDictandos[index].dictando.name,
                     style: const TextStyle(fontSize: 16),
                   ),
                   onTap: () {

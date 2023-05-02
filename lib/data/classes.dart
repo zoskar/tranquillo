@@ -101,3 +101,12 @@ class Dictando {
   String name;
   bool isPrivate;
 }
+
+class DictandoFromDatabase {
+  DictandoFromDatabase({
+    required this.dictando,
+    required this.id,
+  });
+  Dictando dictando;
+  String id;
+}
