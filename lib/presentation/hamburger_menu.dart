@@ -25,7 +25,7 @@ class HamburgerMenu extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.arrow_forward_ios_rounded),
                 title: const Text(
-                  'Przeglądaj dyktanda',
+                  'Browse dictandos',
                   style: AppTextStyles.black24,
                 ),
                 onTap: () {
@@ -36,7 +36,7 @@ class HamburgerMenu extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.arrow_forward_ios_rounded),
                 title: const Text(
-                  'Dodaj dyktando',
+                  'Create dictando',
                   style: AppTextStyles.black24,
                 ),
                 onTap: () {
@@ -47,7 +47,7 @@ class HamburgerMenu extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.arrow_forward_ios_rounded),
                 title: const Text(
-                  'Wyloguj się',
+                  'Log out',
                   style: AppTextStyles.black24,
                 ),
                 onTap: () {

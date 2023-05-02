@@ -1,6 +1,7 @@
 import 'package:dict/cubits/auth_cubit.dart';
 import 'package:dict/cubits/dictando_cubit.dart';
 import 'package:dict/cubits/user_data_cubit.dart';
+import 'package:dict/data/classes.dart';
 import 'package:dict/presentation/hamburger_menu.dart';
 import 'package:dict/util/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -36,48 +37,9 @@ class MyWidget extends StatelessWidget {
                   itemCount: state.userDictandos.length,
                   itemBuilder: (context, index) => Column(
                     children: [
-                      ListTile(
-                        trailing: PopupMenuButton<String>(
-                          onSelected: (String choice) {
-                            switch (choice) {
-                              case 'Open':
-                                break;
-                              case 'Edit':
-                                context.read<DictandoCubit>().editDictando(
-                                      state.userDictandos[index].dictando,
-                                      state.userDictandos[index].id,
-                                    );
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  '/create',
-                                );
-
-                                break;
-                              case 'Delete':
-                                context.read<UserDataCubit>().deleteDictando(
-                                      state.userDictandos[index].id,
-                                    );
-                                context
-                                    .read<UserDataCubit>()
-                                    .getUserDictandos();
-
-                                break;
-                            }
-                          },
-                          itemBuilder: (BuildContext context) =>
-                              {'Open', 'Edit', 'Delete'}
-                                  .map(
-                                    (String choice) => PopupMenuItem<String>(
-                                      value: choice,
-                                      child: Text(choice),
-                                    ),
-                                  )
-                                  .toList(),
-                        ),
-                        title: Text(
-                          state.userDictandos[index].dictando.name,
-                          style: const TextStyle(fontSize: 20),
-                        ),
+                      DictandoTile(
+                        dictando: state.userDictandos[index].dictando,
+                        id: state.userDictandos[index].id,
                       ),
                       const Divider(),
                     ],
@@ -92,4 +54,58 @@ class MyWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+class DictandoTile extends StatelessWidget {
+  const DictandoTile({
+    required this.dictando,
+    required this.id,
+    Key? key,
+  }) : super(key: key);
+
+  final Dictando dictando;
+  final String id;
+
+  @override
+  Widget build(BuildContext context) => Column(
+        children: [
+          ListTile(
+            trailing: PopupMenuButton<String>(
+              onSelected: (String choice) {
+                switch (choice) {
+                  case 'Open':
+                    break;
+                  case 'Edit':
+                    context.read<DictandoCubit>().editDictando(
+                          dictando,
+                          id,
+                        );
+                    Navigator.pushReplacementNamed(
+                      context,
+                      '/create',
+                    );
+                    break;
+                  case 'Delete':
+                    context.read<UserDataCubit>().deleteDictando(id);
+                    context.read<UserDataCubit>().getUserDictandos();
+                    break;
+                }
+              },
+              itemBuilder: (BuildContext context) => {'Open', 'Edit', 'Delete'}
+                  .map(
+                    (String choice) => PopupMenuItem<String>(
+                      value: choice,
+                      child: Text(choice),
+                    ),
+                  )
+                  .toList(),
+            ),
+            title: Text(
+              dictando.name,
+              style: const TextStyle(fontSize: 20),
+            ),
+          ),
+          const Divider(),
+        ],
+      );
 }

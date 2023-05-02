@@ -63,6 +63,7 @@ class Keyboard extends StatelessWidget {
                         context.read<DictandoCubit>().dictandoId,
                       );
                   context.read<DictandoCubit>().clearDictando();
+                  Navigator.pushReplacementNamed(context, '/browse');
                 },
                 icon: const Icon(Icons.save),
               ),
