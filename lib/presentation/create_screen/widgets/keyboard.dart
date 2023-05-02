@@ -60,6 +60,7 @@ class Keyboard extends StatelessWidget {
                 onPressed: () {
                   context.read<UserDataCubit>().saveDictando(
                         context.read<DictandoCubit>().dictando,
+                        context.read<DictandoCubit>().dictandoId,
                       );
                   context.read<DictandoCubit>().clearDictando();
                 },

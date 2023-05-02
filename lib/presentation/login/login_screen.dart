@@ -172,7 +172,7 @@ class LoginScreen extends HookWidget {
                                     if (state is Authenticated) {
                                       Navigator.pushReplacementNamed(
                                         context,
-                                        '/create',
+                                        '/browse',
                                       );
                                     }
                                   },

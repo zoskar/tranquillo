@@ -42,11 +42,13 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(FetchedData(userDictandos: userDictandos));
   }
 
-  saveDictando(Dictando dictando) async {
+  saveDictando(Dictando dictando, String id) async {
     DatabaseReference dbRef =
         FirebaseDatabase.instance.ref('dictandos/${auth.currentUser!.uid}');
     DatabaseReference newPostRef = dbRef.push();
-
+    if (id != '') {
+      deleteDictando(id);
+    }
     await newPostRef.set(dictando.toJson());
   }
 

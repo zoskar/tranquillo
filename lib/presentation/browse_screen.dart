@@ -1,4 +1,5 @@
 import 'package:dict/cubits/auth_cubit.dart';
+import 'package:dict/cubits/dictando_cubit.dart';
 import 'package:dict/cubits/user_data_cubit.dart';
 import 'package:dict/presentation/hamburger_menu.dart';
 import 'package:dict/util/app_colors.dart';
@@ -29,24 +30,58 @@ class MyWidget extends StatelessWidget {
               context.watch<AuthCubit>().state is Authenticated) {
             return RefreshIndicator(
               onRefresh: context.read<UserDataCubit>().getUserDictandos,
-              child: ListView.builder(
-                itemCount: state.userDictandos.length,
-                itemBuilder: (context, index) => ListTile(
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      context
-                          .read<UserDataCubit>()
-                          .deleteDictando(state.userDictandos[index].id);
-                    },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: ListView.builder(
+                  itemCount: state.userDictandos.length,
+                  itemBuilder: (context, index) => Column(
+                    children: [
+                      ListTile(
+                        trailing: PopupMenuButton<String>(
+                          onSelected: (String choice) {
+                            switch (choice) {
+                              case 'Open':
+                                break;
+                              case 'Edit':
+                                context.read<DictandoCubit>().editDictando(
+                                      state.userDictandos[index].dictando,
+                                      state.userDictandos[index].id,
+                                    );
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  '/create',
+                                );
+
+                                break;
+                              case 'Delete':
+                                context.read<UserDataCubit>().deleteDictando(
+                                      state.userDictandos[index].id,
+                                    );
+                                context
+                                    .read<UserDataCubit>()
+                                    .getUserDictandos();
+
+                                break;
+                            }
+                          },
+                          itemBuilder: (BuildContext context) =>
+                              {'Open', 'Edit', 'Delete'}
+                                  .map(
+                                    (String choice) => PopupMenuItem<String>(
+                                      value: choice,
+                                      child: Text(choice),
+                                    ),
+                                  )
+                                  .toList(),
+                        ),
+                        title: Text(
+                          state.userDictandos[index].dictando.name,
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      ),
+                      const Divider(),
+                    ],
                   ),
-                  title: Text(
-                    state.userDictandos[index].dictando.name,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  onTap: () {
-                    // Do something when tile is tapped
-                  },
                 ),
               ),
             );

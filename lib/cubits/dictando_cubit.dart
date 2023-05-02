@@ -10,6 +10,7 @@ class DictandoCubit extends Cubit<DictandoState> {
   late int beatIndex;
   late int noteIndex;
   final CarouselController carouselController = CarouselController();
+  String dictandoId = '';
 
   init() {
     dictando = Dictando(
@@ -20,6 +21,14 @@ class DictandoCubit extends Cubit<DictandoState> {
     );
     noteIndex = 0;
     beatIndex = 0;
+    emit(DictandoSetState());
+  }
+
+  editDictando(Dictando editDictando, String editDictandoId) {
+    dictando = editDictando;
+    noteIndex = 0;
+    beatIndex = 0;
+    dictandoId = editDictandoId;
     emit(DictandoSetState());
   }
 
