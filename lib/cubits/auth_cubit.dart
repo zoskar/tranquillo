@@ -1,17 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// AuthCubit is responsible for authentication of the user
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(Unauthenticated());
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
+  /// init() checks if the user is already logged in
   void init() {
     if (auth.currentUser != null) {
       emit(Authenticated());
     }
   }
 
+  /// logOut() logs out the user
   Future<void> logOut() async {
     try {
       await auth.signOut();
@@ -21,6 +24,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  /// logIn() logs in the user
   Future<bool> logIn({
     required String email,
     required String password,

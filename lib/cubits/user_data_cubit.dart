@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// UserDataCubit is responsible for fetching and saving user data
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit() : super(NoData());
 

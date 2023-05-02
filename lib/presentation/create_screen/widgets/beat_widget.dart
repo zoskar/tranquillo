@@ -40,7 +40,16 @@ class BeatWidget extends StatelessWidget {
                           step,
                     ),
                     SizedBox(
-                      width: 52,
+                      width: 40 +
+                          5 *
+                              step /
+                              context
+                                  .read<DictandoCubit>()
+                                  .dictando
+                                  .beats[
+                                      context.read<DictandoCubit>().beatIndex]
+                                  .notes[i]
+                                  .duration,
                       // TODO(zoskar): remove workaround
                       height: 0,
                       child: Icon(
