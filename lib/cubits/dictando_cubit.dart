@@ -1,6 +1,4 @@
 import 'package:carousel_slider/carousel_controller.dart';
-import 'package:dict/util/notes_icons.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dict/data/classes.dart';
 
@@ -15,7 +13,7 @@ class DictandoCubit extends Cubit<DictandoState> {
   init() {
     dictando = Dictando(
       beats: [
-        Beat([Note(duration: 8, pitch: 12)])
+        Beat([Note(duration: 8, pitch: 14)])
       ],
       name: 'Placeholder name',
     );
@@ -32,23 +30,6 @@ class DictandoCubit extends Cubit<DictandoState> {
   setDuration(int duration) {
     dictando.beats[beatIndex].notes[noteIndex].duration = duration;
     emit(DictandoSetState());
-  }
-
-  IconData noteAt(int i) {
-    switch (dictando.beats[beatIndex].notes[i].duration) {
-      case 1:
-        return Notes.whole;
-      case 2:
-        return Notes.half;
-      case 4:
-        return Notes.quarter;
-      case 8:
-        return Notes.eight;
-      case 16:
-        return Notes.sixteen;
-      default:
-        return Notes.eight;
-    }
   }
 
   noteDown() {
@@ -75,7 +56,7 @@ class DictandoCubit extends Cubit<DictandoState> {
   noteRight() {
     if (noteIndex < 12) {
       if (noteIndex == dictando.beats[beatIndex].notes.length - 1) {
-        dictando.beats[beatIndex].notes.add(Note(duration: 8, pitch: 12));
+        dictando.beats[beatIndex].notes.add(Note(duration: 8, pitch: 14));
       }
       noteIndex += 1;
     }
@@ -93,7 +74,7 @@ class DictandoCubit extends Cubit<DictandoState> {
 
   beatRight() {
     if (beatIndex == dictando.beats.length - 1) {
-      dictando.beats.add(Beat([Note(duration: 8, pitch: 12)]));
+      dictando.beats.add(Beat([Note(duration: 8, pitch: 14)]));
     }
     beatIndex += 1;
     noteIndex = 0;

@@ -22,18 +22,34 @@ class Note {
 
   Map<String, dynamic> toJson() => _$NoteToJson(this);
 
-  IconData noteAt(int i) {
-    switch (i) {
+  IconData getNoteIcon() {
+    switch (duration) {
       case 1:
         return Notes.whole;
       case 2:
-        return Notes.half;
+        if (pitch > 12) {
+          return Notes.half;
+        } else {
+          return Notes.halfReversed;
+        }
       case 4:
-        return Notes.quarter;
+        if (pitch > 12) {
+          return Notes.quarter;
+        } else {
+          return Notes.quarterReversed;
+        }
       case 8:
-        return Notes.eight;
+        if (pitch > 12) {
+          return Notes.eight;
+        } else {
+          return Notes.eightReversed;
+        }
       case 16:
-        return Notes.sixteen;
+        if (pitch > 12) {
+          return Notes.sixteen;
+        } else {
+          return Notes.sixteenReversed;
+        }
       default:
         return Notes.eight;
     }
