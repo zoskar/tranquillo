@@ -10,25 +10,28 @@ class StaticBeatWidget extends StatelessWidget {
 
   final double step;
   final Beat beat;
-
   @override
   Widget build(BuildContext context) => Row(
         children: [
           for (var i = 0; i < beat.notes.length; i++)
-            Column(
-              children: [
-                SizedBox(height: beat.notes[i].pitch * step),
-                SizedBox(
-                  width: 52,
-                  // TODO(zoskar): remove workaround
-                  height: 0,
-                  child: Icon(
-                    beat.notes[i].getNoteIcon(),
-                    color: Colors.black,
-                    size: 9 * step,
+            SizedBox(
+              width:
+                  MediaQuery.of(context).size.width / 1.4 / beat.notes.length,
+              child: Column(
+                children: [
+                  SizedBox(height: beat.notes[i].pitch * step),
+                  SizedBox(
+                    width: 52,
+                    // TODO(zoskar): remove workaround
+                    height: 0,
+                    child: Icon(
+                      beat.notes[i].getNoteIcon(),
+                      color: Colors.black,
+                      size: 9 * step,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
         ],
       );
