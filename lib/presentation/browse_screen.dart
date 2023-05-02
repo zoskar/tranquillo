@@ -7,8 +7,8 @@ import 'package:dict/util/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({Key? key}) : super(key: key);
+class BrowseScreen extends StatelessWidget {
+  const BrowseScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +74,14 @@ class DictandoTile extends StatelessWidget {
               onSelected: (String choice) {
                 switch (choice) {
                   case 'Open':
+                    context.read<DictandoCubit>().editDictando(
+                          dictando,
+                          id,
+                        );
+                    Navigator.pushReplacementNamed(
+                      context,
+                      '/preview',
+                    );
                     break;
                   case 'Edit':
                     context.read<DictandoCubit>().editDictando(

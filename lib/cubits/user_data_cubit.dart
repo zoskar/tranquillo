@@ -50,7 +50,7 @@ class UserDataCubit extends Cubit<UserDataState> {
         FirebaseDatabase.instance.ref('dictandos/${auth.currentUser!.uid}');
     DatabaseReference newPostRef = dbRef.push();
     if (id != '') {
-      deleteDictando(id);
+      await deleteDictando(id);
     }
     await newPostRef.set(dictando.toJson());
   }

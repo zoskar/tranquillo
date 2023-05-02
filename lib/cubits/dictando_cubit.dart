@@ -92,11 +92,14 @@ class DictandoCubit extends Cubit<DictandoState> {
   }
 
   /// Chenges current beat to the right
-  void beatRight() {
-    if (beatIndex == dictando.beats.length - 1) {
+  void beatRight({bool preview = false}) {
+    if (beatIndex == dictando.beats.length - 1 && !preview) {
       dictando.beats.add(Beat([Note(duration: 8, pitch: 14)]));
     }
-    beatIndex += 1;
+    /// Not when previewing and on last beat
+    if (!(preview && beatIndex == dictando.beats.length - 1)) {
+      beatIndex += 1;
+    }
     noteIndex = 0;
     carouselController.animateToPage(beatIndex);
     emit(DictandoSetState());
