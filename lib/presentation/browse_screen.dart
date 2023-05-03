@@ -1,4 +1,3 @@
-import 'package:dict/cubits/auth_cubit.dart';
 import 'package:dict/cubits/user_data_cubit.dart';
 import 'package:dict/presentation/hamburger_menu.dart';
 import 'package:dict/presentation/widgets/dictando_tile.dart';
@@ -26,8 +25,7 @@ class BrowseScreen extends StatelessWidget {
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
         builder: (context, state) {
-          if (state is FetchedData &&
-              context.watch<AuthCubit>().state is Authenticated) {
+          if (state is FetchedData) {
             return RefreshIndicator(
               onRefresh: context.read<UserDataCubit>().getUserDictandos,
               child: Padding(

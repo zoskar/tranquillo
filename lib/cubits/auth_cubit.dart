@@ -7,11 +7,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  /// init() checks if the user is already logged in
   void init() {
-    if (auth.currentUser != null) {
-      emit(Authenticated());
-    }
+    emit(Unauthenticated());
   }
 
   /// logOut() logs out the user
@@ -44,7 +41,6 @@ class AuthCubit extends Cubit<AuthState> {
       print('Error: $err, $st');
       emit(Unauthenticated());
     }
-
     return false;
   }
 }
