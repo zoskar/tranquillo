@@ -51,10 +51,10 @@ class HamburgerMenu extends StatelessWidget {
                   style: AppTextStyles.black24,
                 ),
                 onTap: () {
+                  Navigator.pushReplacementNamed(context, '/');
+                  context.read<AuthCubit>().logOut();
                   context.read<UserDataCubit>().removeData();
                   context.read<DictandoCubit>().clearDictando();
-                  context.read<AuthCubit>().logOut();
-                  Navigator.pushReplacementNamed(context, '/');
                 },
               ),
             ],

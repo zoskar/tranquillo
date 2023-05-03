@@ -128,6 +128,7 @@ class DictandoCubit extends Cubit<DictandoState> {
   /// Clears dictando cubit
   void clearDictando() {
     dictando = Dictando(beats: [], name: 'Placeholder name');
+    emit(InitState());
   }
 }
 
