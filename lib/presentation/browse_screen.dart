@@ -1,12 +1,12 @@
-import 'package:dict/cubits/auth_cubit.dart';
 import 'package:dict/cubits/user_data_cubit.dart';
 import 'package:dict/presentation/hamburger_menu.dart';
-import 'package:dict/util/app_colors.dart';
+import 'package:dict/presentation/widgets/dictando_tile.dart';
+import 'package:dict/presentation/widgets/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({Key? key}) : super(key: key);
+class BrowseScreen extends StatelessWidget {
+  const BrowseScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,29 +16,20 @@ class MyWidget extends StatelessWidget {
 
     return Scaffold(
       drawer: const HamburgerMenu(),
-      appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: AppColors.myNewGradient,
-          ),
-        ),
-      ),
+      appBar: const MyAppBar(),
       body: BlocBuilder<UserDataCubit, UserDataState>(
         builder: (context, state) {
-          if (state is FetchedData &&
-              context.watch<AuthCubit>().state is Authenticated) {
+          if (state is FetchedData) {
             return RefreshIndicator(
               onRefresh: context.read<UserDataCubit>().getUserDictandos,
-              child: ListView.builder(
-                itemCount: state.userDictandos.length,
-                itemBuilder: (context, index) => ListTile(
-                  title: Text(
-                    state.userDictandos[index].name,
-                    style: const TextStyle(fontSize: 16),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: ListView.builder(
+                  itemCount: state.userDictandos.length,
+                  itemBuilder: (context, index) => DictandoTile(
+                    dictando: state.userDictandos[index].dictando,
+                    id: state.userDictandos[index].id,
                   ),
-                  onTap: () {
-                    // Do something when tile is tapped
-                  },
                 ),
               ),
             );

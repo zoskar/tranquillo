@@ -1,3 +1,4 @@
+import 'package:dict/cubits/dictando_cubit.dart';
 import 'package:dict/util/app_colors.dart';
 import 'package:dict/util/fonts.dart';
 import 'package:flutter/material.dart';
@@ -24,34 +25,36 @@ class HamburgerMenu extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.arrow_forward_ios_rounded),
                 title: const Text(
-                  'Przeglądaj dyktanda',
+                  'Browse dictandos',
                   style: AppTextStyles.black24,
                 ),
                 onTap: () {
+                  context.read<UserDataCubit>().getUserDictandos();
                   Navigator.pushReplacementNamed(context, '/browse');
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.arrow_forward_ios_rounded),
                 title: const Text(
-                  'Dodaj dyktando',
+                  'Create dictando',
                   style: AppTextStyles.black24,
                 ),
                 onTap: () {
+                  context.read<DictandoCubit>().init();
                   Navigator.pushReplacementNamed(context, '/create');
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.arrow_forward_ios_rounded),
                 title: const Text(
-                  'Wyloguj się',
+                  'Log out',
                   style: AppTextStyles.black24,
                 ),
                 onTap: () {
-                  context.read<UserDataCubit>().removeData();
-                  // context.read<DictandoCubit>().init();
-                  context.read<AuthCubit>().logOut();
                   Navigator.pushReplacementNamed(context, '/');
+                  context.read<AuthCubit>().logOut();
+                  context.read<UserDataCubit>().removeData();
+                  context.read<DictandoCubit>().clearDictando();
                 },
               ),
             ],

@@ -10,12 +10,14 @@ class UserDataCubit extends Cubit<UserDataState> {
   FirebaseAuth auth = FirebaseAuth.instance;
   final DatabaseReference _dataRef = FirebaseDatabase.instance.ref();
 
-  removeData() {
+  /// Removes all data from the cubit
+  void removeData() {
     emit(NoData());
   }
 
+  /// Fetches all user dictandos from the database
   Future<void> getUserDictandos() async {
-    List<Dictando> userDictandos = [];
+    List<DictandoFromDatabase> userDictandos = [];
     emit(FetchingInProgress());
 
     try {
@@ -25,9 +27,14 @@ class UserDataCubit extends Cubit<UserDataState> {
         final data =
             Map<String, dynamic>.from(response.value! as Map<Object?, Object?>);
 
-        for (final element in data.values) {
-          userDictandos.add(Dictando.parseDictando(element));
-        }
+        data.forEach((k, v) {
+          userDictandos.add(
+            DictandoFromDatabase(
+              dictando: Dictando.parseDictando(v),
+              id: k,
+            ),
+          );
+        });
       }
     } catch (err, st) {
       print('Error: $err, $st');
@@ -37,12 +44,27 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(FetchedData(userDictandos: userDictandos));
   }
 
-  saveDictando(Dictando dictando) async {
+  /// Saves a dictando to the database
+  Future<void> saveDictando(Dictando dictando, String id) async {
+    emit(FetchingInProgress());
     DatabaseReference dbRef =
         FirebaseDatabase.instance.ref('dictandos/${auth.currentUser!.uid}');
     DatabaseReference newPostRef = dbRef.push();
-
+    if (id != '') {
+      await deleteDictando(id);
+    }
     await newPostRef.set(dictando.toJson());
+    await getUserDictandos();
+  }
+
+  /// Deletes a dictando from the database
+  Future<void> deleteDictando(String id) async {
+    await _dataRef
+        .child('dictandos/${auth.currentUser?.uid}/$id')
+        .remove()
+        .then((_) => print('Deleted'))
+        .catchError((error) => print('Delete failed: $error'));
+    await getUserDictandos();
   }
 }
 
@@ -51,7 +73,7 @@ abstract class UserDataState {}
 class FetchedData extends UserDataState {
   FetchedData({required this.userDictandos});
 
-  final List<Dictando> userDictandos;
+  final List<DictandoFromDatabase> userDictandos;
 }
 
 class FetchingInProgress extends UserDataState {}

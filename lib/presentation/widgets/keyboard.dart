@@ -57,13 +57,13 @@ class Keyboard extends StatelessWidget {
                 icon: const Icon(Icons.delete_rounded),
               ),
               IconButton(
-                onPressed: () {
-                  context.read<UserDataCubit>().saveDictando(
-                        context.read<DictandoCubit>().dictando,
-                      );
-                  context.read<DictandoCubit>().clearDictando();
-                },
                 icon: const Icon(Icons.save),
+                onPressed: () async {
+                  await showDialog<bool>(
+                    context: context,
+                    builder: (context) => SaveDictandoAlertDialog(),
+                  );
+                },
               ),
             ],
           ),
@@ -100,7 +100,49 @@ class Keyboard extends StatelessWidget {
                 icon: const Icon(Notes.whole),
               ),
             ],
-          )
+          ),
         ],
       );
+}
+
+class SaveDictandoAlertDialog extends StatelessWidget {
+  SaveDictandoAlertDialog({Key? key}) : super(key: key);
+
+  final _textController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    _textController.text = context.read<DictandoCubit>().dictando.name;
+    return AlertDialog(
+      title: const Text('Save Dictando'),
+      content: TextField(
+        controller: _textController,
+        decoration: const InputDecoration(
+          hintText: 'Dictando Name',
+        ),
+      ),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context, false);
+          },
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            final name = _textController.text.trim();
+            if (name.isNotEmpty) {
+              context.read<DictandoCubit>().dictando.name = name;
+              context.read<UserDataCubit>().saveDictando(
+                    context.read<DictandoCubit>().dictando,
+                    context.read<DictandoCubit>().dictandoId,
+                  );
+              Navigator.pushReplacementNamed(context, '/browse');
+            }
+          },
+          child: const Text('Save'),
+        ),
+      ],
+    );
+  }
 }

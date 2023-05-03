@@ -17,7 +17,7 @@ class StaticBeatWidget extends StatelessWidget {
           for (var i = 0; i < beat.notes.length; i++)
             SizedBox(
               width:
-                  MediaQuery.of(context).size.width / 1.4 / beat.notes.length,
+                  MediaQuery.of(context).size.width / 1.3 / beat.notes.length,
               child: Column(
                 children: [
                   SizedBox(height: beat.notes[i].pitch * step),
@@ -25,7 +25,7 @@ class StaticBeatWidget extends StatelessWidget {
                     child: Icon(
                       beat.notes[i].getNoteIcon(),
                       color: Colors.black,
-                      size: 9 * step,
+                      size: 12 * step,
                     ),
                   ),
                 ],
