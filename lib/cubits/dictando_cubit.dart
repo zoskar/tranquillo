@@ -28,8 +28,8 @@ class DictandoCubit extends Cubit<DictandoState> {
   /// Sets the cubit with a dictando from the database
   void editDictando(Dictando editDictando, String editDictandoId) {
     dictando = editDictando;
-    noteIndex = 0;
     beatIndex = 0;
+    noteIndex = dictando.beats[beatIndex].notes.length - 1;
     dictandoId = editDictandoId;
     emit(DictandoSetState());
   }
