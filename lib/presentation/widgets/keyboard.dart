@@ -57,52 +57,90 @@ class Keyboard extends StatelessWidget {
                 icon: const Icon(Icons.delete_rounded),
               ),
               IconButton(
-                onPressed: () {
-                  context.read<UserDataCubit>().saveDictando(
-                        context.read<DictandoCubit>().dictando,
-                        context.read<DictandoCubit>().dictandoId,
-                      );
-                  context.read<DictandoCubit>().clearDictando();
-                  Navigator.pushReplacementNamed(context, '/browse');
-                },
                 icon: const Icon(Icons.save),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {
-                  context.read<DictandoCubit>().setDuration(16);
+                onPressed: () async {
+                  await showDialog<bool>(
+                    context: context,
+                    builder: (context) => SaveDictandoAlertDialog(),
+                  );
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(16);
+                        },
+                        icon: const Icon(Notes.sixteen),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(8);
+                        },
+                        icon: const Icon(Notes.eight),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(4);
+                        },
+                        icon: const Icon(Notes.quarter),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(2);
+                        },
+                        icon: const Icon(Notes.half),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context.read<DictandoCubit>().setDuration(1);
+                        },
+                        icon: const Icon(Notes.whole),
+                      ),
+                    ],
+                  );
                 },
-                icon: const Icon(Notes.sixteen),
-              ),
-              IconButton(
-                onPressed: () {
-                  context.read<DictandoCubit>().setDuration(8);
-                },
-                icon: const Icon(Notes.eight),
-              ),
-              IconButton(
-                onPressed: () {
-                  context.read<DictandoCubit>().setDuration(4);
-                },
-                icon: const Icon(Notes.quarter),
-              ),
-              IconButton(
-                onPressed: () {
-                  context.read<DictandoCubit>().setDuration(2);
-                },
-                icon: const Icon(Notes.half),
-              ),
-              IconButton(
-                onPressed: () {
-                  context.read<DictandoCubit>().setDuration(1);
-                },
-                icon: const Icon(Notes.whole),
-              ),
+              )
             ],
           )
+        ],
+      );
+}
+
+class SaveDictandoAlertDialog extends StatelessWidget {
+  SaveDictandoAlertDialog({Key? key}) : super(key: key);
+
+  final _textController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) => AlertDialog(
+        title: const Text('Save Dictando'),
+        content: TextField(
+          controller: _textController,
+          decoration: const InputDecoration(
+            hintText: 'Dictando Name',
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context, false);
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              final name = _textController.text.trim();
+              if (name.isNotEmpty) {
+                context.read<DictandoCubit>().dictando.name = name;
+                context.read<UserDataCubit>().saveDictando(
+                      context.read<DictandoCubit>().dictando,
+                      context.read<DictandoCubit>().dictandoId,
+                    );
+                context.read<UserDataCubit>().getUserDictandos();
+                Navigator.pushReplacementNamed(context, '/browse');
+              }
+            },
+            child: const Text('Save'),
+          ),
         ],
       );
 }

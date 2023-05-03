@@ -56,11 +56,13 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   /// Deletes a dictando from the database
-  Future<void> deleteDictando(String id) async => _dataRef
-      .child('dictandos/${auth.currentUser?.uid}/$id')
-      .remove()
-      .then((_) => print('Deleted'))
-      .catchError((error) => print('Delete failed: $error'));
+  Future<void> deleteDictando(String id) async {
+    await _dataRef
+        .child('dictandos/${auth.currentUser?.uid}/$id')
+        .remove()
+        .then((_) => print('Deleted'))
+        .catchError((error) => print('Delete failed: $error'));
+  }
 }
 
 abstract class UserDataState {}

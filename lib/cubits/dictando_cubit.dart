@@ -18,7 +18,7 @@ class DictandoCubit extends Cubit<DictandoState> {
       beats: [
         Beat([Note(duration: 8, pitch: 14)])
       ],
-      name: 'Placeholder name',
+      name: 'New dictando',
     );
     noteIndex = 0;
     beatIndex = 0;

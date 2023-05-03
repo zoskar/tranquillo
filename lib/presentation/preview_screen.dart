@@ -10,10 +10,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class PreviewScreen extends StatelessWidget {
   const PreviewScreen({Key? key}) : super(key: key);
 
-  final double mainScale = 10;
-
   @override
   Widget build(BuildContext context) {
+    double mainScale = MediaQuery.of(context).size.height / 90;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       drawer: const HamburgerMenu(),
@@ -28,7 +27,7 @@ class PreviewScreen extends StatelessWidget {
         children: [
           CarouselWidget(width: width, mainScale: mainScale),
           SizedBox(
-            height: mainScale * 24 + 9 * mainScale,
+            height: mainScale * 24 + 12 * mainScale,
             child: Stack(
               children: [
                 // TODO(zoskar): change order
