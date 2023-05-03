@@ -1,8 +1,8 @@
 import 'package:dict/cubits/dictando_cubit.dart';
 import 'package:dict/presentation/hamburger_menu.dart';
+import 'package:dict/presentation/widgets/beat_widget.dart';
 import 'package:dict/presentation/widgets/carousel_widget.dart';
 import 'package:dict/presentation/widgets/staff.dart';
-import 'package:dict/presentation/widgets/static_beat_widget.dart';
 import 'package:dict/util/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,12 +32,9 @@ class PreviewScreen extends StatelessWidget {
               children: [
                 // TODO(zoskar): change order
                 BlocBuilder<DictandoCubit, DictandoState>(
-                  builder: (context, state) => StaticBeatWidget(
-                    beat: context
-                        .read<DictandoCubit>()
-                        .dictando
-                        .beats[context.read<DictandoCubit>().beatIndex],
+                  builder: (context, state) => BeatWidget(
                     step: mainScale,
+                    preview: true,
                   ),
                 ),
                 Staff(distance: mainScale, isTappable: false),

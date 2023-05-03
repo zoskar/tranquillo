@@ -6,10 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class BeatWidget extends StatelessWidget {
   const BeatWidget({
     required this.step,
+    this.preview = false,
     Key? key,
   }) : super(key: key);
 
   final double step;
+  final bool preview;
 
   @override
   Widget build(BuildContext context) =>
@@ -59,7 +61,8 @@ class BeatWidget extends StatelessWidget {
                             .beats[context.read<DictandoCubit>().beatIndex]
                             .notes[i]
                             .getNoteIcon(),
-                        color: i == context.read<DictandoCubit>().noteIndex
+                        color: i == context.read<DictandoCubit>().noteIndex &&
+                                !preview
                             ? AppColors.a
                             : Colors.black,
                         size: 12 * step,

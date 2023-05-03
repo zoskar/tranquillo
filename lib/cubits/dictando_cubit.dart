@@ -18,7 +18,7 @@ class DictandoCubit extends Cubit<DictandoState> {
       beats: [
         Beat([Note(duration: 8, pitch: 14)])
       ],
-      name: 'New dictando',
+      name: '',
     );
     noteIndex = 0;
     beatIndex = 0;
@@ -96,6 +96,7 @@ class DictandoCubit extends Cubit<DictandoState> {
     if (beatIndex == dictando.beats.length - 1 && !preview) {
       dictando.beats.add(Beat([Note(duration: 8, pitch: 14)]));
     }
+
     /// Not when previewing and on last beat
     if (!(preview && beatIndex == dictando.beats.length - 1)) {
       beatIndex += 1;
