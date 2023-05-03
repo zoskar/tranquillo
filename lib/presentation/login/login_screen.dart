@@ -1,5 +1,6 @@
 import 'package:dict/presentation/browse_screen.dart';
 import 'package:dict/presentation/login/register_screen.dart';
+import 'package:dict/util/app_colors.dart';
 import 'package:dict/util/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -103,6 +104,8 @@ class LoginScreen extends HookWidget {
                                       maxLength: 20,
                                       autocorrect: false,
                                       decoration: InputDecoration(
+                                        focusColor: AppColors.c,
+                                        prefixIcon: const Icon(Icons.person),
                                         counterText: '',
                                         labelStyle: const TextStyle(
                                           color: Colors.black,
@@ -111,20 +114,20 @@ class LoginScreen extends HookWidget {
                                           borderSide: BorderSide(
                                             color: isError.value
                                                 ? Colors.redAccent
-                                                : Colors.black,
+                                                : AppColors.c,
                                           ),
                                           borderRadius: const BorderRadius.all(
-                                            Radius.circular(10),
+                                            Radius.circular(30),
                                           ),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: isError.value
                                                 ? Colors.redAccent
-                                                : Colors.black,
+                                                : AppColors.c,
                                           ),
                                           borderRadius: const BorderRadius.all(
-                                            Radius.circular(10),
+                                            Radius.circular(30),
                                           ),
                                         ),
                                         label: const Text('email'),
@@ -137,6 +140,7 @@ class LoginScreen extends HookWidget {
                                       maxLength: 20,
                                       autocorrect: false,
                                       decoration: InputDecoration(
+                                        prefixIcon: const Icon(Icons.lock),
                                         counterText: '',
                                         labelStyle: const TextStyle(
                                           color: Colors.black,
@@ -145,20 +149,20 @@ class LoginScreen extends HookWidget {
                                           borderSide: BorderSide(
                                             color: isError.value
                                                 ? Colors.redAccent
-                                                : Colors.black,
+                                                : AppColors.c,
                                           ),
                                           borderRadius: const BorderRadius.all(
-                                            Radius.circular(10),
+                                            Radius.circular(30),
                                           ),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: isError.value
                                                 ? Colors.redAccent
-                                                : Colors.black,
+                                                : AppColors.c,
                                           ),
                                           borderRadius: const BorderRadius.all(
-                                            Radius.circular(10),
+                                            Radius.circular(30),
                                           ),
                                         ),
                                         label: const Text('password'),

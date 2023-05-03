@@ -1,4 +1,5 @@
 import 'package:dict/presentation/router.dart';
+import 'package:dict/util/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dict/cubits/user_data_cubit.dart';
@@ -22,6 +23,7 @@ class App extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(
           fontFamily: 'Montserrat',
+          primarySwatch: AppColors.myColor,
           scaffoldBackgroundColor: const Color(0xFFEBEBEB),
         ),
         onGenerateRoute: AppRouter.onGenerateRoute,

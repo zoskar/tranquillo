@@ -42,7 +42,12 @@ class DictandoTile extends StatelessWidget {
                     );
                     break;
                   case 'Delete':
-                    context.read<UserDataCubit>().deleteDictando(id);
+                    showDialog<bool>(
+                      context: context,
+                      builder: (context) => DeleteDictandoAlertDialog(
+                        id: id,
+                      ),
+                    );
                     break;
                 }
               },
@@ -61,6 +66,34 @@ class DictandoTile extends StatelessWidget {
             ),
           ),
           const Divider(),
+        ],
+      );
+}
+
+class DeleteDictandoAlertDialog extends StatelessWidget {
+  const DeleteDictandoAlertDialog({required this.id, Key? key})
+      : super(key: key);
+  final String id;
+  @override
+  Widget build(BuildContext context) => AlertDialog(
+        title: const Text('Delete Dictando'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context, false);
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              context.read<UserDataCubit>().deleteDictando(id);
+              Navigator.pop(context, false);
+            },
+            child: const Text(
+              'Detele',
+              style: TextStyle(color: Colors.red),
+            ),
+          ),
         ],
       );
 }
