@@ -25,7 +25,7 @@ class StaticBeatWidget extends StatelessWidget {
                     child: Icon(
                       beat.notes[i].getNoteIcon(),
                       color: Colors.black,
-                      size: 9 * step,
+                      size: 12 * step,
                     ),
                   ),
                 ],

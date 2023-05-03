@@ -15,7 +15,7 @@ class Staff extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         children: [
           SizedBox(
-            height: 4 * distance,
+            height: 5.5 * distance,
           ),
           ...List.generate(
             25,

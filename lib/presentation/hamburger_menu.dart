@@ -52,7 +52,7 @@ class HamburgerMenu extends StatelessWidget {
                 ),
                 onTap: () {
                   context.read<UserDataCubit>().removeData();
-                  // context.read<DictandoCubit>().init();
+                  context.read<DictandoCubit>().clearDictando();
                   context.read<AuthCubit>().logOut();
                   Navigator.pushReplacementNamed(context, '/');
                 },

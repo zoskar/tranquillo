@@ -35,14 +35,9 @@ class BrowseScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8.0),
                 child: ListView.builder(
                   itemCount: state.userDictandos.length,
-                  itemBuilder: (context, index) => Column(
-                    children: [
-                      DictandoTile(
-                        dictando: state.userDictandos[index].dictando,
-                        id: state.userDictandos[index].id,
-                      ),
-                      const Divider(),
-                    ],
+                  itemBuilder: (context, index) => DictandoTile(
+                    dictando: state.userDictandos[index].dictando,
+                    id: state.userDictandos[index].id,
                   ),
                 ),
               ),

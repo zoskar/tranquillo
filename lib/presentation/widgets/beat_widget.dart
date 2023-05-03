@@ -62,7 +62,7 @@ class BeatWidget extends StatelessWidget {
                         color: i == context.read<DictandoCubit>().noteIndex
                             ? AppColors.a
                             : Colors.black,
-                        size: 9 * step,
+                        size: 12 * step,
                       ),
                     ),
                   ],

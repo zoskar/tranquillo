@@ -12,11 +12,9 @@ import 'package:dict/presentation/hamburger_menu.dart';
 class CreateScreen extends StatelessWidget {
   const CreateScreen({Key? key}) : super(key: key);
 
-  final double mainScale = 10;
-
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
+    double mainScale = MediaQuery.of(context).size.height / 90;
     double width = MediaQuery.of(context).size.width;
 
     if (context.read<DictandoCubit>().state is InitState) {
@@ -40,8 +38,8 @@ class CreateScreen extends StatelessWidget {
             body: Column(
               children: [
                 SizedBox(
-                  // 24: lines and spaces + 9: noteScale
-                  height: mainScale / 4 * 24 + 9 * mainScale / 4,
+                  // 24: lines and spaces + 12: noteScale
+                  height: (mainScale * 24 + 12 * mainScale) / 4,
                   child: BlocBuilder<DictandoCubit, DictandoState>(
                     builder: (context, state) =>
                         CarouselWidget(width: width, mainScale: mainScale),
@@ -49,7 +47,7 @@ class CreateScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   // 24: lines and spaces + 9: noteScale
-                  height: mainScale * 24 + 9 * mainScale,
+                  height: mainScale * 24 + 12 * mainScale,
                   child: Stack(
                     children: [
                       // TODO(zoskar): change order
