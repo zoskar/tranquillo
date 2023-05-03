@@ -2,8 +2,8 @@ import 'package:dict/cubits/dictando_cubit.dart';
 import 'package:dict/presentation/widgets/beat_widget.dart';
 import 'package:dict/presentation/widgets/carousel_widget.dart';
 import 'package:dict/presentation/widgets/keyboard.dart';
+import 'package:dict/presentation/widgets/my_app_bar.dart';
 import 'package:dict/presentation/widgets/staff.dart';
-import 'package:dict/util/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dict/cubits/auth_cubit.dart';
@@ -28,13 +28,7 @@ class CreateScreen extends StatelessWidget {
         : Scaffold(
             resizeToAvoidBottomInset: false,
             drawer: const HamburgerMenu(),
-            appBar: AppBar(
-              flexibleSpace: Container(
-                decoration: const BoxDecoration(
-                  gradient: AppColors.myNewGradient,
-                ),
-              ),
-            ),
+            appBar: const MyAppBar(),
             body: Column(
               children: [
                 SizedBox(

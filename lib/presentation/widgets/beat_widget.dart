@@ -70,6 +70,7 @@ class BeatWidget extends StatelessWidget {
                     ),
                   ],
                 ),
+              const SizedBox(width: 48)
             ],
           ),
         ),

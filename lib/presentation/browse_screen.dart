@@ -1,7 +1,7 @@
 import 'package:dict/cubits/user_data_cubit.dart';
 import 'package:dict/presentation/hamburger_menu.dart';
 import 'package:dict/presentation/widgets/dictando_tile.dart';
-import 'package:dict/util/app_colors.dart';
+import 'package:dict/presentation/widgets/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,13 +16,7 @@ class BrowseScreen extends StatelessWidget {
 
     return Scaffold(
       drawer: const HamburgerMenu(),
-      appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: AppColors.myNewGradient,
-          ),
-        ),
-      ),
+      appBar: const MyAppBar(),
       body: BlocBuilder<UserDataCubit, UserDataState>(
         builder: (context, state) {
           if (state is FetchedData) {
