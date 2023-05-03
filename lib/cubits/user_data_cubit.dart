@@ -46,6 +46,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   /// Saves a dictando to the database
   Future<void> saveDictando(Dictando dictando, String id) async {
+    emit(FetchingInProgress());
     DatabaseReference dbRef =
         FirebaseDatabase.instance.ref('dictandos/${auth.currentUser!.uid}');
     DatabaseReference newPostRef = dbRef.push();
@@ -53,6 +54,7 @@ class UserDataCubit extends Cubit<UserDataState> {
       await deleteDictando(id);
     }
     await newPostRef.set(dictando.toJson());
+    await getUserDictandos();
   }
 
   /// Deletes a dictando from the database
@@ -62,6 +64,7 @@ class UserDataCubit extends Cubit<UserDataState> {
         .remove()
         .then((_) => print('Deleted'))
         .catchError((error) => print('Delete failed: $error'));
+    await getUserDictandos();
   }
 }
 

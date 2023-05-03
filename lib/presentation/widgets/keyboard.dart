@@ -137,7 +137,6 @@ class SaveDictandoAlertDialog extends StatelessWidget {
                     context.read<DictandoCubit>().dictando,
                     context.read<DictandoCubit>().dictandoId,
                   );
-              context.read<UserDataCubit>().getUserDictandos();
               Navigator.pushReplacementNamed(context, '/browse');
             }
           },

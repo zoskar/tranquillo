@@ -43,7 +43,6 @@ class DictandoTile extends StatelessWidget {
                     break;
                   case 'Delete':
                     context.read<UserDataCubit>().deleteDictando(id);
-                    context.read<UserDataCubit>().getUserDictandos();
                     break;
                 }
               },
