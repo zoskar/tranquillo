@@ -22,11 +22,29 @@ class CompareScreen extends StatelessWidget {
     return Scaffold(
       drawer: const Drawer(child: HamburgerMenu()),
       appBar: const MyAppBar(),
-      body: Stack(
-        children: [
-          StaticBeatWidget(step: mainScale, beat: dictandoA.beats[0]),
-          Staff(distance: mainScale, isTappable: false),
-        ],
+      body: SizedBox(
+        child: Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 2.5,
+              child: Stack(
+                children: [
+                  StaticBeatWidget(step: mainScale, beat: dictandoA.beats[0]),
+                  Staff(distance: mainScale, isTappable: false),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 2.5,
+              child: Stack(
+                children: [
+                  StaticBeatWidget(step: mainScale, beat: dictandoB.beats[0]),
+                  Staff(distance: mainScale, isTappable: false),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

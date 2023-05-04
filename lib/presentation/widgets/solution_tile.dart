@@ -96,7 +96,7 @@ class CompareToDictandoAlertDialog extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: state.userSolutions.length,
                   itemBuilder: (context, index) {
-                    final dictandoFromDatabase = state.userSolutions[index];
+                    final dictandoFromDatabase = state.userDictandos[index];
                     return ListTile(
                       title: Text(dictandoFromDatabase.dictando.name),
                       onTap: () {
