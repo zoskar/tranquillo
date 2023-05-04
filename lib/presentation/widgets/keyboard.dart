@@ -106,6 +106,45 @@ class Keyboard extends StatelessWidget {
               ),
             ],
           ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  context.read<DictandoCubit>().setDuration(-16);
+                  context.read<DictandoCubit>().setPitch(11);
+                },
+                icon: const Icon(Notes.sixteen_pause),
+              ),
+              IconButton(
+                onPressed: () {
+                  context.read<DictandoCubit>().setDuration(-8);
+                  context.read<DictandoCubit>().setPitch(11);
+                },
+                icon: const Icon(Notes.eight_pause),
+              ),
+              IconButton(
+                onPressed: () {
+                  context.read<DictandoCubit>().setDuration(-4);
+                  context.read<DictandoCubit>().setPitch(11);
+                },
+                icon: const Icon(Notes.quarter_pause),
+              ),
+              IconButton(
+                onPressed: () {
+                  context.read<DictandoCubit>().setDuration(-2);
+                  context.read<DictandoCubit>().setPitch(11);
+                },
+                icon: const Icon(Notes.half_pause),
+              ),
+              IconButton(
+                onPressed: () {
+                  context.read<DictandoCubit>().setDuration(-1);
+                  context.read<DictandoCubit>().setPitch(11);
+                },
+                icon: const Icon(Notes.whole_pause),
+              ),
+            ],
+          ),
         ],
       );
 }
