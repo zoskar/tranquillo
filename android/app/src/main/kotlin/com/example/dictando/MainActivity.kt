@@ -1,4 +1,4 @@
-package com.example.dictando
+package com.example.tranquillo
 
 import io.flutter.embedding.android.FlutterActivity
 

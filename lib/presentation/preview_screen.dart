@@ -1,8 +1,8 @@
-import 'package:dict/cubits/dictando_cubit.dart';
-import 'package:dict/presentation/hamburger_menu.dart';
-import 'package:dict/presentation/widgets/beat_widget.dart';
-import 'package:dict/presentation/widgets/carousel_widget.dart';
-import 'package:dict/presentation/widgets/my_app_bar.dart';
+import 'package:tranquillo/cubits/dictando_cubit.dart';
+import 'package:tranquillo/presentation/hamburger_menu.dart';
+import 'package:tranquillo/presentation/widgets/beat_widget.dart';
+import 'package:tranquillo/presentation/widgets/carousel_widget.dart';
+import 'package:tranquillo/presentation/widgets/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

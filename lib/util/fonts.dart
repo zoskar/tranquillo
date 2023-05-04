@@ -12,7 +12,7 @@ class AppTextStyles {
     color: Colors.black,
     fontSize: 20,
   );
-  
+
   static const white20 = TextStyle(
     fontFamily: 'Montserrat',
     color: Colors.white,

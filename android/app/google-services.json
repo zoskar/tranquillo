@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1013999627334:android:b0613466f81f3791ca6e47",
         "android_client_info": {
-          "package_name": "com.example.dict"
+          "package_name": "com.example.tranquillo"
         }
       },
       "oauth_client": [
@@ -35,7 +35,7 @@
               "client_id": "1013999627334-7buuncli4ctdo5dugm01lgng9piiosfn.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.pcyb"
+                "bundle_id": "com.example.tranquillo"
               }
             }
           ]

@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dict/data/classes.dart';
+import 'package:tranquillo/data/classes.dart';
 
 /// DictandoCubit is responsible for creating and editing dictandos
 class DictandoCubit extends Cubit<DictandoState> {

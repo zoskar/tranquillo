@@ -1,4 +1,4 @@
-import 'package:dict/data/classes.dart';
+import 'package:tranquillo/data/classes.dart';
 import 'package:flutter/material.dart';
 
 class StaticBeatWidget extends StatelessWidget {

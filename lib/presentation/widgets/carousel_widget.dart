@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dict/cubits/dictando_cubit.dart';
-import 'package:dict/presentation/widgets/staff.dart';
-import 'package:dict/presentation/widgets/static_beat_widget.dart';
+import 'package:tranquillo/cubits/dictando_cubit.dart';
+import 'package:tranquillo/presentation/widgets/staff.dart';
+import 'package:tranquillo/presentation/widgets/static_beat_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

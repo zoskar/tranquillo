@@ -1,8 +1,8 @@
-import 'package:dict/data/classes.dart';
-import 'package:dict/presentation/hamburger_menu.dart';
-import 'package:dict/presentation/widgets/my_app_bar.dart';
-import 'package:dict/presentation/widgets/staff.dart';
-import 'package:dict/presentation/widgets/static_beat_widget.dart';
+import 'package:tranquillo/data/classes.dart';
+import 'package:tranquillo/presentation/hamburger_menu.dart';
+import 'package:tranquillo/presentation/widgets/my_app_bar.dart';
+import 'package:tranquillo/presentation/widgets/staff.dart';
+import 'package:tranquillo/presentation/widgets/static_beat_widget.dart';
 import 'package:flutter/material.dart';
 
 class CompareScreen extends StatelessWidget {
@@ -24,13 +24,8 @@ class CompareScreen extends StatelessWidget {
       appBar: const MyAppBar(),
       body: Stack(
         children: [
-          StaticBeatWidget(
-            step: mainScale,
-            beat: Beat([
-              Note(duration: 8, pitch: 8),
-            ]),
-          ),
-          Staff(distance: mainScale),
+          StaticBeatWidget(step: mainScale, beat: dictandoA.beats[0]),
+          Staff(distance: mainScale, isTappable: false),
         ],
       ),
     );

@@ -1,7 +1,7 @@
-import 'package:dict/cubits/dictando_cubit.dart';
-import 'package:dict/cubits/user_data_cubit.dart';
-import 'package:dict/data/classes.dart';
-import 'package:dict/presentation/widgets/dictando_tile.dart';
+import 'package:tranquillo/cubits/dictando_cubit.dart';
+import 'package:tranquillo/cubits/user_data_cubit.dart';
+import 'package:tranquillo/data/classes.dart';
+import 'package:tranquillo/presentation/widgets/dictando_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

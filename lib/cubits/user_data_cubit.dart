@@ -1,4 +1,4 @@
-import 'package:dict/data/classes.dart';
+import 'package:tranquillo/data/classes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

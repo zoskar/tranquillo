@@ -1,6 +1,6 @@
-import 'package:dict/cubits/dictando_cubit.dart';
-import 'package:dict/cubits/user_data_cubit.dart';
-import 'package:dict/util/notes_icons.dart';
+import 'package:tranquillo/cubits/dictando_cubit.dart';
+import 'package:tranquillo/cubits/user_data_cubit.dart';
+import 'package:tranquillo/util/notes_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

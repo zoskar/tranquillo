@@ -69,6 +69,6 @@ class DefaultFirebaseOptions {
     storageBucket: 'dictando-78c79.appspot.com',
     iosClientId:
         '1013999627334-drnt781ko337h42rvv7h9hd0vuuev512.apps.googleusercontent.com',
-    iosBundleId: 'com.example.dict',
+    iosBundleId: 'com.example.tranquillo',
   );
 }

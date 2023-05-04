@@ -1,10 +1,10 @@
-import 'package:dict/cubits/user_data_cubit.dart';
-import 'package:dict/presentation/hamburger_menu.dart';
-import 'package:dict/presentation/widgets/dictando_tile.dart';
-import 'package:dict/presentation/widgets/my_app_bar.dart';
-import 'package:dict/presentation/widgets/solution_tile.dart';
-import 'package:dict/util/app_colors.dart';
-import 'package:dict/util/fonts.dart';
+import 'package:tranquillo/cubits/user_data_cubit.dart';
+import 'package:tranquillo/presentation/hamburger_menu.dart';
+import 'package:tranquillo/presentation/widgets/dictando_tile.dart';
+import 'package:tranquillo/presentation/widgets/my_app_bar.dart';
+import 'package:tranquillo/presentation/widgets/solution_tile.dart';
+import 'package:tranquillo/util/app_colors.dart';
+import 'package:tranquillo/util/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

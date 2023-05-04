@@ -1,9 +1,9 @@
-import 'package:dict/data/classes.dart';
-import 'package:dict/presentation/browse_screen.dart';
-import 'package:dict/presentation/compare_screen.dart';
-import 'package:dict/presentation/login/login_screen.dart';
-import 'package:dict/presentation/create_screen.dart';
-import 'package:dict/presentation/preview_screen.dart';
+import 'package:tranquillo/data/classes.dart';
+import 'package:tranquillo/presentation/browse_screen.dart';
+import 'package:tranquillo/presentation/compare_screen.dart';
+import 'package:tranquillo/presentation/login/login_screen.dart';
+import 'package:tranquillo/presentation/create_screen.dart';
+import 'package:tranquillo/presentation/preview_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {

@@ -1,4 +1,4 @@
-import 'package:dict/util/app_colors.dart';
+import 'package:tranquillo/util/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {

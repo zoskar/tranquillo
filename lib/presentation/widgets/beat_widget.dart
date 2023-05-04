@@ -1,5 +1,5 @@
-import 'package:dict/presentation/widgets/beat_notes.dart';
-import 'package:dict/presentation/widgets/staff.dart';
+import 'package:tranquillo/presentation/widgets/beat_notes.dart';
+import 'package:tranquillo/presentation/widgets/staff.dart';
 import 'package:flutter/material.dart';
 
 class BeatWidget extends StatelessWidget {

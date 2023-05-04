@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_dynamic_calls
 
-import 'package:dict/util/notes_icons.dart';
+import 'package:tranquillo/util/notes_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'classes.g.dart';
