@@ -3,7 +3,6 @@ import 'package:dict/presentation/widgets/beat_widget.dart';
 import 'package:dict/presentation/widgets/carousel_widget.dart';
 import 'package:dict/presentation/widgets/keyboard.dart';
 import 'package:dict/presentation/widgets/my_app_bar.dart';
-import 'package:dict/presentation/widgets/staff.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dict/cubits/auth_cubit.dart';
@@ -31,25 +30,8 @@ class CreateScreen extends StatelessWidget {
             appBar: const MyAppBar(),
             body: Column(
               children: [
-                SizedBox(
-                  // 24: lines and spaces + 12: noteScale
-                  height: (mainScale * 24 + 12 * mainScale) / 4,
-                  child: BlocBuilder<DictandoCubit, DictandoState>(
-                    builder: (context, state) =>
-                        CarouselWidget(width: width, mainScale: mainScale),
-                  ),
-                ),
-                SizedBox(
-                  // 24: lines and spaces + 9: noteScale
-                  height: mainScale * 24 + 12 * mainScale,
-                  child: Stack(
-                    children: [
-                      // TODO(zoskar): change order
-                      BeatWidget(step: mainScale),
-                      Staff(distance: mainScale),
-                    ],
-                  ),
-                ),
+                CarouselWidget(width: width, mainScale: mainScale),
+                BeatWidget(mainScale: mainScale),
                 const Keyboard(),
               ],
             ),

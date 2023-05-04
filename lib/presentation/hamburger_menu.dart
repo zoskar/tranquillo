@@ -51,12 +51,24 @@ class HamburgerMenu extends StatelessWidget {
                   style: AppTextStyles.black24,
                 ),
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, '/');
+                  Navigator.pushReplacementNamed(context, '/login');
                   context.read<AuthCubit>().logOut();
                   context.read<UserDataCubit>().removeData();
-                  context.read<DictandoCubit>().clearDictando();
+                  // TODO(zoskar): investigate if this is needed
+                  // context.read<DictandoCubit>().clearDictando();
                 },
               ),
+
+              // ListTile(
+              //   leading: const Icon(Icons.arrow_forward_ios_rounded),
+              //   title: const Text(
+              //     'About',
+              //     style: AppTextStyles.black24,
+              //   ),
+              //   onTap: () {
+              //     Navigator.pushReplacementNamed(context, '/about');
+              //   },
+              // ),
             ],
           ),
         ),
