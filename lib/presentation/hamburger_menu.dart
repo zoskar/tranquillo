@@ -25,12 +25,23 @@ class HamburgerMenu extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.arrow_forward_ios_rounded),
                 title: const Text(
-                  'Browse dictandos',
+                  'Browse',
                   style: AppTextStyles.black24,
                 ),
                 onTap: () {
                   context.read<UserDataCubit>().getUserDictandos();
                   Navigator.pushReplacementNamed(context, '/browse');
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.arrow_forward_ios_rounded),
+                title: const Text(
+                  'Solve dictando',
+                  style: AppTextStyles.black24,
+                ),
+                onTap: () {
+                  context.read<DictandoCubit>().init();
+                  Navigator.pushReplacementNamed(context, '/solve');
                 },
               ),
               ListTile(
@@ -58,17 +69,6 @@ class HamburgerMenu extends StatelessWidget {
                   // context.read<DictandoCubit>().clearDictando();
                 },
               ),
-
-              // ListTile(
-              //   leading: const Icon(Icons.arrow_forward_ios_rounded),
-              //   title: const Text(
-              //     'About',
-              //     style: AppTextStyles.black24,
-              //   ),
-              //   onTap: () {
-              //     Navigator.pushReplacementNamed(context, '/about');
-              //   },
-              // ),
             ],
           ),
         ),

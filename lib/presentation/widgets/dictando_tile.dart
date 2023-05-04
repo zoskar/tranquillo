@@ -71,9 +71,13 @@ class DictandoTile extends StatelessWidget {
 }
 
 class DeleteDictandoAlertDialog extends StatelessWidget {
-  const DeleteDictandoAlertDialog({required this.id, Key? key})
-      : super(key: key);
+  const DeleteDictandoAlertDialog({
+    required this.id,
+    this.isSolution = false,
+    Key? key,
+  }) : super(key: key);
   final String id;
+  final bool isSolution;
   @override
   Widget build(BuildContext context) => AlertDialog(
         title: const Text('Delete Dictando'),
@@ -86,7 +90,11 @@ class DeleteDictandoAlertDialog extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              context.read<UserDataCubit>().deleteDictando(id);
+              if (isSolution) {
+                context.read<UserDataCubit>().deleteSolution(id);
+              } else {
+                context.read<UserDataCubit>().deleteDictando(id);
+              }
               Navigator.pop(context, false);
             },
             child: const Text(

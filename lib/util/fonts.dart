@@ -12,6 +12,12 @@ class AppTextStyles {
     color: Colors.black,
     fontSize: 20,
   );
+  
+  static const white20 = TextStyle(
+    fontFamily: 'Montserrat',
+    color: Colors.white,
+    fontSize: 20,
+  );
 
   static const black20b = TextStyle(
     fontFamily: 'Montserrat',

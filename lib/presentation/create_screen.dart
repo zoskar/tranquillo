@@ -34,7 +34,7 @@ class CreateScreen extends StatelessWidget {
               children: [
                 CarouselWidget(width: width, mainScale: mainScale),
                 BeatWidget(mainScale: mainScale),
-                const Keyboard(),
+                Keyboard(isSoultion: isSolution),
               ],
             ),
           );

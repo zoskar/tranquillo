@@ -2,6 +2,9 @@ import 'package:dict/cubits/user_data_cubit.dart';
 import 'package:dict/presentation/hamburger_menu.dart';
 import 'package:dict/presentation/widgets/dictando_tile.dart';
 import 'package:dict/presentation/widgets/my_app_bar.dart';
+import 'package:dict/presentation/widgets/solution_tile.dart';
+import 'package:dict/util/app_colors.dart';
+import 'package:dict/util/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,15 +25,53 @@ class BrowseScreen extends StatelessWidget {
           if (state is FetchedData) {
             return RefreshIndicator(
               onRefresh: context.read<UserDataCubit>().getUserDictandos,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: ListView.builder(
-                  itemCount: state.userDictandos.length,
-                  itemBuilder: (context, index) => DictandoTile(
-                    dictando: state.userDictandos[index].dictando,
-                    id: state.userDictandos[index].id,
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      gradient: AppColors.myNewGradient,
+                    ),
+                    height: 32,
+                    width: double.infinity,
+                    child: const Text(
+                      'Dictandos',
+                      style: AppTextStyles.white20,
+                    ),
                   ),
-                ),
+                  Flexible(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.userDictandos.length,
+                      itemBuilder: (context, index) => DictandoTile(
+                        dictando: state.userDictandos[index].dictando,
+                        id: state.userDictandos[index].id,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      gradient: AppColors.myNewGradient,
+                    ),
+                    height: 32,
+                    width: double.infinity,
+                    child: const Text(
+                      'Solutions',
+                      style: AppTextStyles.white20,
+                    ),
+                  ),
+                  Flexible(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.userSolutions.length,
+                      itemBuilder: (context, index) => SolutionTile(
+                        dictando: state.userSolutions[index].dictando,
+                        id: state.userSolutions[index].id,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             );
           } else {

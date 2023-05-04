@@ -59,17 +59,16 @@ class Keyboard extends StatelessWidget {
                 },
                 icon: const Icon(Icons.delete_rounded),
               ),
-              Visibility(
-                visible: !isSoultion,
-                child: IconButton(
-                  icon: const Icon(Icons.save),
-                  onPressed: () async {
-                    await showDialog<bool>(
-                      context: context,
-                      builder: (context) => SaveDictandoAlertDialog(),
-                    );
-                  },
-                ),
+              IconButton(
+                icon: const Icon(Icons.save),
+                onPressed: () async {
+                  await showDialog<bool>(
+                    context: context,
+                    builder: (context) => SaveDictandoAlertDialog(
+                      isSolution: isSoultion,
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -112,9 +111,11 @@ class Keyboard extends StatelessWidget {
 }
 
 class SaveDictandoAlertDialog extends StatelessWidget {
-  SaveDictandoAlertDialog({Key? key}) : super(key: key);
+  SaveDictandoAlertDialog({Key? key, this.isSolution = false})
+      : super(key: key);
 
   final _textController = TextEditingController();
+  final bool isSolution;
 
   @override
   Widget build(BuildContext context) {
@@ -139,10 +140,17 @@ class SaveDictandoAlertDialog extends StatelessWidget {
             final name = _textController.text.trim();
             if (name.isNotEmpty) {
               context.read<DictandoCubit>().dictando.name = name;
-              context.read<UserDataCubit>().saveDictando(
-                    context.read<DictandoCubit>().dictando,
-                    context.read<DictandoCubit>().dictandoId,
-                  );
+              if (isSolution) {
+                context.read<UserDataCubit>().saveSolution(
+                      context.read<DictandoCubit>().dictando,
+                      context.read<DictandoCubit>().dictandoId,
+                    );
+              } else {
+                context.read<UserDataCubit>().saveDictando(
+                      context.read<DictandoCubit>().dictando,
+                      context.read<DictandoCubit>().dictandoId,
+                    );
+              }
               Navigator.pushReplacementNamed(context, '/browse');
             }
           },
