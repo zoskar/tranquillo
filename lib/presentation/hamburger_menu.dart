@@ -51,7 +51,7 @@ class HamburgerMenu extends StatelessWidget {
                   style: AppTextStyles.black24,
                 ),
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, '/login');
+                  Navigator.pushReplacementNamed(context, '/');
                   context.read<AuthCubit>().logOut();
                   context.read<UserDataCubit>().removeData();
                   // TODO(zoskar): investigate if this is needed

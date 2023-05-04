@@ -6,8 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Keyboard extends StatelessWidget {
   const Keyboard({
+    this.isSoultion = false,
     Key? key,
   }) : super(key: key);
+
+  final bool isSoultion;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -56,14 +59,17 @@ class Keyboard extends StatelessWidget {
                 },
                 icon: const Icon(Icons.delete_rounded),
               ),
-              IconButton(
-                icon: const Icon(Icons.save),
-                onPressed: () async {
-                  await showDialog<bool>(
-                    context: context,
-                    builder: (context) => SaveDictandoAlertDialog(),
-                  );
-                },
+              Visibility(
+                visible: !isSoultion,
+                child: IconButton(
+                  icon: const Icon(Icons.save),
+                  onPressed: () async {
+                    await showDialog<bool>(
+                      context: context,
+                      builder: (context) => SaveDictandoAlertDialog(),
+                    );
+                  },
+                ),
               ),
             ],
           ),

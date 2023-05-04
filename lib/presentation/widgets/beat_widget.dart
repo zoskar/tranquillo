@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 class BeatWidget extends StatelessWidget {
   const BeatWidget({
     required this.mainScale,
+    this.preview = false,
     Key? key,
   }) : super(key: key);
 
+  final bool preview;
   final double mainScale;
 
   @override
@@ -17,7 +19,7 @@ class BeatWidget extends StatelessWidget {
         child: Stack(
           children: [
             // TODO(zoskar): change order
-            BeatNotes(step: mainScale),
+            BeatNotes(step: mainScale, preview: preview),
             Staff(distance: mainScale),
           ],
         ),

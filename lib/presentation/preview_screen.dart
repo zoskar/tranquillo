@@ -19,7 +19,7 @@ class PreviewScreen extends StatelessWidget {
       body: Column(
         children: [
           CarouselWidget(width: width, mainScale: mainScale),
-          BeatWidget(mainScale: mainScale),
+          BeatWidget(mainScale: mainScale, preview: true),
           const BeatChangeArrows()
         ],
       ),

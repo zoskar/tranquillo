@@ -9,7 +9,9 @@ import 'package:dict/cubits/auth_cubit.dart';
 import 'package:dict/presentation/hamburger_menu.dart';
 
 class CreateScreen extends StatelessWidget {
-  const CreateScreen({Key? key}) : super(key: key);
+  const CreateScreen({this.isSolution = false, Key? key}) : super(key: key);
+
+  final bool isSolution;
 
   @override
   Widget build(BuildContext context) {
