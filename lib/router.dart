@@ -1,15 +1,19 @@
-import 'package:dict/presentation/browse_screen.dart';
-import 'package:dict/presentation/login/login_screen.dart';
-import 'package:dict/presentation/create_screen.dart';
-import 'package:dict/presentation/preview_screen.dart';
+import 'package:tranquillo/data/classes.dart';
+import 'package:tranquillo/presentation/browse_screen.dart';
+import 'package:tranquillo/presentation/compare_screen.dart';
+import 'package:tranquillo/presentation/login/login_screen.dart';
+import 'package:tranquillo/presentation/create_screen.dart';
+import 'package:tranquillo/presentation/preview_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
   static final allRoutes = [
     AppRoutes.homepage,
     AppRoutes.create,
+    AppRoutes.solve,
     AppRoutes.browse,
     AppRoutes.preview,
+    AppRoutes.compare
   ];
 
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
@@ -51,6 +55,10 @@ class AppRoutes {
     build: (_, __) => const CreateScreen(),
     route: '/create',
   );
+  static final solve = AppRoute(
+    build: (_, __) => const CreateScreen(isSolution: true),
+    route: '/solve',
+  );
   static final browse = AppRoute(
     build: (_, __) => const BrowseScreen(),
     route: '/browse',
@@ -58,5 +66,15 @@ class AppRoutes {
   static final preview = AppRoute(
     build: (_, __) => const PreviewScreen(),
     route: '/preview',
+  );
+  static final compare = AppRoute(
+    build: (_, __) {
+      final args = ModalRoute.of(_)!.settings.arguments as List<Dictando>;
+      return CompareScreen(
+        dictandoA: args[0],
+        dictandoB: args[1],
+      );
+    },
+    route: '/compare',
   );
 }

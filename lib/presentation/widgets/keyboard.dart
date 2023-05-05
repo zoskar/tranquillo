@@ -1,13 +1,16 @@
-import 'package:dict/cubits/dictando_cubit.dart';
-import 'package:dict/cubits/user_data_cubit.dart';
-import 'package:dict/util/notes_icons.dart';
+import 'package:tranquillo/cubits/dictando_cubit.dart';
+import 'package:tranquillo/cubits/user_data_cubit.dart';
+import 'package:tranquillo/util/notes_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Keyboard extends StatelessWidget {
   const Keyboard({
+    this.isSoultion = false,
     Key? key,
   }) : super(key: key);
+
+  final bool isSoultion;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -61,7 +64,9 @@ class Keyboard extends StatelessWidget {
                 onPressed: () async {
                   await showDialog<bool>(
                     context: context,
-                    builder: (context) => SaveDictandoAlertDialog(),
+                    builder: (context) => SaveDictandoAlertDialog(
+                      isSolution: isSoultion,
+                    ),
                   );
                 },
               ),
@@ -101,14 +106,55 @@ class Keyboard extends StatelessWidget {
               ),
             ],
           ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  context.read<DictandoCubit>().setDuration(-16);
+                  context.read<DictandoCubit>().setPitch(11);
+                },
+                icon: const Icon(Notes.sixteen_pause),
+              ),
+              IconButton(
+                onPressed: () {
+                  context.read<DictandoCubit>().setDuration(-8);
+                  context.read<DictandoCubit>().setPitch(11);
+                },
+                icon: const Icon(Notes.eight_pause),
+              ),
+              IconButton(
+                onPressed: () {
+                  context.read<DictandoCubit>().setDuration(-4);
+                  context.read<DictandoCubit>().setPitch(11);
+                },
+                icon: const Icon(Notes.quarter_pause),
+              ),
+              IconButton(
+                onPressed: () {
+                  context.read<DictandoCubit>().setDuration(-2);
+                  context.read<DictandoCubit>().setPitch(11);
+                },
+                icon: const Icon(Notes.half_pause),
+              ),
+              IconButton(
+                onPressed: () {
+                  context.read<DictandoCubit>().setDuration(-1);
+                  context.read<DictandoCubit>().setPitch(11);
+                },
+                icon: const Icon(Notes.whole_pause),
+              ),
+            ],
+          ),
         ],
       );
 }
 
 class SaveDictandoAlertDialog extends StatelessWidget {
-  SaveDictandoAlertDialog({Key? key}) : super(key: key);
+  SaveDictandoAlertDialog({Key? key, this.isSolution = false})
+      : super(key: key);
 
   final _textController = TextEditingController();
+  final bool isSolution;
 
   @override
   Widget build(BuildContext context) {
@@ -133,10 +179,17 @@ class SaveDictandoAlertDialog extends StatelessWidget {
             final name = _textController.text.trim();
             if (name.isNotEmpty) {
               context.read<DictandoCubit>().dictando.name = name;
-              context.read<UserDataCubit>().saveDictando(
-                    context.read<DictandoCubit>().dictando,
-                    context.read<DictandoCubit>().dictandoId,
-                  );
+              if (isSolution) {
+                context.read<UserDataCubit>().saveSolution(
+                      context.read<DictandoCubit>().dictando,
+                      context.read<DictandoCubit>().dictandoId,
+                    );
+              } else {
+                context.read<UserDataCubit>().saveDictando(
+                      context.read<DictandoCubit>().dictando,
+                      context.read<DictandoCubit>().dictandoId,
+                    );
+              }
               Navigator.pushReplacementNamed(context, '/browse');
             }
           },

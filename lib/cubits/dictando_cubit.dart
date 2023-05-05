@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dict/data/classes.dart';
+import 'package:tranquillo/data/classes.dart';
 
 /// DictandoCubit is responsible for creating and editing dictandos
 class DictandoCubit extends Cubit<DictandoState> {
@@ -97,8 +97,8 @@ class DictandoCubit extends Cubit<DictandoState> {
       dictando.beats.add(Beat([Note(duration: 8, pitch: 14)]));
     }
 
-    /// Not when previewing and on last beat
-    if (!(preview && beatIndex == dictando.beats.length - 1)) {
+    /// Not on last beat
+    if (!(beatIndex == dictando.beats.length - 1)) {
       beatIndex += 1;
     }
     noteIndex = 0;

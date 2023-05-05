@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_dynamic_calls
 
-import 'package:dict/util/notes_icons.dart';
+import 'package:tranquillo/util/notes_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'classes.g.dart';
@@ -28,30 +28,40 @@ class Note {
     switch (duration) {
       case 1:
         return Notes.whole;
+      case -1:
+        return Notes.whole_pause;
       case 2:
         if (pitch > 12) {
           return Notes.half;
         } else {
-          return Notes.halfReversed;
+          return Notes.half_reversed;
         }
+      case -2:
+        return Notes.half_pause;
       case 4:
         if (pitch > 12) {
           return Notes.quarter;
         } else {
-          return Notes.quarterReversed;
+          return Notes.quarter_reversed;
         }
+      case -4:
+        return Notes.quarter_pause;
       case 8:
         if (pitch > 12) {
           return Notes.eight;
         } else {
-          return Notes.eightReversed;
+          return Notes.eight_reversed;
         }
+      case -8:
+        return Notes.eight_pause;
       case 16:
         if (pitch > 12) {
           return Notes.sixteen;
         } else {
-          return Notes.sixteenReversed;
+          return Notes.sixteen_reversed;
         }
+      case -16:
+        return Notes.sixteen_pause;
       default:
         return Notes.eight;
     }

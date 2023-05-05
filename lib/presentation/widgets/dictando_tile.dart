@@ -1,6 +1,6 @@
-import 'package:dict/cubits/dictando_cubit.dart';
-import 'package:dict/cubits/user_data_cubit.dart';
-import 'package:dict/data/classes.dart';
+import 'package:tranquillo/cubits/dictando_cubit.dart';
+import 'package:tranquillo/cubits/user_data_cubit.dart';
+import 'package:tranquillo/data/classes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -71,9 +71,13 @@ class DictandoTile extends StatelessWidget {
 }
 
 class DeleteDictandoAlertDialog extends StatelessWidget {
-  const DeleteDictandoAlertDialog({required this.id, Key? key})
-      : super(key: key);
+  const DeleteDictandoAlertDialog({
+    required this.id,
+    this.isSolution = false,
+    Key? key,
+  }) : super(key: key);
   final String id;
+  final bool isSolution;
   @override
   Widget build(BuildContext context) => AlertDialog(
         title: const Text('Delete Dictando'),
@@ -86,7 +90,11 @@ class DeleteDictandoAlertDialog extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              context.read<UserDataCubit>().deleteDictando(id);
+              if (isSolution) {
+                context.read<UserDataCubit>().deleteSolution(id);
+              } else {
+                context.read<UserDataCubit>().deleteDictando(id);
+              }
               Navigator.pop(context, false);
             },
             child: const Text(

@@ -1,10 +1,10 @@
-import 'package:dict/presentation/router.dart';
-import 'package:dict/util/app_colors.dart';
+import 'package:tranquillo/router.dart';
+import 'package:tranquillo/util/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dict/cubits/user_data_cubit.dart';
-import 'package:dict/cubits/auth_cubit.dart';
-import 'package:dict/cubits/dictando_cubit.dart';
+import 'package:tranquillo/cubits/user_data_cubit.dart';
+import 'package:tranquillo/cubits/auth_cubit.dart';
+import 'package:tranquillo/cubits/dictando_cubit.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
