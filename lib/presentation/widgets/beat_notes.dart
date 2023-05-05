@@ -51,7 +51,8 @@ class BeatNotes extends StatelessWidget {
                                   .beats[
                                       context.read<DictandoCubit>().beatIndex]
                                   .notes[i]
-                                  .duration,
+                                  .duration
+                                  .abs(),
                       // TODO(zoskar): remove workaround
                       height: 0,
                       child: Icon(

@@ -21,7 +21,9 @@ class Staff extends StatelessWidget {
             25,
             (i) => i.isEven
                 ? GestureDetector(
-                    behavior: HitTestBehavior.translucent,
+                    behavior: isTappable
+                        ? HitTestBehavior.translucent
+                        : HitTestBehavior.deferToChild,
                     onTap: () {
                       if (isTappable &&
                           context
@@ -45,7 +47,9 @@ class Staff extends StatelessWidget {
                     ),
                   )
                 : GestureDetector(
-                    behavior: HitTestBehavior.translucent,
+                    behavior: isTappable
+                        ? HitTestBehavior.translucent
+                        : HitTestBehavior.deferToChild,
                     onTap: () {
                       if (isTappable &&
                           context

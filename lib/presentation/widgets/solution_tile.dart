@@ -23,7 +23,7 @@ class SolutionTile extends StatelessWidget {
             trailing: PopupMenuButton<String>(
               onSelected: (String choice) {
                 switch (choice) {
-                  case 'Compare with solution':
+                  case 'Compare with dictando':
                     showDialog<bool>(
                       context: context,
                       builder: (context) => CompareToDictandoAlertDialog(
@@ -53,7 +53,7 @@ class SolutionTile extends StatelessWidget {
                 }
               },
               itemBuilder: (BuildContext context) => {
-                'Compare with solution',
+                'Compare with dictando',
                 'Open',
                 'Delete',
               }

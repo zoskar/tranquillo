@@ -20,7 +20,10 @@ class BeatWidget extends StatelessWidget {
           children: [
             // TODO(zoskar): change order
             BeatNotes(step: mainScale, preview: preview),
-            Staff(distance: mainScale),
+            Staff(
+              distance: mainScale,
+              isTappable: !preview,
+            ),
           ],
         ),
       );
