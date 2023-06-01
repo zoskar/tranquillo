@@ -56,9 +56,9 @@ class LoginScreen extends HookWidget {
                   children: [
                     SizedBox(
                       height: height / 2.5,
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Icon(
                             Icons.music_note,
                             size: 100,
@@ -86,8 +86,8 @@ class LoginScreen extends HookWidget {
                                   spacing: 20,
                                   runSpacing: 20,
                                   children: [
-                                    Column(
-                                      children: const [
+                                    const Column(
+                                      children: [
                                         Text(
                                           'Hello',
                                           style: AppTextStyles.black20b,

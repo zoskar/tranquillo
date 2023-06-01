@@ -21,6 +21,14 @@ class DictandoTile extends StatelessWidget {
             trailing: PopupMenuButton<String>(
               onSelected: (String choice) {
                 switch (choice) {
+                  case 'Compare with dictando':
+                    showDialog<bool>(
+                      context: context,
+                      builder: (context) => CompareToDictandoAlertDialog(
+                        compareDictando: dictando,
+                      ),
+                    );
+                    break;
                   case 'Open':
                     context.read<DictandoCubit>().editDictando(
                           dictando,
@@ -29,16 +37,6 @@ class DictandoTile extends StatelessWidget {
                     Navigator.pushReplacementNamed(
                       context,
                       '/preview',
-                    );
-                    break;
-                  case 'Edit':
-                    context.read<DictandoCubit>().editDictando(
-                          dictando,
-                          id,
-                        );
-                    Navigator.pushReplacementNamed(
-                      context,
-                      '/create',
                     );
                     break;
                   case 'Delete':
@@ -51,7 +49,11 @@ class DictandoTile extends StatelessWidget {
                     break;
                 }
               },
-              itemBuilder: (BuildContext context) => {'Open', 'Edit', 'Delete'}
+              itemBuilder: (BuildContext context) => {
+                'Compare with dictando',
+                'Open',
+                'Delete',
+              }
                   .map(
                     (String choice) => PopupMenuItem<String>(
                       value: choice,
@@ -70,14 +72,60 @@ class DictandoTile extends StatelessWidget {
       );
 }
 
+class CompareToDictandoAlertDialog extends StatelessWidget {
+  const CompareToDictandoAlertDialog({
+    required this.compareDictando,
+    Key? key,
+  }) : super(key: key);
+
+  final Dictando compareDictando;
+
+  @override
+  Widget build(BuildContext context) => AlertDialog(
+        title: const Text('Pick Dictando to compare with'),
+        content: BlocBuilder<UserDataCubit, UserDataState>(
+          builder: (context, state) {
+            if (state is FetchedData) {
+              return SizedBox(
+                // TODO(zoskar): remove workaround
+                width: 0,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: state.userDictandos.length,
+                  itemBuilder: (context, index) {
+                    final dictandoFromDatabase = state.userDictandos[index];
+                    return ListTile(
+                      title: Text(dictandoFromDatabase.dictando.name),
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          '/compare',
+                          arguments: [
+                            dictandoFromDatabase.dictando,
+                            compareDictando
+                          ],
+                        );
+                      },
+                    );
+                  },
+                ),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ),
+      );
+}
+
 class DeleteDictandoAlertDialog extends StatelessWidget {
   const DeleteDictandoAlertDialog({
     required this.id,
-    this.isSolution = false,
     Key? key,
   }) : super(key: key);
   final String id;
-  final bool isSolution;
   @override
   Widget build(BuildContext context) => AlertDialog(
         title: const Text('Delete Dictando'),
@@ -90,11 +138,7 @@ class DeleteDictandoAlertDialog extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              if (isSolution) {
-                context.read<UserDataCubit>().deleteSolution(id);
-              } else {
-                context.read<UserDataCubit>().deleteDictando(id);
-              }
+              context.read<UserDataCubit>().deleteDictando(id);
               Navigator.pop(context, false);
             },
             child: const Text(

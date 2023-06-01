@@ -10,7 +10,6 @@ class AppRouter {
   static final allRoutes = [
     AppRoutes.homepage,
     AppRoutes.create,
-    AppRoutes.solve,
     AppRoutes.browse,
     AppRoutes.preview,
     AppRoutes.compare
@@ -54,10 +53,6 @@ class AppRoutes {
   static final create = AppRoute(
     build: (_, __) => const CreateScreen(),
     route: '/create',
-  );
-  static final solve = AppRoute(
-    build: (_, __) => const CreateScreen(isSolution: true),
-    route: '/solve',
   );
   static final browse = AppRoute(
     build: (_, __) => const BrowseScreen(),

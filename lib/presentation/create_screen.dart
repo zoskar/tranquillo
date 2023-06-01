@@ -9,9 +9,7 @@ import 'package:tranquillo/cubits/auth_cubit.dart';
 import 'package:tranquillo/presentation/hamburger_menu.dart';
 
 class CreateScreen extends StatelessWidget {
-  const CreateScreen({this.isSolution = false, Key? key}) : super(key: key);
-
-  final bool isSolution;
+  const CreateScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +32,7 @@ class CreateScreen extends StatelessWidget {
               children: [
                 CarouselWidget(width: width, mainScale: mainScale),
                 BeatWidget(mainScale: mainScale),
-                Keyboard(isSoultion: isSolution),
+                const Keyboard(),
               ],
             ),
           );

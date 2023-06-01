@@ -36,17 +36,6 @@ class HamburgerMenu extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.arrow_forward_ios_rounded),
                 title: const Text(
-                  'Solve dictando',
-                  style: AppTextStyles.black24,
-                ),
-                onTap: () {
-                  context.read<DictandoCubit>().init();
-                  Navigator.pushReplacementNamed(context, '/solve');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.arrow_forward_ios_rounded),
-                title: const Text(
                   'Create dictando',
                   style: AppTextStyles.black24,
                 ),

@@ -6,11 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Keyboard extends StatelessWidget {
   const Keyboard({
-    this.isSoultion = false,
     Key? key,
   }) : super(key: key);
-
-  final bool isSoultion;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -64,9 +61,7 @@ class Keyboard extends StatelessWidget {
                 onPressed: () async {
                   await showDialog<bool>(
                     context: context,
-                    builder: (context) => SaveDictandoAlertDialog(
-                      isSolution: isSoultion,
-                    ),
+                    builder: (context) => SaveDictandoAlertDialog(),
                   );
                 },
               ),
@@ -150,11 +145,9 @@ class Keyboard extends StatelessWidget {
 }
 
 class SaveDictandoAlertDialog extends StatelessWidget {
-  SaveDictandoAlertDialog({Key? key, this.isSolution = false})
-      : super(key: key);
+  SaveDictandoAlertDialog({Key? key}) : super(key: key);
 
   final _textController = TextEditingController();
-  final bool isSolution;
 
   @override
   Widget build(BuildContext context) {
@@ -179,17 +172,12 @@ class SaveDictandoAlertDialog extends StatelessWidget {
             final name = _textController.text.trim();
             if (name.isNotEmpty) {
               context.read<DictandoCubit>().dictando.name = name;
-              if (isSolution) {
-                context.read<UserDataCubit>().saveSolution(
-                      context.read<DictandoCubit>().dictando,
-                      context.read<DictandoCubit>().dictandoId,
-                    );
-              } else {
-                context.read<UserDataCubit>().saveDictando(
-                      context.read<DictandoCubit>().dictando,
-                      context.read<DictandoCubit>().dictandoId,
-                    );
-              }
+
+              context.read<UserDataCubit>().saveDictando(
+                    context.read<DictandoCubit>().dictando,
+                    context.read<DictandoCubit>().dictandoId,
+                  );
+
               Navigator.pushReplacementNamed(context, '/browse');
             }
           },

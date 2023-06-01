@@ -18,7 +18,6 @@ class UserDataCubit extends Cubit<UserDataState> {
   /// Fetches all user dictandos from the database
   Future<void> getUserDictandos() async {
     List<DictandoFromDatabase> userDictandos = [];
-    List<DictandoFromDatabase> userSolutions = [];
     emit(FetchingInProgress());
 
     try {
@@ -37,21 +36,6 @@ class UserDataCubit extends Cubit<UserDataState> {
           );
         });
       }
-      response =
-          await _dataRef.child('solutions/${auth.currentUser?.uid}').get();
-      if (response.value != null) {
-        final data =
-            Map<String, dynamic>.from(response.value! as Map<Object?, Object?>);
-
-        data.forEach((k, v) {
-          userSolutions.add(
-            DictandoFromDatabase(
-              dictando: Dictando.parseDictando(v),
-              id: k,
-            ),
-          );
-        });
-      }
     } catch (err, st) {
       print('Error: $err, $st');
       emit(NoData());
@@ -60,7 +44,6 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(
       FetchedData(
         userDictandos: userDictandos,
-        userSolutions: userSolutions,
       ),
     );
   }
@@ -78,33 +61,10 @@ class UserDataCubit extends Cubit<UserDataState> {
     await getUserDictandos();
   }
 
-  /// Saves a solution to the database
-  Future<void> saveSolution(Dictando dictando, String id) async {
-    emit(FetchingInProgress());
-    DatabaseReference dbRef =
-        FirebaseDatabase.instance.ref('solutions/${auth.currentUser!.uid}');
-    DatabaseReference newPostRef = dbRef.push();
-    if (id != '') {
-      await deleteSolution(id);
-    }
-    await newPostRef.set(dictando.toJson());
-    await getUserDictandos();
-  }
-
   /// Deletes a dictando from the database
   Future<void> deleteDictando(String id) async {
     await _dataRef
         .child('dictandos/${auth.currentUser?.uid}/$id')
-        .remove()
-        .then((_) => print('Deleted'))
-        .catchError((error) => print('Delete failed: $error'));
-    await getUserDictandos();
-  }
-
-  /// Deletes a solution from the database
-  Future<void> deleteSolution(String id) async {
-    await _dataRef
-        .child('solutions/${auth.currentUser?.uid}/$id')
         .remove()
         .then((_) => print('Deleted'))
         .catchError((error) => print('Delete failed: $error'));
@@ -115,10 +75,9 @@ class UserDataCubit extends Cubit<UserDataState> {
 abstract class UserDataState {}
 
 class FetchedData extends UserDataState {
-  FetchedData({required this.userDictandos, required this.userSolutions});
+  FetchedData({required this.userDictandos});
 
   final List<DictandoFromDatabase> userDictandos;
-  final List<DictandoFromDatabase> userSolutions;
 }
 
 class FetchingInProgress extends UserDataState {}
