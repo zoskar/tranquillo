@@ -23,6 +23,16 @@ class DictandoTile extends StatelessWidget {
               style: const TextStyle(fontSize: 20),
             ),
             trailing: DictandoMenu(dictando: dictando, id: id),
+            onTap: () {
+              context.read<DictandoCubit>().editDictando(
+                    dictando,
+                    id,
+                  );
+              Navigator.pushReplacementNamed(
+                context,
+                '/preview',
+              );
+            },
           ),
           const Divider(),
         ],
@@ -128,13 +138,13 @@ class CompareToDictandoAlertDialog extends StatelessWidget {
                     return ListTile(
                       title: Text(dictandoFromDatabase.dictando.name),
                       onTap: () {
+                        context.read<DictandoCubit>().compareDictando(
+                              compareDictando,
+                              dictandoFromDatabase.dictando,
+                            );
                         Navigator.pushReplacementNamed(
                           context,
                           '/compare',
-                          arguments: [
-                            dictandoFromDatabase.dictando,
-                            compareDictando
-                          ],
                         );
                       },
                     );

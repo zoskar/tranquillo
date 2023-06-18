@@ -54,7 +54,8 @@ class DefaultFirebaseOptions {
     appId: '1:1013999627334:android:99ddbaa18a304d3fca6e47',
     messagingSenderId: '1013999627334',
     projectId: 'dictando-78c79',
-    databaseURL: 'https://dictando-78c79-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://dictando-78c79-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'dictando-78c79.appspot.com',
   );
 
@@ -63,9 +64,11 @@ class DefaultFirebaseOptions {
     appId: '1:1013999627334:ios:1c2137826d8f19d2ca6e47',
     messagingSenderId: '1013999627334',
     projectId: 'dictando-78c79',
-    databaseURL: 'https://dictando-78c79-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://dictando-78c79-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'dictando-78c79.appspot.com',
-    iosClientId: '1013999627334-g8ibd5vg10pur06gm0rj7jd3e531javv.apps.googleusercontent.com',
+    iosClientId:
+        '1013999627334-g8ibd5vg10pur06gm0rj7jd3e531javv.apps.googleusercontent.com',
     iosBundleId: 'com.example.tranquillo',
   );
 }

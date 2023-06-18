@@ -1,4 +1,3 @@
-import 'package:tranquillo/data/classes.dart';
 import 'package:tranquillo/presentation/browse_screen.dart';
 import 'package:tranquillo/presentation/compare_screen.dart';
 import 'package:tranquillo/presentation/login/login_screen.dart';
@@ -63,13 +62,7 @@ class AppRoutes {
     route: '/preview',
   );
   static final compare = AppRoute(
-    build: (_, __) {
-      final args = ModalRoute.of(_)!.settings.arguments as List<Dictando>;
-      return CompareScreen(
-        dictandoA: args[0],
-        dictandoB: args[1],
-      );
-    },
+    build: (_, __) => const CompareScreen(),
     route: '/compare',
   );
 }

@@ -30,7 +30,10 @@ class PreviewScreen extends StatelessWidget {
 class BeatChangeArrows extends StatelessWidget {
   const BeatChangeArrows({
     Key? key,
+    this.forTwoDictandos = false,
   }) : super(key: key);
+
+  final bool forTwoDictandos;
 
   @override
   Widget build(BuildContext context) => Row(
@@ -38,14 +41,22 @@ class BeatChangeArrows extends StatelessWidget {
         children: [
           FloatingActionButton(
             onPressed: () {
-              context.read<DictandoCubit>().beatLeft();
+              if (forTwoDictandos) {
+                context.read<DictandoCubit>().beatLeftCompare();
+              } else {
+                context.read<DictandoCubit>().beatLeft();
+              }
             },
             heroTag: null,
             child: const Icon(Icons.arrow_back),
           ),
           FloatingActionButton(
             onPressed: () {
-              context.read<DictandoCubit>().beatRight(preview: true);
+              if (forTwoDictandos) {
+                context.read<DictandoCubit>().beatRightCompare();
+              } else {
+                context.read<DictandoCubit>().beatRight(preview: true);
+              }
             },
             heroTag: null,
             child: const Icon(Icons.arrow_forward),

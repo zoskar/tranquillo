@@ -7,6 +7,7 @@ class DictandoCubit extends Cubit<DictandoState> {
   DictandoCubit() : super(InitState());
 
   late Dictando dictando;
+  late Dictando dictandoB;
   late int beatIndex;
   late int noteIndex;
   final CarouselController carouselController = CarouselController();
@@ -14,12 +15,13 @@ class DictandoCubit extends Cubit<DictandoState> {
 
   /// Initializes the cubit with a placeholder dictando
   void init() {
-    dictando = Dictando(
+    dictando = dictandoB = Dictando(
       beats: [
         Beat([Note(duration: 8, pitch: 14)])
       ],
       name: '',
     );
+
     noteIndex = 0;
     beatIndex = 0;
     emit(DictandoSetState());
@@ -31,6 +33,14 @@ class DictandoCubit extends Cubit<DictandoState> {
     beatIndex = 0;
     noteIndex = dictando.beats[beatIndex].notes.length - 1;
     dictandoId = editDictandoId;
+    emit(DictandoSetState());
+  }
+
+  void compareDictando(Dictando dictando, Dictando dictandoB) {
+    this.dictando = dictando;
+    this.dictandoB = dictandoB;
+    beatIndex = 0;
+    noteIndex = 0;
     emit(DictandoSetState());
   }
 
@@ -91,6 +101,14 @@ class DictandoCubit extends Cubit<DictandoState> {
     }
   }
 
+  void beatLeftCompare() {
+    /// Not on last beat of any dictando
+    if (beatIndex > 0) {
+      beatIndex -= 1;
+    }
+    emit(DictandoSetState());
+  }
+
   /// Chenges current beat to the right
   void beatRight({bool preview = false}) {
     if (beatIndex == dictando.beats.length - 1 && !preview) {
@@ -103,6 +121,17 @@ class DictandoCubit extends Cubit<DictandoState> {
     }
     noteIndex = 0;
     carouselController.animateToPage(beatIndex);
+    emit(DictandoSetState());
+  }
+
+  /// Chenges current beat to the right
+  void beatRightCompare() {
+    /// Not on last beat of any dictando
+
+    if (!(beatIndex == dictando.beats.length - 1 ||
+        beatIndex == dictandoB.beats.length - 1)) {
+      beatIndex += 1;
+    }
     emit(DictandoSetState());
   }
 
