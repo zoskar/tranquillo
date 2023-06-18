@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tranquillo/cubits/auth_cubit.dart';
 import 'package:tranquillo/presentation/hamburger_menu.dart';
 
+/// The screen that displays the dictando that is being created.
 class CreateScreen extends StatelessWidget {
   const CreateScreen({Key? key}) : super(key: key);
 

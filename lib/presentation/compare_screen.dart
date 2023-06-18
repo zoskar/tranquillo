@@ -5,6 +5,7 @@ import 'package:tranquillo/presentation/widgets/staff.dart';
 import 'package:tranquillo/presentation/widgets/static_beat_widget.dart';
 import 'package:flutter/material.dart';
 
+/// The screen that displays two dictandos side by side.
 class CompareScreen extends StatelessWidget {
   const CompareScreen({
     required this.dictandoA,
