@@ -9,6 +9,7 @@ environment:
   sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
+  audioplayers: ^4.1.0
   carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.2
   equatable: ^2.0.3
@@ -16,6 +17,7 @@ dependencies:
   firebase_core: ^2.9.0
   firebase_core_platform_interface:
   firebase_database: ^10.1.0
+  firebase_storage: ^11.2.3
   fl_chart: ^0.61.0
   flutter:
     sdk: flutter

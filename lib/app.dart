@@ -1,3 +1,4 @@
+import 'package:tranquillo/cubits/file_cubit.dart';
 import 'package:tranquillo/router.dart';
 import 'package:tranquillo/util/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,13 @@ class App extends StatelessWidget {
     final authCubit = AuthCubit()..init();
     final userDataCubit = UserDataCubit();
     final beatCubit = DictandoCubit();
+    final fileCubit = FileCubit();
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthCubit>.value(value: authCubit),
         BlocProvider<UserDataCubit>.value(value: userDataCubit),
         BlocProvider<DictandoCubit>.value(value: beatCubit),
+        BlocProvider<FileCubit>.value(value: fileCubit)
       ],
       child: MaterialApp(
         theme: ThemeData(

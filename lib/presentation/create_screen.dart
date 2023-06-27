@@ -1,4 +1,5 @@
 import 'package:tranquillo/cubits/dictando_cubit.dart';
+import 'package:tranquillo/cubits/file_cubit.dart';
 import 'package:tranquillo/presentation/widgets/beat_widget.dart';
 import 'package:tranquillo/presentation/widgets/carousel_widget.dart';
 import 'package:tranquillo/presentation/widgets/keyboard.dart';
@@ -34,6 +35,55 @@ class CreateScreen extends StatelessWidget {
                 CarouselWidget(width: width, mainScale: mainScale),
                 BeatWidget(mainScale: mainScale),
                 const Keyboard(),
+                BlocBuilder<FileCubit, FileCubitState>(
+                  builder: (context, state) => Row(
+                    children: [
+                      ButtonBar(
+                        alignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                            icon: state is Playing
+                                ? const Icon(Icons.pause)
+                                : const Icon(Icons.play_arrow),
+                            onPressed: () {
+                              switch (state.runtimeType) {
+                                case Playing:
+                                  context.read<FileCubit>().pause();
+                                  break;
+                                case Paused:
+                                  context.read<FileCubit>().play();
+                                  break;
+                                default:
+                                  context.read<FileCubit>().playFromUrl();
+                              }
+                            },
+                          ),
+                          if (state is Playing || state is Paused)
+                            IconButton(
+                              icon: const Icon(Icons.stop),
+                              onPressed: () {
+                                context.read<FileCubit>().stop();
+                              },
+                            ),
+                          if (state is Playing || state is Paused)
+                            IconButton(
+                              onPressed: () {
+                                context.read<FileCubit>().replay();
+                              },
+                              icon: const Icon(Icons.replay),
+                            ),
+                          if (state is Playing || state is Paused)
+                            IconButton(
+                              onPressed: () {
+                                context.read<FileCubit>().goBack();
+                              },
+                              icon: const Icon(Icons.replay_10),
+                            ),
+                        ],
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           );
