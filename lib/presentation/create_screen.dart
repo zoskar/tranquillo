@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:tranquillo/cubits/dictando_cubit.dart';
 import 'package:tranquillo/cubits/file_cubit.dart';
 import 'package:tranquillo/presentation/widgets/beat_widget.dart';
@@ -45,7 +46,7 @@ class CreateScreen extends StatelessWidget {
                             icon: state is Playing
                                 ? const Icon(Icons.pause)
                                 : const Icon(Icons.play_arrow),
-                            onPressed: () {
+                            onPressed: () async {
                               switch (state.runtimeType) {
                                 case Playing:
                                   context.read<FileCubit>().pause();
@@ -54,7 +55,15 @@ class CreateScreen extends StatelessWidget {
                                   context.read<FileCubit>().play();
                                   break;
                                 default:
-                                  context.read<FileCubit>().playFromUrl();
+                                  var files = await context
+                                      .read<FileCubit>()
+                                      .getFilesList();
+
+                                  await showDialog<bool>(
+                                    context: context,
+                                    builder: (context) =>
+                                        PickMusicDialog(files: files),
+                                  );
                               }
                             },
                           ),
@@ -88,4 +97,48 @@ class CreateScreen extends StatelessWidget {
             ),
           );
   }
+}
+
+class PickMusicDialog extends StatelessWidget {
+  const PickMusicDialog({
+    required this.files,
+    Key? key,
+  }) : super(key: key);
+
+  final List<Reference> files;
+
+  @override
+  Widget build(BuildContext context) => AlertDialog(
+        title: const Text('Pick music'),
+        content: SizedBox(
+          width: 0,
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: files.length,
+            itemBuilder: (context, index) => GestureDetector(
+              onTap: () {
+                context
+                    .read<FileCubit>()
+                    .playFromUrl(url: files.elementAt(index).name);
+                Navigator.pop(context, false);
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  files.elementAt(index).name,
+                  style: const TextStyle(fontSize: 12),
+                ),
+              ),
+            ),
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context, false);
+            },
+            child: const Text('Cancel'),
+          ),
+        ],
+      );
 }

@@ -33,6 +33,7 @@ class HamburgerMenu extends StatelessWidget {
                   style: AppTextStyles.black24,
                 ),
                 onTap: () {
+                  context.read<FileCubit>().stop();
                   context.read<UserDataCubit>().getUserDictandos();
                   Navigator.pushReplacementNamed(context, '/browse');
                 },
@@ -73,6 +74,7 @@ class HamburgerMenu extends StatelessWidget {
                   style: AppTextStyles.black24,
                 ),
                 onTap: () {
+                  context.read<FileCubit>().stop();
                   Navigator.pushReplacementNamed(context, '/');
                   context.read<AuthCubit>().logOut();
                   context.read<UserDataCubit>().removeData();

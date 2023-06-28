@@ -12,7 +12,7 @@ class FileCubit extends Cubit<FileCubitState> {
 
   final player = AudioPlayer();
 
-  void playFromUrl({String url = ''}) async {
+  void playFromUrl({required String url}) async {
     await player.setReleaseMode(ReleaseMode.stop);
     final imagesRef = storageRef.child(url);
     final downloadUrl = await imagesRef.getDownloadURL();
@@ -22,6 +22,11 @@ class FileCubit extends Cubit<FileCubitState> {
     player.onPlayerComplete.listen((event) async {
       emit(Paused());
     });
+  }
+
+  Future<List<Reference>> getFilesList() async {
+    final listResult = await storageRef.listAll();
+    return listResult.items;
   }
 
   void stop() async {
