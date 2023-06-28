@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:tranquillo/cubits/dictando_cubit.dart';
+import 'package:tranquillo/cubits/file_cubit.dart';
 import 'package:tranquillo/util/app_colors.dart';
 import 'package:tranquillo/util/fonts.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +46,24 @@ class HamburgerMenu extends StatelessWidget {
                 onTap: () {
                   context.read<DictandoCubit>().init();
                   Navigator.pushReplacementNamed(context, '/create');
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.arrow_forward_ios_rounded),
+                title: const Text(
+                  'Upload MP3',
+                  style: AppTextStyles.black24,
+                ),
+                onTap: () async {
+                  FilePickerResult? result =
+                      await FilePicker.platform.pickFiles(
+                    type: FileType.custom,
+                    allowedExtensions: ['mp3'],
+                  );
+                  if (result != null) {
+                    File file = File(result.files.single.path as String);
+                    context.read<FileCubit>().uploadFile(file);
+                  }
                 },
               ),
               ListTile(

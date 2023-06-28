@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,6 +46,12 @@ class FileCubit extends Cubit<FileCubitState> {
   void goBack() async {
     final position = await player.getCurrentPosition();
     await player.seek(Duration(seconds: position!.inSeconds - 10));
+  }
+
+  void uploadFile(File file) async {
+    String fileName = file.path.split('/').last;
+    final fileRef = storageRef.child(fileName);
+    await fileRef.putFile(file);
   }
 }
 
