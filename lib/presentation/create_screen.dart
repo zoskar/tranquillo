@@ -1,4 +1,6 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:tranquillo/cubits/dictando_cubit.dart';
+import 'package:tranquillo/cubits/file_cubit.dart';
 import 'package:tranquillo/presentation/widgets/beat_widget.dart';
 import 'package:tranquillo/presentation/widgets/carousel_widget.dart';
 import 'package:tranquillo/presentation/widgets/keyboard.dart';
@@ -34,8 +36,109 @@ class CreateScreen extends StatelessWidget {
                 CarouselWidget(width: width, mainScale: mainScale),
                 BeatWidget(mainScale: mainScale),
                 const Keyboard(),
+                BlocBuilder<FileCubit, FileCubitState>(
+                  builder: (context, state) => Row(
+                    children: [
+                      ButtonBar(
+                        alignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                            icon: state is Playing
+                                ? const Icon(Icons.pause)
+                                : const Icon(Icons.play_arrow),
+                            onPressed: () async {
+                              switch (state.runtimeType) {
+                                case Playing:
+                                  context.read<FileCubit>().pause();
+                                  break;
+                                case Paused:
+                                  context.read<FileCubit>().play();
+                                  break;
+                                default:
+                                  var files = await context
+                                      .read<FileCubit>()
+                                      .getFilesList();
+
+                                  await showDialog<bool>(
+                                    context: context,
+                                    builder: (context) =>
+                                        PickMusicDialog(files: files),
+                                  );
+                              }
+                            },
+                          ),
+                          if (state is Playing || state is Paused)
+                            IconButton(
+                              icon: const Icon(Icons.stop),
+                              onPressed: () {
+                                context.read<FileCubit>().stop();
+                              },
+                            ),
+                          if (state is Playing || state is Paused)
+                            IconButton(
+                              onPressed: () {
+                                context.read<FileCubit>().replay();
+                              },
+                              icon: const Icon(Icons.replay),
+                            ),
+                          if (state is Playing || state is Paused)
+                            IconButton(
+                              onPressed: () {
+                                context.read<FileCubit>().goBack();
+                              },
+                              icon: const Icon(Icons.replay_10),
+                            ),
+                        ],
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           );
   }
+}
+
+class PickMusicDialog extends StatelessWidget {
+  const PickMusicDialog({
+    required this.files,
+    Key? key,
+  }) : super(key: key);
+
+  final List<Reference> files;
+
+  @override
+  Widget build(BuildContext context) => AlertDialog(
+        title: const Text('Pick music'),
+        content: SizedBox(
+          width: 0,
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: files.length,
+            itemBuilder: (context, index) => GestureDetector(
+              onTap: () {
+                context
+                    .read<FileCubit>()
+                    .playFromUrl(url: files.elementAt(index).name);
+                Navigator.pop(context, false);
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  files.elementAt(index).name,
+                  style: const TextStyle(fontSize: 12),
+                ),
+              ),
+            ),
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context, false);
+            },
+            child: const Text('Cancel'),
+          ),
+        ],
+      );
 }
