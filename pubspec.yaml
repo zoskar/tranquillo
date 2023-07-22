@@ -47,6 +47,7 @@ dev_dependencies:
   go_router_builder: ^1.0.3
   injectable_generator: ^2.1.5
   json_serializable: ^6.6.1
+  patrol: ^2.1.0
 
 flutter:
   uses-material-design: true
@@ -59,6 +60,13 @@ flutter:
     - family:  Notes
       fonts:
         - asset: asset/fonts/Notes.ttf
+
+patrol:
+  app_name: tranquillo
+  android:
+    package_name: com.example.tranquillo
+  ios:
+    bundle_id: com.example.tranquillo
 
 flutter_intl:
   enabled: true

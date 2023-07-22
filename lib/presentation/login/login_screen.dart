@@ -1,3 +1,4 @@
+import 'package:tranquillo/keys.dart';
 import 'package:tranquillo/presentation/browse_screen.dart';
 import 'package:tranquillo/presentation/login/register_screen.dart';
 import 'package:tranquillo/util/app_colors.dart';
@@ -169,6 +170,7 @@ class LoginScreen extends HookWidget {
                                       ),
                                     ),
                                     ElevatedButton(
+                                      key: K.loginButton,
                                       style: ElevatedButton.styleFrom(
                                         minimumSize: const Size.fromHeight(40),
                                         shape: const StadiumBorder(),
