@@ -88,7 +88,6 @@ class Dictando {
 
   factory Dictando.parseDictando(Map<Object?, Object?> jsonMap) {
     String name = jsonMap['name'] as String;
-    bool isPrivate = jsonMap['isPrivate'] as bool;
     List<dynamic> beatsJson = jsonMap['beats'] as List<dynamic>;
     List<Beat> beats = beatsJson.map((beatJson) {
       List<dynamic> notesJson = beatJson['notes'] as List<dynamic>;
@@ -102,7 +101,7 @@ class Dictando {
           .toList();
       return Beat(notes);
     }).toList();
-    return Dictando(beats: beats, name: name, isPrivate: isPrivate);
+    return Dictando(beats: beats, name: name);
   }
 
   factory Dictando.fromJson(Map<String, dynamic> json) =>

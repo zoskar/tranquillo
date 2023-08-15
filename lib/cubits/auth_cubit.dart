@@ -22,6 +22,23 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  /// registers new user
+  Future<void> register({
+    required String email,
+    required String password,
+  }) async {
+    emit(AuthenticationInProgress());
+    try {
+      await auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      emit(Authenticated());
+    } catch (err, st) {
+      print('Error: $err, $st');
+    }
+  }
+
   /// logIn() logs in the user
   Future<bool> logIn({
     required String email,

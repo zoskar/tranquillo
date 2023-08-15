@@ -100,7 +100,7 @@ class LoginScreen extends HookWidget {
                                       ],
                                     ),
                                     FormBuilderTextField(
-                                      initialValue: 'abc@wp.pl',
+                                      // initialValue: 'abc@wp.pl',
                                       name: 'email',
                                       maxLength: 20,
                                       autocorrect: false,
@@ -135,7 +135,7 @@ class LoginScreen extends HookWidget {
                                       ),
                                     ),
                                     FormBuilderTextField(
-                                      initialValue: 'abc@wp.pl',
+                                      // initialValue: 'abc@wp.pl',
                                       obscureText: true,
                                       name: 'password',
                                       maxLength: 20,
@@ -201,7 +201,7 @@ class LoginScreen extends HookWidget {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                const RegisterScreen(),
+                                                 RegisterScreen(),
                                           ),
                                         );
                                       },
