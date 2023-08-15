@@ -1,6 +1,5 @@
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:tranquillo/keys.dart';
-import 'package:tranquillo/presentation/browse_screen.dart';
 import 'package:tranquillo/util/app_colors.dart';
 import 'package:tranquillo/util/fonts.dart';
 import 'package:flutter/material.dart';
