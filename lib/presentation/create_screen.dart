@@ -1,7 +1,7 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:tranquillo/cubits/dictando_cubit.dart';
 import 'package:tranquillo/cubits/file_cubit.dart';
-import 'package:tranquillo/presentation/widgets/beat_widget.dart';
+import 'package:tranquillo/presentation/widgets/bar_widget.dart';
 import 'package:tranquillo/presentation/widgets/carousel_widget.dart';
 import 'package:tranquillo/presentation/widgets/keyboard.dart';
 import 'package:tranquillo/presentation/widgets/my_app_bar.dart';
@@ -34,7 +34,7 @@ class CreateScreen extends StatelessWidget {
             body: Column(
               children: [
                 CarouselWidget(width: width, mainScale: mainScale),
-                BeatWidget(mainScale: mainScale),
+                barWidget(mainScale: mainScale),
                 const Keyboard(),
                 BlocBuilder<FileCubit, FileCubitState>(
                   builder: (context, state) => Row(

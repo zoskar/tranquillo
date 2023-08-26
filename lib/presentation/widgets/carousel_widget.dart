@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:tranquillo/cubits/dictando_cubit.dart';
 import 'package:tranquillo/presentation/widgets/staff.dart';
-import 'package:tranquillo/presentation/widgets/static_beat_widget.dart';
+import 'package:tranquillo/presentation/widgets/static_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,7 +24,7 @@ class CarouselWidget extends StatelessWidget {
             carouselController:
                 context.read<DictandoCubit>().carouselController,
             options: CarouselOptions(
-              initialPage: context.read<DictandoCubit>().beatIndex,
+              initialPage: context.read<DictandoCubit>().barIndex,
               enableInfiniteScroll: false,
               aspectRatio: width / mainScale / 9,
               enlargeCenterPage: true,
@@ -32,17 +32,17 @@ class CarouselWidget extends StatelessWidget {
             items: context
                 .read<DictandoCubit>()
                 .dictando
-                .beats
+                .bars
                 .map(
                   (i) => Builder(
                     builder: (BuildContext context) => GestureDetector(
                       behavior: HitTestBehavior.translucent,
                       onTap: () {
-                        context.read<DictandoCubit>().changeBeat(
+                        context.read<DictandoCubit>().changeBar(
                               context
                                   .read<DictandoCubit>()
                                   .dictando
-                                  .beats
+                                  .bars
                                   .indexOf(i),
                             );
                       },
@@ -52,9 +52,9 @@ class CarouselWidget extends StatelessWidget {
                             distance: mainScale / 4,
                             isTappable: false,
                           ),
-                          StaticBeatWidget(
+                          StaticbarWidget(
                             step: mainScale / 4,
-                            beat: i,
+                            bar: i,
                           ),
                         ],
                       ),

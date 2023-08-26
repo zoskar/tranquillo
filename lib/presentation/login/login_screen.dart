@@ -201,7 +201,7 @@ class LoginScreen extends HookWidget {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                 RegisterScreen(),
+                                                RegisterScreen(),
                                           ),
                                         );
                                       },

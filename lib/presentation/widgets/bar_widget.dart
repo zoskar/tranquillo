@@ -1,9 +1,9 @@
-import 'package:tranquillo/presentation/widgets/beat_notes.dart';
+import 'package:tranquillo/presentation/widgets/bar_notes.dart';
 import 'package:tranquillo/presentation/widgets/staff.dart';
 import 'package:flutter/material.dart';
 
-class BeatWidget extends StatelessWidget {
-  const BeatWidget({
+class barWidget extends StatelessWidget {
+  const barWidget({
     required this.mainScale,
     this.preview = false,
     Key? key,
@@ -19,7 +19,7 @@ class BeatWidget extends StatelessWidget {
         child: Stack(
           children: [
             // TODO(zoskar): change order
-            BeatNotes(step: mainScale, preview: preview),
+            barNotes(step: mainScale, preview: preview),
             Staff(
               distance: mainScale,
               isTappable: !preview,

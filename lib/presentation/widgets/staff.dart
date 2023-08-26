@@ -29,8 +29,7 @@ class Staff extends StatelessWidget {
                           context
                                   .read<DictandoCubit>()
                                   .dictando
-                                  .beats[
-                                      context.read<DictandoCubit>().beatIndex]
+                                  .bars[context.read<DictandoCubit>().barIndex]
                                   .notes[
                                       context.read<DictandoCubit>().noteIndex]
                                   .duration >
@@ -55,8 +54,7 @@ class Staff extends StatelessWidget {
                           context
                                   .read<DictandoCubit>()
                                   .dictando
-                                  .beats[
-                                      context.read<DictandoCubit>().beatIndex]
+                                  .bars[context.read<DictandoCubit>().barIndex]
                                   .notes[
                                       context.read<DictandoCubit>().noteIndex]
                                   .duration >

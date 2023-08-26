@@ -1,6 +1,6 @@
 import 'package:tranquillo/cubits/dictando_cubit.dart';
 import 'package:tranquillo/presentation/hamburger_menu.dart';
-import 'package:tranquillo/presentation/widgets/beat_widget.dart';
+import 'package:tranquillo/presentation/widgets/bar_widget.dart';
 import 'package:tranquillo/presentation/widgets/carousel_widget.dart';
 import 'package:tranquillo/presentation/widgets/my_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -19,16 +19,16 @@ class PreviewScreen extends StatelessWidget {
       body: Column(
         children: [
           CarouselWidget(width: width, mainScale: mainScale),
-          BeatWidget(mainScale: mainScale, preview: true),
-          const BeatChangeArrows()
+          barWidget(mainScale: mainScale, preview: true),
+          const barChangeArrows()
         ],
       ),
     );
   }
 }
 
-class BeatChangeArrows extends StatelessWidget {
-  const BeatChangeArrows({
+class barChangeArrows extends StatelessWidget {
+  const barChangeArrows({
     Key? key,
     this.forTwoDictandos = false,
   }) : super(key: key);
@@ -42,9 +42,9 @@ class BeatChangeArrows extends StatelessWidget {
           FloatingActionButton(
             onPressed: () {
               if (forTwoDictandos) {
-                context.read<DictandoCubit>().beatLeftCompare();
+                context.read<DictandoCubit>().barLeftCompare();
               } else {
-                context.read<DictandoCubit>().beatLeft();
+                context.read<DictandoCubit>().barLeft();
               }
             },
             heroTag: null,
@@ -53,9 +53,9 @@ class BeatChangeArrows extends StatelessWidget {
           FloatingActionButton(
             onPressed: () {
               if (forTwoDictandos) {
-                context.read<DictandoCubit>().beatRightCompare();
+                context.read<DictandoCubit>().barRightCompare();
               } else {
-                context.read<DictandoCubit>().beatRight(preview: true);
+                context.read<DictandoCubit>().barRight(preview: true);
               }
             },
             heroTag: null,

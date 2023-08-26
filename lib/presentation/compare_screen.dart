@@ -4,7 +4,7 @@ import 'package:tranquillo/presentation/hamburger_menu.dart';
 import 'package:tranquillo/presentation/preview_screen.dart';
 import 'package:tranquillo/presentation/widgets/my_app_bar.dart';
 import 'package:tranquillo/presentation/widgets/staff.dart';
-import 'package:tranquillo/presentation/widgets/static_beat_widget.dart';
+import 'package:tranquillo/presentation/widgets/static_bar_widget.dart';
 import 'package:flutter/material.dart';
 
 /// The screen that displays two dictandos side by side.
@@ -28,12 +28,12 @@ class CompareScreen extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 2.5,
                 child: Stack(
                   children: [
-                    StaticBeatWidget(
+                    StaticbarWidget(
                       step: mainScale,
-                      beat: context
+                      bar: context
                           .read<DictandoCubit>()
                           .dictando
-                          .beats[context.read<DictandoCubit>().beatIndex],
+                          .bars[context.read<DictandoCubit>().barIndex],
                     ),
                     Staff(distance: mainScale, isTappable: false),
                   ],
@@ -43,18 +43,18 @@ class CompareScreen extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 2.5,
                 child: Stack(
                   children: [
-                    StaticBeatWidget(
+                    StaticbarWidget(
                       step: mainScale,
-                      beat: context
+                      bar: context
                           .read<DictandoCubit>()
-                          .dictandoB
-                          .beats[context.read<DictandoCubit>().beatIndex],
+                          .dictandoBis
+                          .bars[context.read<DictandoCubit>().barIndex],
                     ),
                     Staff(distance: mainScale, isTappable: false),
                   ],
                 ),
               ),
-              const BeatChangeArrows(forTwoDictandos: true)
+              const barChangeArrows(forTwoDictandos: true)
             ],
           ),
         ),

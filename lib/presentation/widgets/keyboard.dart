@@ -28,7 +28,7 @@ class Keyboard extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  context.read<DictandoCubit>().beatLeft();
+                  context.read<DictandoCubit>().barLeft();
                 },
                 icon: const Icon(Icons.arrow_circle_left),
               ),
@@ -46,7 +46,7 @@ class Keyboard extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  context.read<DictandoCubit>().beatRight();
+                  context.read<DictandoCubit>().barRight();
                 },
                 icon: const Icon(Icons.arrow_circle_right),
               ),

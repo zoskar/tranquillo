@@ -3,8 +3,8 @@ import 'package:tranquillo/util/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BeatNotes extends StatelessWidget {
-  const BeatNotes({
+class barNotes extends StatelessWidget {
+  const barNotes({
     required this.step,
     this.preview = false,
     Key? key,
@@ -26,7 +26,7 @@ class BeatNotes extends StatelessWidget {
                       context
                           .read<DictandoCubit>()
                           .dictando
-                          .beats[context.read<DictandoCubit>().beatIndex]
+                          .bars[context.read<DictandoCubit>().barIndex]
                           .notes
                           .length;
                   i++)
@@ -36,7 +36,7 @@ class BeatNotes extends StatelessWidget {
                       height: context
                               .read<DictandoCubit>()
                               .dictando
-                              .beats[context.read<DictandoCubit>().beatIndex]
+                              .bars[context.read<DictandoCubit>().barIndex]
                               .notes[i]
                               .pitch *
                           step,
@@ -48,8 +48,7 @@ class BeatNotes extends StatelessWidget {
                               context
                                   .read<DictandoCubit>()
                                   .dictando
-                                  .beats[
-                                      context.read<DictandoCubit>().beatIndex]
+                                  .bars[context.read<DictandoCubit>().barIndex]
                                   .notes[i]
                                   .duration
                                   .abs(),
@@ -59,7 +58,7 @@ class BeatNotes extends StatelessWidget {
                         context
                             .read<DictandoCubit>()
                             .dictando
-                            .beats[context.read<DictandoCubit>().beatIndex]
+                            .bars[context.read<DictandoCubit>().barIndex]
                             .notes[i]
                             .getNoteIcon(),
                         color: i == context.read<DictandoCubit>().noteIndex &&
