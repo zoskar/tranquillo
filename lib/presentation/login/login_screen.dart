@@ -102,7 +102,7 @@ class LoginScreen extends HookWidget {
                                     FormBuilderTextField(
                                       // initialValue: 'abc@wp.pl',
                                       name: 'email',
-                                      maxLength: 20,
+                                      maxLength: 30,
                                       autocorrect: false,
                                       decoration: InputDecoration(
                                         focusColor: AppColors.c,

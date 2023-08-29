@@ -104,7 +104,7 @@ class RegisterForm extends HookWidget {
                       FormBuilderValidators.email(),
                     ]),
                     name: 'email',
-                    maxLength: 20,
+                    maxLength: 30,
                     autocorrect: false,
                     decoration: InputDecoration(
                       focusColor: AppColors.c,
