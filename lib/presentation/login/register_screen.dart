@@ -9,8 +9,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:tranquillo/cubits/auth_cubit.dart';
 
 class RegisterScreen extends HookWidget {
-  RegisterScreen({Key? key}) : super(key: key);
-  final formKey = GlobalKey<FormBuilderState>();
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,7 @@ class RegisterScreen extends HookWidget {
 
 class RegisterForm extends HookWidget {
   RegisterForm({Key? key}) : super(key: key);
-  final formKey = GlobalKey<FormBuilderState>();
+  static final formKey = GlobalKey<FormBuilderState>();
   final isError = useState(false);
 
   void onPressedRegister(
