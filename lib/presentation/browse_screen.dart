@@ -1,5 +1,6 @@
 import 'package:tranquillo/cubits/dictando_cubit.dart';
 import 'package:tranquillo/cubits/user_data_cubit.dart';
+import 'package:tranquillo/keys.dart';
 import 'package:tranquillo/presentation/hamburger_menu.dart';
 import 'package:tranquillo/presentation/widgets/my_app_bar.dart';
 import 'package:tranquillo/presentation/widgets/dictando_tile.dart';
@@ -22,6 +23,7 @@ class BrowseScreen extends StatelessWidget {
       drawer: const HamburgerMenu(),
       appBar: const MyAppBar(),
       floatingActionButton: FloatingActionButton(
+        key: K.dictandoCreateNew,
         child: const Icon(Icons.add),
         onPressed: () {
           context.read<DictandoCubit>().init();

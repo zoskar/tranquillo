@@ -99,6 +99,7 @@ class RegisterForm extends HookWidget {
                     ],
                   ),
                   FormBuilderTextField(
+                    key: K.registerEmailTextField,
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
                       FormBuilderValidators.email(),
@@ -133,6 +134,7 @@ class RegisterForm extends HookWidget {
                     ),
                   ),
                   FormBuilderTextField(
+                    key: K.registerPasswordlTextField,
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
                       FormBuilderValidators.minLength(
@@ -174,6 +176,7 @@ class RegisterForm extends HookWidget {
                     ),
                   ),
                   FormBuilderTextField(
+                    key: K.registerRepeatPasswordlTextField,
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
                       (val) {
@@ -184,7 +187,6 @@ class RegisterForm extends HookWidget {
                         return null;
                       }
                     ]),
-                    // initialValue: 'abc@wp.pl',
                     obscureText: true,
                     name: 'repeat password',
                     maxLength: 50,
@@ -215,7 +217,7 @@ class RegisterForm extends HookWidget {
                     ),
                   ),
                   ElevatedButton(
-                    key: K.loginButton,
+                    key: K.registerButton,
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(40),
                       shape: const StadiumBorder(),

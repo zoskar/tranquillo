@@ -3,6 +3,7 @@ import 'package:tranquillo/cubits/user_data_cubit.dart';
 import 'package:tranquillo/data/classes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tranquillo/keys.dart';
 
 class DictandoTile extends StatelessWidget {
   const DictandoTile({
@@ -22,7 +23,11 @@ class DictandoTile extends StatelessWidget {
               dictando.name,
               style: const TextStyle(fontSize: 20),
             ),
-            trailing: DictandoMenu(dictando: dictando, id: id),
+            trailing: DictandoMenu(
+              dictando: dictando,
+              id: id,
+              key: K.dictandoMoreMenu,
+            ),
             onTap: () {
               context.read<DictandoCubit>().editDictando(
                     dictando,
@@ -99,6 +104,7 @@ class DictandoMenu extends StatelessWidget {
         }
             .map(
               (String choice) => PopupMenuItem<String>(
+                key: K.dictandoOption(choice),
                 value: choice,
                 child: Text(choice),
               ),
@@ -178,6 +184,7 @@ class DeleteDictandoAlertDialog extends StatelessWidget {
             child: const Text('Cancel'),
           ),
           TextButton(
+            key: K.dictandoDeleteConfirm,
             onPressed: () {
               context.read<UserDataCubit>().deleteDictando(id);
               Navigator.pop(context, false);

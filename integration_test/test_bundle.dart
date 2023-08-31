@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
 
 // START: GENERATED TEST IMPORTS
-import 'example_test.dart' as example_test;
+import 'create_dictando_test.dart' as create_dictando_test;
 // END: GENERATED TEST IMPORTS
 
 Future<void> main() async {
@@ -13,6 +13,6 @@ Future<void> main() async {
   PatrolBinding.ensureInitialized();
 
   // START: GENERATED TEST GROUPS
-  group('example_test', example_test.main);
+  group('create_dictando_test', create_dictando_test.main);
   // END: GENERATED TEST GROUPS
 }

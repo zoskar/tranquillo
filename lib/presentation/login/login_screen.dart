@@ -100,6 +100,7 @@ class LoginScreen extends HookWidget {
                                       ],
                                     ),
                                     FormBuilderTextField(
+                                      key: K.loginTextField,
                                       // initialValue: 'abc@wp.pl',
                                       name: 'email',
                                       maxLength: 50,
@@ -135,6 +136,7 @@ class LoginScreen extends HookWidget {
                                       ),
                                     ),
                                     FormBuilderTextField(
+                                      key: K.passwordTextField,
                                       // initialValue: 'abc@wp.pl',
                                       obscureText: true,
                                       name: 'password',
@@ -196,6 +198,7 @@ class LoginScreen extends HookWidget {
                                   children: [
                                     const Text('Don\'t have an account?'),
                                     TextButton(
+                                      key: K.loginPageRegisterButton,
                                       onPressed: () {
                                         Navigator.push(
                                           context,

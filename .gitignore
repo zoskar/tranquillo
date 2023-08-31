@@ -30,6 +30,8 @@ migrate_working_dir/
 .packages
 .pub-cache/
 .pub/
+.patrol.env
+integration_test/test_bundle.dart
 /build/
 
 # Web related

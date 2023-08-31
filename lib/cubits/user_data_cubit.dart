@@ -21,8 +21,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(FetchingInProgress());
 
     try {
-      DataSnapshot response =
-          await _dataRef.child('dictandos').get();
+      DataSnapshot response = await _dataRef.child('dictandos').get();
       if (response.value != null) {
         final data =
             Map<String, dynamic>.from(response.value! as Map<Object?, Object?>);
@@ -51,8 +50,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   /// Saves a dictando to the database
   Future<void> saveDictando(Dictando dictando, String id) async {
     emit(FetchingInProgress());
-    DatabaseReference dbRef =
-        FirebaseDatabase.instance.ref('dictandos');
+    DatabaseReference dbRef = FirebaseDatabase.instance.ref('dictandos');
     DatabaseReference newPostRef = dbRef.push();
     if (id != '') {
       await deleteDictando(id);
