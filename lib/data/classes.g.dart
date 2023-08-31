@@ -16,26 +16,26 @@ Map<String, dynamic> _$NoteToJson(Note instance) => <String, dynamic>{
       'pitch': instance.pitch,
     };
 
-Beat _$BeatFromJson(Map<String, dynamic> json) => Beat(
+Bar _$BarFromJson(Map<String, dynamic> json) => Bar(
       (json['notes'] as List<dynamic>)
           .map((e) => Note.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$BeatToJson(Beat instance) => <String, dynamic>{
+Map<String, dynamic> _$BarToJson(Bar instance) => <String, dynamic>{
       'notes': instance.notes.map((e) => e.toJson()).toList(),
     };
 
 Dictando _$DictandoFromJson(Map<String, dynamic> json) => Dictando(
-      beats: (json['beats'] as List<dynamic>)
-          .map((e) => Beat.fromJson(e as Map<String, dynamic>))
+      bars: (json['bars'] as List<dynamic>)
+          .map((e) => Bar.fromJson(e as Map<String, dynamic>))
           .toList(),
       name: json['name'] as String,
       isPrivate: json['isPrivate'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$DictandoToJson(Dictando instance) => <String, dynamic>{
-      'beats': instance.beats.map((e) => e.toJson()).toList(),
+      'bars': instance.bars.map((e) => e.toJson()).toList(),
       'name': instance.name,
       'isPrivate': instance.isPrivate,
     };

@@ -100,9 +100,9 @@ class LoginScreen extends HookWidget {
                                       ],
                                     ),
                                     FormBuilderTextField(
-                                      initialValue: 'abc@wp.pl',
+                                      // initialValue: 'abc@wp.pl',
                                       name: 'email',
-                                      maxLength: 20,
+                                      maxLength: 50,
                                       autocorrect: false,
                                       decoration: InputDecoration(
                                         focusColor: AppColors.c,
@@ -135,10 +135,10 @@ class LoginScreen extends HookWidget {
                                       ),
                                     ),
                                     FormBuilderTextField(
-                                      initialValue: 'abc@wp.pl',
+                                      // initialValue: 'abc@wp.pl',
                                       obscureText: true,
                                       name: 'password',
-                                      maxLength: 20,
+                                      maxLength: 50,
                                       autocorrect: false,
                                       decoration: InputDecoration(
                                         prefixIcon: const Icon(Icons.lock),

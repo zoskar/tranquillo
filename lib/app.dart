@@ -14,13 +14,13 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final authCubit = AuthCubit()..init();
     final userDataCubit = UserDataCubit();
-    final beatCubit = DictandoCubit();
+    final dictandoCubit = DictandoCubit();
     final fileCubit = FileCubit();
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthCubit>.value(value: authCubit),
         BlocProvider<UserDataCubit>.value(value: userDataCubit),
-        BlocProvider<DictandoCubit>.value(value: beatCubit),
+        BlocProvider<DictandoCubit>.value(value: dictandoCubit),
         BlocProvider<FileCubit>.value(value: fileCubit)
       ],
       child: MaterialApp(

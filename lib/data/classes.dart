@@ -69,11 +69,11 @@ class Note {
 }
 
 @JsonSerializable(explicitToJson: true)
-class Beat {
-  Beat(this.notes);
+class Bar {
+  Bar(this.notes);
 
-  factory Beat.fromJson(Map<String, dynamic> json) => _$BeatFromJson(json);
-  Map<String, dynamic> toJson() => _$BeatToJson(this);
+  factory Bar.fromJson(Map<String, dynamic> json) => _$BarFromJson(json);
+  Map<String, dynamic> toJson() => _$BarToJson(this);
 
   List<Note> notes;
 }
@@ -81,17 +81,16 @@ class Beat {
 @JsonSerializable(explicitToJson: true)
 class Dictando {
   Dictando({
-    required this.beats,
+    required this.bars,
     required this.name,
     this.isPrivate = true,
   });
 
   factory Dictando.parseDictando(Map<Object?, Object?> jsonMap) {
     String name = jsonMap['name'] as String;
-    bool isPrivate = jsonMap['isPrivate'] as bool;
-    List<dynamic> beatsJson = jsonMap['beats'] as List<dynamic>;
-    List<Beat> beats = beatsJson.map((beatJson) {
-      List<dynamic> notesJson = beatJson['notes'] as List<dynamic>;
+    List<dynamic> barJson = jsonMap['bars'] as List<dynamic>;
+    List<Bar> bars = barJson.map((barJson) {
+      List<dynamic> notesJson = barJson['notes'] as List<dynamic>;
       List<Note> notes = notesJson
           .map(
             (noteJson) => Note(
@@ -100,16 +99,16 @@ class Dictando {
             ),
           )
           .toList();
-      return Beat(notes);
+      return Bar(notes);
     }).toList();
-    return Dictando(beats: beats, name: name, isPrivate: isPrivate);
+    return Dictando(bars: bars, name: name);
   }
 
   factory Dictando.fromJson(Map<String, dynamic> json) =>
       _$DictandoFromJson(json);
   Map<String, dynamic> toJson() => _$DictandoToJson(this);
 
-  List<Beat> beats;
+  List<Bar> bars;
   String name;
   bool isPrivate;
 }

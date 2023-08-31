@@ -7,67 +7,67 @@ class DictandoCubit extends Cubit<DictandoState> {
   DictandoCubit() : super(InitState());
 
   late Dictando dictando;
-  late Dictando dictandoB;
-  late int beatIndex;
+  late Dictando dictandoBis;
+  late int barIndex;
   late int noteIndex;
   final CarouselController carouselController = CarouselController();
   String dictandoId = '';
 
   /// Initializes the cubit with a placeholder dictando
   void init() {
-    dictando = dictandoB = Dictando(
-      beats: [
-        Beat([Note(duration: 8, pitch: 14)])
+    dictando = dictandoBis = Dictando(
+      bars: [
+        Bar([Note(duration: 8, pitch: 14)])
       ],
       name: '',
     );
 
     noteIndex = 0;
-    beatIndex = 0;
+    barIndex = 0;
     emit(DictandoSetState());
   }
 
   /// Sets the cubit with a dictando from the database
   void editDictando(Dictando editDictando, String editDictandoId) {
     dictando = editDictando;
-    beatIndex = 0;
-    noteIndex = dictando.beats[beatIndex].notes.length - 1;
+    barIndex = 0;
+    noteIndex = dictando.bars[barIndex].notes.length - 1;
     dictandoId = editDictandoId;
     emit(DictandoSetState());
   }
 
-  void compareDictando(Dictando dictando, Dictando dictandoB) {
+  void compareDictando(Dictando dictando, Dictando dictandoBis) {
     this.dictando = dictando;
-    this.dictandoB = dictandoB;
-    beatIndex = 0;
+    this.dictandoBis = dictandoBis;
+    barIndex = 0;
     noteIndex = 0;
     emit(DictandoSetState());
   }
 
   /// Sets pitch of the current note
   void setPitch(int pitch) {
-    dictando.beats[beatIndex].notes[noteIndex].pitch = pitch;
+    dictando.bars[barIndex].notes[noteIndex].pitch = pitch;
     emit(DictandoSetState());
   }
 
   /// Sets duration of the current note
   void setDuration(int duration) {
-    dictando.beats[beatIndex].notes[noteIndex].duration = duration;
+    dictando.bars[barIndex].notes[noteIndex].duration = duration;
     emit(DictandoSetState());
   }
 
   /// Reduces pitch of the current note
   void noteDown() {
-    if (dictando.beats[beatIndex].notes[noteIndex].pitch < 24) {
-      dictando.beats[beatIndex].notes[noteIndex].pitch += 1;
+    if (dictando.bars[barIndex].notes[noteIndex].pitch < 24) {
+      dictando.bars[barIndex].notes[noteIndex].pitch += 1;
     }
     emit(DictandoSetState());
   }
 
   /// Increases pitch of the current note
   void noteUp() {
-    if (dictando.beats[beatIndex].notes[noteIndex].pitch > 0) {
-      dictando.beats[beatIndex].notes[noteIndex].pitch -= 1;
+    if (dictando.bars[barIndex].notes[noteIndex].pitch > 0) {
+      dictando.bars[barIndex].notes[noteIndex].pitch -= 1;
     }
     emit(DictandoSetState());
   }
@@ -83,80 +83,80 @@ class DictandoCubit extends Cubit<DictandoState> {
   /// Chenges current note to the right
   void noteRight() {
     if (noteIndex < 12) {
-      if (noteIndex == dictando.beats[beatIndex].notes.length - 1) {
-        dictando.beats[beatIndex].notes.add(Note(duration: 8, pitch: 14));
+      if (noteIndex == dictando.bars[barIndex].notes.length - 1) {
+        dictando.bars[barIndex].notes.add(Note(duration: 8, pitch: 14));
       }
       noteIndex += 1;
     }
     emit(DictandoSetState());
   }
 
-  /// Chenges current beat to the left
-  void beatLeft() {
-    if (beatIndex > 0) {
-      beatIndex -= 1;
+  /// Chenges current bar to the left
+  void barLeft() {
+    if (barIndex > 0) {
+      barIndex -= 1;
       noteIndex = 0;
-      carouselController.animateToPage(beatIndex);
+      carouselController.animateToPage(barIndex);
       emit(DictandoSetState());
     }
   }
 
-  void beatLeftCompare() {
-    /// Not on last beat of any dictando
-    if (beatIndex > 0) {
-      beatIndex -= 1;
+  void barLeftCompare() {
+    /// Not on last bar of any dictando
+    if (barIndex > 0) {
+      barIndex -= 1;
     }
     emit(DictandoSetState());
   }
 
-  /// Chenges current beat to the right
-  void beatRight({bool preview = false}) {
-    if (beatIndex == dictando.beats.length - 1 && !preview) {
-      dictando.beats.add(Beat([Note(duration: 8, pitch: 14)]));
+  /// Chenges current bar to the right
+  void barRight({bool preview = false}) {
+    if (barIndex == dictando.bars.length - 1 && !preview) {
+      dictando.bars.add(Bar([Note(duration: 8, pitch: 14)]));
     }
 
-    /// Not on last beat
-    if (!(beatIndex == dictando.beats.length - 1)) {
-      beatIndex += 1;
+    /// Not on last bar
+    if (!(barIndex == dictando.bars.length - 1)) {
+      barIndex += 1;
     }
     noteIndex = 0;
-    carouselController.animateToPage(beatIndex);
+    carouselController.animateToPage(barIndex);
     emit(DictandoSetState());
   }
 
-  /// Chenges current beat to the right
-  void beatRightCompare() {
-    /// Not on last beat of any dictando
+  /// Chenges current bar to the right
+  void barRightCompare() {
+    /// Not on last bar of any dictando
 
-    if (!(beatIndex == dictando.beats.length - 1 ||
-        beatIndex == dictandoB.beats.length - 1)) {
-      beatIndex += 1;
+    if (!(barIndex == dictando.bars.length - 1 ||
+        barIndex == dictandoBis.bars.length - 1)) {
+      barIndex += 1;
     }
     emit(DictandoSetState());
   }
 
   /// Deletes current note
   void deleteNote() {
-    if (dictando.beats[beatIndex].notes.length > 1) {
-      if (noteIndex == dictando.beats[beatIndex].notes.length - 1) {
+    if (dictando.bars[barIndex].notes.length > 1) {
+      if (noteIndex == dictando.bars[barIndex].notes.length - 1) {
         noteIndex -= 1;
-        dictando.beats[beatIndex].notes.removeAt(noteIndex + 1);
+        dictando.bars[barIndex].notes.removeAt(noteIndex + 1);
       } else {
-        dictando.beats[beatIndex].notes.removeAt(noteIndex);
+        dictando.bars[barIndex].notes.removeAt(noteIndex);
       }
     }
     emit(DictandoSetState());
   }
 
-  /// Jumps to the beat with the given index
-  void changeBeat(int index) {
-    beatIndex = index;
+  /// Jumps to the bar with the given index
+  void changeBar(int index) {
+    barIndex = index;
     emit(DictandoSetState());
   }
 
   /// Clears dictando cubit
   void clearDictando() {
-    dictando = Dictando(beats: [], name: 'Placeholder name');
+    dictando = Dictando(bars: [], name: 'Placeholder name');
     emit(InitState());
   }
 }
