@@ -3,8 +3,8 @@ import 'package:tranquillo/util/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class barNotes extends StatelessWidget {
-  const barNotes({
+class BarNotes extends StatelessWidget {
+  const BarNotes({
     required this.step,
     this.preview = false,
     Key? key,

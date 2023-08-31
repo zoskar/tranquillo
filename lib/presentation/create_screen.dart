@@ -34,7 +34,7 @@ class CreateScreen extends StatelessWidget {
             body: Column(
               children: [
                 CarouselWidget(width: width, mainScale: mainScale),
-                barWidget(mainScale: mainScale),
+                BarWidget(mainScale: mainScale),
                 const Keyboard(),
                 BlocBuilder<FileCubit, FileCubitState>(
                   builder: (context, state) => Row(

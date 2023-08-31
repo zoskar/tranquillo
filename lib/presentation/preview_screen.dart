@@ -19,16 +19,16 @@ class PreviewScreen extends StatelessWidget {
       body: Column(
         children: [
           CarouselWidget(width: width, mainScale: mainScale),
-          barWidget(mainScale: mainScale, preview: true),
-          const barChangeArrows()
+          BarWidget(mainScale: mainScale, preview: true),
+          const BarChangeArrows()
         ],
       ),
     );
   }
 }
 
-class barChangeArrows extends StatelessWidget {
-  const barChangeArrows({
+class BarChangeArrows extends StatelessWidget {
+  const BarChangeArrows({
     Key? key,
     this.forTwoDictandos = false,
   }) : super(key: key);

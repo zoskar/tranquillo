@@ -2,8 +2,8 @@ import 'package:tranquillo/presentation/widgets/bar_notes.dart';
 import 'package:tranquillo/presentation/widgets/staff.dart';
 import 'package:flutter/material.dart';
 
-class barWidget extends StatelessWidget {
-  const barWidget({
+class BarWidget extends StatelessWidget {
+  const BarWidget({
     required this.mainScale,
     this.preview = false,
     Key? key,
@@ -19,7 +19,7 @@ class barWidget extends StatelessWidget {
         child: Stack(
           children: [
             // TODO(zoskar): change order
-            barNotes(step: mainScale, preview: preview),
+            BarNotes(step: mainScale, preview: preview),
             Staff(
               distance: mainScale,
               isTappable: !preview,

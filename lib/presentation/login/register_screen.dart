@@ -104,7 +104,7 @@ class RegisterForm extends HookWidget {
                       FormBuilderValidators.email(),
                     ]),
                     name: 'email',
-                    maxLength: 30,
+                    maxLength: 50,
                     autocorrect: false,
                     decoration: InputDecoration(
                       focusColor: AppColors.c,
@@ -146,7 +146,7 @@ class RegisterForm extends HookWidget {
                     ]),
                     obscureText: true,
                     name: 'password',
-                    maxLength: 20,
+                    maxLength: 50,
                     autocorrect: false,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
@@ -187,7 +187,7 @@ class RegisterForm extends HookWidget {
                     // initialValue: 'abc@wp.pl',
                     obscureText: true,
                     name: 'repeat password',
-                    maxLength: 20,
+                    maxLength: 50,
                     autocorrect: false,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),

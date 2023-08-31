@@ -22,7 +22,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     try {
       DataSnapshot response =
-          await _dataRef.child('dictandos/${auth.currentUser?.uid}').get();
+          await _dataRef.child('dictandos').get();
       if (response.value != null) {
         final data =
             Map<String, dynamic>.from(response.value! as Map<Object?, Object?>);
@@ -52,7 +52,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   Future<void> saveDictando(Dictando dictando, String id) async {
     emit(FetchingInProgress());
     DatabaseReference dbRef =
-        FirebaseDatabase.instance.ref('dictandos/${auth.currentUser!.uid}');
+        FirebaseDatabase.instance.ref('dictandos');
     DatabaseReference newPostRef = dbRef.push();
     if (id != '') {
       await deleteDictando(id);
@@ -64,7 +64,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   /// Deletes a dictando from the database
   Future<void> deleteDictando(String id) async {
     await _dataRef
-        .child('dictandos/${auth.currentUser?.uid}/$id')
+        .child('dictandos/$id')
         .remove()
         .then((_) => print('Deleted'))
         .catchError((error) => print('Delete failed: $error'));
