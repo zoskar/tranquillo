@@ -1,5 +1,6 @@
 import 'package:tranquillo/cubits/dictando_cubit.dart';
 import 'package:tranquillo/cubits/user_data_cubit.dart';
+import 'package:tranquillo/keys.dart';
 import 'package:tranquillo/util/notes_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,6 +46,7 @@ class Keyboard extends StatelessWidget {
                 icon: const Icon(Icons.arrow_right),
               ),
               IconButton(
+                key: K.nextBarButton,
                 onPressed: () {
                   context.read<DictandoCubit>().barRight();
                 },
@@ -57,6 +59,7 @@ class Keyboard extends StatelessWidget {
                 icon: const Icon(Icons.delete_rounded),
               ),
               IconButton(
+                key: K.saveButton,
                 icon: const Icon(Icons.save),
                 onPressed: () async {
                   await showDialog<bool>(
@@ -155,6 +158,7 @@ class SaveDictandoAlertDialog extends StatelessWidget {
     return AlertDialog(
       title: const Text('Save Dictando'),
       content: TextField(
+        key: K.saveConfirmTextfield,
         controller: _textController,
         decoration: const InputDecoration(
           hintText: 'Dictando Name',
@@ -168,6 +172,7 @@ class SaveDictandoAlertDialog extends StatelessWidget {
           child: const Text('Cancel'),
         ),
         TextButton(
+          key: K.saveConfirmButton,
           onPressed: () {
             final name = _textController.text.trim();
             if (name.isNotEmpty) {

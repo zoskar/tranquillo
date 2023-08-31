@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tranquillo/cubits/auth_cubit.dart';
 import 'package:tranquillo/presentation/hamburger_menu.dart';
+import 'package:tranquillo/keys.dart';
 
 /// The screen that displays the dictando that is being created.
 class CreateScreen extends StatelessWidget {
@@ -43,6 +44,7 @@ class CreateScreen extends StatelessWidget {
                         alignment: MainAxisAlignment.start,
                         children: [
                           IconButton(
+                            key: K.playPauseButton,
                             icon: state is Playing
                                 ? const Icon(Icons.pause)
                                 : const Icon(Icons.play_arrow),
@@ -69,6 +71,7 @@ class CreateScreen extends StatelessWidget {
                           ),
                           if (state is Playing || state is Paused)
                             IconButton(
+                              key: K.stopButton,
                               icon: const Icon(Icons.stop),
                               onPressed: () {
                                 context.read<FileCubit>().stop();
@@ -116,6 +119,7 @@ class PickMusicDialog extends StatelessWidget {
             shrinkWrap: true,
             itemCount: files.length,
             itemBuilder: (context, index) => GestureDetector(
+              key: K.songTile,
               onTap: () {
                 context
                     .read<FileCubit>()
