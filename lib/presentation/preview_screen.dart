@@ -20,7 +20,7 @@ class PreviewScreen extends StatelessWidget {
         children: [
           CarouselWidget(width: width, mainScale: mainScale),
           BarWidget(mainScale: mainScale, preview: true),
-          const BarChangeArrows()
+          const BarChangeArrows(),
         ],
       ),
     );
@@ -60,7 +60,7 @@ class BarChangeArrows extends StatelessWidget {
             },
             heroTag: null,
             child: const Icon(Icons.arrow_forward),
-          )
+          ),
         ],
       );
 }

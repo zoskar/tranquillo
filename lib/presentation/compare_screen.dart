@@ -54,7 +54,7 @@ class CompareScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const BarChangeArrows(forTwoDictandos: true)
+              const BarChangeArrows(forTwoDictandos: true),
             ],
           ),
         ),

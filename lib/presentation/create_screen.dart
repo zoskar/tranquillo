@@ -40,7 +40,7 @@ class CreateScreen extends StatelessWidget {
                 BlocBuilder<FileCubit, FileCubitState>(
                   builder: (context, state) => Row(
                     children: [
-                      ButtonBar(
+                      OverflowBar(
                         alignment: MainAxisAlignment.start,
                         children: [
                           IconButton(
@@ -92,10 +92,10 @@ class CreateScreen extends StatelessWidget {
                               icon: const Icon(Icons.replay_10),
                             ),
                         ],
-                      )
+                      ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           );

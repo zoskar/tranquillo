@@ -21,7 +21,7 @@ class App extends StatelessWidget {
         BlocProvider<AuthCubit>.value(value: authCubit),
         BlocProvider<UserDataCubit>.value(value: userDataCubit),
         BlocProvider<DictandoCubit>.value(value: dictandoCubit),
-        BlocProvider<FileCubit>.value(value: fileCubit)
+        BlocProvider<FileCubit>.value(value: fileCubit),
       ],
       child: MaterialApp(
         theme: ThemeData(

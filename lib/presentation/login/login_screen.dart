@@ -64,7 +64,7 @@ class LoginScreen extends HookWidget {
                             Icons.music_note,
                             size: 100,
                           ),
-                          Text('Dictando')
+                          Text('Dictando'),
                         ],
                       ),
                     ),
@@ -214,10 +214,10 @@ class LoginScreen extends HookWidget {
                                           decoration: TextDecoration.underline,
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),

@@ -10,18 +10,17 @@ const nativeConfig = NativeAutomatorConfig(
 
 void integrationTest(
   String description,
-  Future<void> Function(PatrolTester) callback,
+  Future<void> Function(PatrolIntegrationTester) callback,
 ) {
   patrolTest(
     description,
     callback,
-    nativeAutomation: true,
     nativeAutomatorConfig: nativeConfig,
   );
 }
 
 abstract class Commands {
-  static Future<void> openApp(PatrolTester $) async {
+  static Future<void> openApp(PatrolIntegrationTester $) async {
     await Firebase.initializeApp();
 
     await $.pumpWidgetAndSettle(const App());

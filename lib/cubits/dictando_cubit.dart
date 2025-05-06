@@ -17,7 +17,7 @@ class DictandoCubit extends Cubit<DictandoState> {
   void init() {
     dictando = dictandoBis = Dictando(
       bars: [
-        Bar([Note(duration: 8, pitch: 14)])
+        Bar([Note(duration: 8, pitch: 14)]),
       ],
       name: '',
     );
